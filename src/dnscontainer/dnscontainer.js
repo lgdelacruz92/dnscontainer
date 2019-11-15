@@ -5,6 +5,7 @@ import { translate } from "./translate";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
 import Image from "image-drag-and-scale";
+import Rectangle from "./rectangle";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -44,6 +45,7 @@ const DNSContainer = props => {
   }
 
   const containerRef = React.useRef();
+  const refs = React.useRef([React.createRef(), React.createRef()]);
 
   return (
     <div ref={containerRef} className={classes.container}>
@@ -54,7 +56,7 @@ const DNSContainer = props => {
         <HorizontalLine y={yi} w={page.w} key={i} />
       ))}
       {imageDatas.map((data, i) => (
-        <Image key={i} data={data} containerRef={containerRef} />
+        <Image data={data} containerRef={containerRef} />
       ))}
     </div>
   );
