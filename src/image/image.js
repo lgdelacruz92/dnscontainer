@@ -62,11 +62,11 @@ const Image = props => {
               clientX: e.clientX - 50,
               clientY: e.clientY - 50
             };
-            const transformedData = handleTransform(newEvent, s);
-            return { ...s, data: transformedData };
+            handleTransform(newEvent, s);
+            return { ...s };
           } else if (s.targetType === "translator") {
-            const translatedData = handleTranslate(e, s);
-            return { ...translatedData };
+            handleTranslate(e, s);
+            return { ...s };
           }
           return { ...s };
         });

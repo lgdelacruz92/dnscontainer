@@ -17,9 +17,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
       width: props => props.scaledWidth - 10,
       height: props => props.scaledHeight - 10,
       pointerEvents: "auto",
-      zIndex: props => props.index - 1,
-      opacity: 0.4,
-      background: "black"
+      zIndex: props => props.index - 1
     }
   };
 });
