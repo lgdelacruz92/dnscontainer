@@ -55,7 +55,6 @@ const Image = props => {
 
     const onMouseMove = e => {
       if (state.status === "mouse-down") {
-        console.log("Image is rendering", state.imageId);
         setState(s => {
           // get type of action
           if (s.targetType === "transformer") {
