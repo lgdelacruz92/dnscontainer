@@ -24,9 +24,6 @@ const Image = props => {
     targetId: null
   });
   const classes = useStyles();
-
-  console.log("Image Data", state.data);
-
   React.useEffect(() => {
     const onMouseDown = e => {
       let theTargetType = null;
@@ -60,9 +57,12 @@ const Image = props => {
       setState(s => {
         if (s.status === "mouse-down") {
           // get type of action
-
           if (s.targetType === "transformer") {
-            const transformedData = handleTransform(e, s);
+            const newEvent = {
+              clientX: e.clientX - 50,
+              clientY: e.clientY - 50
+            };
+            const transformedData = handleTransform(newEvent, s);
             return { ...s, data: transformedData };
           } else if (s.targetType === "translator") {
             const translatedData = handleTranslate(e, s);
