@@ -4,7 +4,7 @@ import { useGrid } from "./gridcreator";
 import { translate } from "./translate";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
-import Image from "../image/image";
+import Image from "image-drag-and-scale";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -25,7 +25,7 @@ const DNSContainer = props => {
   const classes = useStyles({ page });
 
   let imageDatas = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 2; i++) {
     const imageData = {
       x: 20 + 10 * i,
       y: 100,
@@ -43,8 +43,10 @@ const DNSContainer = props => {
     imageDatas.push(imageData);
   }
 
+  const containerRef = React.useRef();
+
   return (
-    <div className={classes.container}>
+    <div ref={containerRef} className={classes.container}>
       {x.map((xi, i) => (
         <VerticalLine key={i} x={xi} h={page.h} />
       ))}
@@ -52,7 +54,7 @@ const DNSContainer = props => {
         <HorizontalLine y={yi} w={page.w} key={i} />
       ))}
       {imageDatas.map((data, i) => (
-        <Image key={i} data={data} />
+        <Image key={i} data={data} containerRef={containerRef} />
       ))}
     </div>
   );
