@@ -1,7 +1,6 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import { useGrid } from "./gridcreator";
-import { translate } from "./translate";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
 import Image from "./Image";
@@ -10,7 +9,6 @@ import { linetool } from "./linetool";
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
     container: {
-      transform: props => translate(props.page.x, props.page.y),
       width: props => props.page.w,
       height: props => props.page.h,
       position: "relative",
@@ -22,27 +20,19 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const DNSContainer = props => {
-  const page = { x: 100, y: 50, w: 500, h: 500, u: 25 };
+  const { width, height, imageDatas } = props;
+  if (!width || !height || !imageDatas) {
+    throw Error("Width, height, and imageDatas array is required");
+  }
+  if (!Array.isArray(imageDatas)) {
+    throw Error(
+      "imageDatas must be an array of type ImageData. Please refer to getting started in the packages."
+    );
+  }
+
+  const page = { w: width, h: height, u: 10 };
   const [x, y] = useGrid({ w: page.w, h: page.h, u: page.u });
   const classes = useStyles({ page });
-  let imageDatas = [];
-  for (let i = 0; i < 2; i++) {
-    const imageData = {
-      x: 20 + 10 * i,
-      y: 100,
-      translateX: 0,
-      translateY: 0,
-      scaledWidth: 100,
-      scaledHeight: 100,
-      width: 100,
-      height: 100,
-      src: "https://source.unsplash.com/random/1000x1000",
-      alt: "random",
-      id: `unique-${i}`,
-      index: 1
-    };
-    imageDatas.push(imageData);
-  }
 
   const turnOn = (v, arr, refs, border) => {
     const i = arr.indexOf(v);
