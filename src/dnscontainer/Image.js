@@ -1,7 +1,7 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import clsx from "clsx";
-import Image from "image-drag-and-scale";
+import ImageDNS from "image-drag-and-scale";
 import { translate } from "./translate";
 
 const useStyles = MaterialUI.makeStyles(theme => {
@@ -18,7 +18,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
   };
 });
 
-const Rectangle = props => {
+const Image = props => {
   const { data, containerRef, onUpdate } = props;
   const imgRef = React.useRef();
   const [state, setState] = React.useState({
@@ -35,7 +35,7 @@ const Rectangle = props => {
 
   return (
     <React.Fragment>
-      <Image
+      <ImageDNS
         data={data}
         containerRef={containerRef}
         ref={imgRef}
@@ -61,4 +61,4 @@ const Rectangle = props => {
   );
 };
 
-export default Rectangle;
+export default Image;

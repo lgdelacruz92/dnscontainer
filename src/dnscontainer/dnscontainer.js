@@ -4,7 +4,7 @@ import { useGrid } from "./gridcreator";
 import { translate } from "./translate";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
-import Rectangle from "./rectangle";
+import Image from "./Image";
 import { linetool } from "./linetool";
 
 const useStyles = MaterialUI.makeStyles(theme => {
@@ -21,7 +21,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const DNSContainer = props => {
-  const page = { x: 50, y: 50, w: 500, h: 500, u: 25 };
+  const page = { x: 100, y: 50, w: 500, h: 500, u: 25 };
   const [x, y] = useGrid({ w: page.w, h: page.h, u: page.u });
   const classes = useStyles({ page });
   let imageDatas = [];
@@ -88,7 +88,7 @@ const DNSContainer = props => {
         <HorizontalLine ref={hlRefs.current[i]} y={yi} w={page.w} key={i} />
       ))}
       {imageDatas.map((data, i) => (
-        <Rectangle
+        <Image
           data={data}
           containerRef={containerRef}
           key={i}
