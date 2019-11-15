@@ -8,13 +8,12 @@ const useStyles = MaterialUI.makeStyles(theme => {
   return {
     rectangle: {
       position: "absolute",
-      width: props => props.scaledWidth,
-      height: props => props.scaledHeight,
+      width: props => props.w,
+      height: props => props.h,
       background: "black",
       opacity: 0.5,
       zIndex: -2,
-      transform: props =>
-        translate(props.x + props.translateX, props.y + props.translateY)
+      transform: props => translate(props.x, props.y)
     }
   };
 });
@@ -23,12 +22,10 @@ const Rectangle = props => {
   const { data, containerRef, onUpdate } = props;
   const imgRef = React.useRef();
   const [state, setState] = React.useState({
-    x: data.x,
-    y: data.y,
-    scaledHeight: data.scaledHeight,
-    scaledWidth: data.scaledWidth,
-    translateX: data.translateX,
-    translateY: data.translateY
+    x: data.x + data.translateX,
+    y: data.y + data.translateY,
+    w: data.scaledWidth,
+    h: data.scaledHeight
   });
   const classes = useStyles(state);
 
@@ -45,20 +42,16 @@ const Rectangle = props => {
         onUpdate={() => {
           const currentData = imgRef.current.data;
           if (
-            currentData.x !== state.x ||
-            currentData.y !== state.y ||
-            currentData.scaledHeight !== state.scaledHeight ||
-            currentData.scaledWidth !== state.scaledWidth ||
-            currentData.translateX !== state.translateX ||
-            currentData.translateY !== state.translateY
+            currentData.x + data.translateX !== state.x ||
+            currentData.y + data.translateY !== state.y ||
+            currentData.scaledHeight !== state.h ||
+            currentData.scaledWidth !== state.w
           ) {
             setState({
-              x: currentData.x,
-              y: currentData.y,
-              scaledHeight: currentData.scaledHeight,
-              scaledWidth: currentData.scaledWidth,
-              translateX: currentData.translateX,
-              translateY: currentData.translateY
+              x: currentData.x + data.translateX,
+              y: currentData.y + data.translateY,
+              w: currentData.scaledWidth,
+              h: currentData.scaledHeight
             });
           }
         }}

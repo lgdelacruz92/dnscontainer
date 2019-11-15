@@ -20,7 +20,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const DNSContainer = props => {
-  const page = { x: 50, y: 50, w: 500, h: 500, u: 20 };
+  const page = { x: 50, y: 50, w: 500, h: 500, u: 25 };
   const [x, y] = useGrid({ w: page.w, h: page.h, u: page.u });
   const classes = useStyles({ page });
   let imageDatas = [];
@@ -43,21 +43,54 @@ const DNSContainer = props => {
   }
 
   const containerRef = React.useRef();
+  let vlRefResult = [];
+  x.forEach(xi => vlRefResult.push(React.createRef()));
+  const vlRefs = React.useRef(vlRefResult);
+
+  let hlRefResult = [];
+  y.forEach(yi => hlRefResult.push(React.createRef()));
+  const hlRefs = React.useRef(hlRefResult);
 
   return (
     <div ref={containerRef} className={classes.container}>
       {x.map((xi, i) => (
-        <VerticalLine key={i} x={xi} h={page.h} />
+        <VerticalLine ref={vlRefs.current[i]} key={i} x={xi} h={page.h} />
       ))}
       {y.map((yi, i) => (
-        <HorizontalLine y={yi} w={page.w} key={i} />
+        <HorizontalLine ref={hlRefs.current[i]} y={yi} w={page.w} key={i} />
       ))}
       {imageDatas.map((data, i) => (
         <Rectangle
           data={data}
           containerRef={containerRef}
           key={i}
-          onUpdate={(rect, id) => {}}
+          onUpdate={(rect, id) => {
+            x.forEach(xi => {
+              if (xi - 1 < rect.x && rect.x < xi + 1) {
+                const index = x.indexOf(xi);
+                vlRefs.current[index].current.setAttribute(
+                  "style",
+                  "border-left: 1px solid orange"
+                );
+              } else {
+                const index = x.indexOf(xi);
+                vlRefs.current[index].current.setAttribute("style", "");
+              }
+            });
+
+            y.forEach(yi => {
+              if (yi - 1 < rect.y && rect.y < yi + 1) {
+                const index = y.indexOf(yi);
+                hlRefs.current[index].current.setAttribute(
+                  "style",
+                  "border-top: 1px solid orange"
+                );
+              } else {
+                const index = y.indexOf(yi);
+                hlRefs.current[index].current.setAttribute("style", "");
+              }
+            });
+          }}
         />
       ))}
     </div>
