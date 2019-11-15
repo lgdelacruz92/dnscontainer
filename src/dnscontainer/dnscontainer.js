@@ -5,6 +5,7 @@ import { translate } from "./translate";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
 import Rectangle from "./rectangle";
+import { linetool } from "./linetool";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -42,6 +43,17 @@ const DNSContainer = props => {
     imageDatas.push(imageData);
   }
 
+  const checkforGridCollission = (refs, val, arr, border) => {
+    refs.forEach(ref => {
+      ref.current.setAttribute("style", "");
+    });
+    const xi = linetool(val, arr);
+    if (xi) {
+      const i = arr.indexOf(xi);
+      refs[i].current.setAttribute("style", `${border}: 1px solid orange`);
+    }
+  };
+
   const containerRef = React.useRef();
   let vlRefResult = [];
   x.forEach(xi => vlRefResult.push(React.createRef()));
@@ -64,32 +76,9 @@ const DNSContainer = props => {
           data={data}
           containerRef={containerRef}
           key={i}
-          onUpdate={(rect, id) => {
-            x.forEach(xi => {
-              if (xi - 1 < rect.x && rect.x < xi + 1) {
-                const index = x.indexOf(xi);
-                vlRefs.current[index].current.setAttribute(
-                  "style",
-                  "border-left: 1px solid orange"
-                );
-              } else {
-                const index = x.indexOf(xi);
-                vlRefs.current[index].current.setAttribute("style", "");
-              }
-            });
-
-            y.forEach(yi => {
-              if (yi - 1 < rect.y && rect.y < yi + 1) {
-                const index = y.indexOf(yi);
-                hlRefs.current[index].current.setAttribute(
-                  "style",
-                  "border-top: 1px solid orange"
-                );
-              } else {
-                const index = y.indexOf(yi);
-                hlRefs.current[index].current.setAttribute("style", "");
-              }
-            });
+          onUpdate={rect => {
+            checkforGridCollission(vlRefs.current, rect.x, x, "border-left");
+            checkforGridCollission(hlRefs.current, rect.y, y, "border-top");
           }}
         />
       ))}
