@@ -53,7 +53,12 @@ const DNSContainer = props => {
         <HorizontalLine y={yi} w={page.w} key={i} />
       ))}
       {imageDatas.map((data, i) => (
-        <Rectangle data={data} containerRef={containerRef} key={i} />
+        <Rectangle
+          data={data}
+          containerRef={containerRef}
+          key={i}
+          onUpdate={(rect, id) => {}}
+        />
       ))}
     </div>
   );

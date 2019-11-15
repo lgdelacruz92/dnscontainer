@@ -20,7 +20,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Rectangle = props => {
-  const { id, data, containerRef } = props;
+  const { data, containerRef, onUpdate } = props;
   const imgRef = React.useRef();
   const [state, setState] = React.useState({
     x: data.x,
@@ -31,6 +31,10 @@ const Rectangle = props => {
     translateY: data.translateY
   });
   const classes = useStyles(state);
+
+  React.useEffect(() => {
+    onUpdate(state, data.id);
+  });
 
   return (
     <React.Fragment>
@@ -59,7 +63,7 @@ const Rectangle = props => {
           }
         }}
       />
-      <div className={clsx(classes.rectangle, id)}></div>
+      <div className={clsx(classes.rectangle, data.id)}></div>
     </React.Fragment>
   );
 };
