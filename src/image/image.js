@@ -54,8 +54,9 @@ const Image = props => {
     };
 
     const onMouseMove = e => {
-      setState(s => {
-        if (s.status === "mouse-down") {
+      if (state.status === "mouse-down") {
+        console.log("Image is rendering", state.imageId);
+        setState(s => {
           // get type of action
           if (s.targetType === "transformer") {
             const newEvent = {
@@ -68,20 +69,23 @@ const Image = props => {
             const translatedData = handleTranslate(e, s);
             return { ...translatedData };
           }
-        }
-        return { ...s };
-      });
+          return { ...s };
+        });
+      }
 
       e.preventDefault();
     };
 
     const onMouseUp = e => {
-      setState(s => ({
-        ...s,
-        status: "mouse-up",
-        targetType: null,
-        targetId: null
-      }));
+      if (state.status === "mouse-down") {
+        setState(s => ({
+          ...s,
+          status: "mouse-up",
+          targetType: null,
+          targetId: null
+        }));
+      }
+
       e.preventDefault();
     };
     document.addEventListener("mouseup", onMouseUp);
@@ -92,7 +96,7 @@ const Image = props => {
       document.removeEventListener("mousedown", onMouseDown);
       document.removeEventListener("mousemove", onMouseMove);
     };
-  }, [data, state.imageId]);
+  }, [data, state.imageId, state.status]);
 
   return (
     <Translator data={state}>
