@@ -1,53 +1,67 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import clsx from "clsx";
+import Image from "image-drag-and-scale";
+import { translate } from "./translate";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
-    rectangle: {}
+    rectangle: {
+      position: "absolute",
+      width: props => props.scaledWidth,
+      height: props => props.scaledHeight,
+      background: "black",
+      opacity: 0.5,
+      zIndex: -2,
+      transform: props =>
+        translate(props.x + props.translateX, props.y + props.translateY)
+    }
   };
 });
 
-const Rectangle = React.forwardRef((props, ref) => {
-  const { id, onMouseMove } = props;
-  const classes = useStyles();
+const Rectangle = props => {
+  const { id, data, containerRef } = props;
+  const imgRef = React.useRef();
   const [state, setState] = React.useState({
-    status: "mouseup"
+    x: data.x,
+    y: data.y,
+    scaledHeight: data.scaledHeight,
+    scaledWidth: data.scaledWidth,
+    translateX: data.translateX,
+    translateY: data.translateY
   });
+  const classes = useStyles(state);
 
-  React.useEffect(() => {
-    const onMouseDown = e => {
-      if (state.status !== "mouseup" && e.target.classList.contains(id)) {
-        console.log("clicked");
-        setState({ ...state, status: "mousedown" });
-      }
-      e.preventDefault();
-    };
-    const onMouseMoveHere = e => {
-      if (state.status === "mousedown") {
-        onMouseMove();
-      }
-      e.preventDefault();
-    };
-    const onMouseUp = e => {
-      if (state.status === "mousedown") {
-        setState({ ...state, status: "mousedown" });
-      }
-    };
-    document.addEventListener("mouseup", onMouseUp);
-    document.addEventListener("mousemove", onMouseMoveHere);
-    document.addEventListener("mousedown", onMouseDown);
-    return () => {
-      document.removeEventListener("mousedown", onMouseDown);
-      document.removeEventListener("mousemove", onMouseMoveHere);
-      document.removeEventListener("mouseup", onMouseUp);
-    };
-  }, [state.status]);
   return (
-    <div ref={ref} className={clsx(classes.rectangle, id)}>
-      {props.children}
-    </div>
+    <React.Fragment>
+      <Image
+        data={data}
+        containerRef={containerRef}
+        ref={imgRef}
+        onUpdate={() => {
+          const currentData = imgRef.current.data;
+          if (
+            currentData.x !== state.x ||
+            currentData.y !== state.y ||
+            currentData.scaledHeight !== state.scaledHeight ||
+            currentData.scaledWidth !== state.scaledWidth ||
+            currentData.translateX !== state.translateX ||
+            currentData.translateY !== state.translateY
+          ) {
+            setState({
+              x: currentData.x,
+              y: currentData.y,
+              scaledHeight: currentData.scaledHeight,
+              scaledWidth: currentData.scaledWidth,
+              translateX: currentData.translateX,
+              translateY: currentData.translateY
+            });
+          }
+        }}
+      />
+      <div className={clsx(classes.rectangle, id)}></div>
+    </React.Fragment>
   );
-});
+};
 
 export default Rectangle;
