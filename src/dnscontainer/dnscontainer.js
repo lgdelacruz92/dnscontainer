@@ -14,8 +14,9 @@ const useStyles = MaterialUI.makeStyles(theme => {
       width: props => props.page.w,
       height: props => props.page.h,
       position: "relative",
-      border: "2px solid red",
-      overflow: "hidden"
+      overflow: "hidden",
+      background: "white",
+      boxShadow: "2px 2px 4px grey"
     }
   };
 });

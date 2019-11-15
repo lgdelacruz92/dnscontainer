@@ -16,3 +16,7 @@
 .App-link {
   color: #09d3ac;
 }
+
+body {
+  background: rgb(245, 245, 245);
+}
