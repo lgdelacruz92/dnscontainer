@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <DNSContainer width={500} height={900} imageDatas={34} />
+      <DNSContainer width={500} height={700} imageDatas={imageDatas} />
     </div>
   );
 }

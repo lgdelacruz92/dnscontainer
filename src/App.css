@@ -19,4 +19,7 @@
 
 body {
   background: rgb(245, 245, 245);
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
