@@ -7,7 +7,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
     verticalLine: {
       position: "absolute",
       height: props => props.h,
-      transform: props => translate(props.x, 0)
+      transform: props => translate(props.x, 0),
+      zIndex: 5
     }
   };
 });

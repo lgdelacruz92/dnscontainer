@@ -43,14 +43,23 @@ const DNSContainer = props => {
     imageDatas.push(imageData);
   }
 
-  const checkforGridCollission = (refs, val, arr, border) => {
+  const checkforGridCollission = (refs, low, hi, arr, border) => {
     refs.forEach(ref => {
       ref.current.setAttribute("style", "");
     });
-    const xi = linetool(val, arr);
-    if (xi) {
-      const i = arr.indexOf(xi);
-      refs[i].current.setAttribute("style", `${border}: 1px solid orange`);
+    const v1 = linetool(low, arr);
+    const v2 = linetool(hi, arr);
+    const turnOn = v => {
+      const i = arr.indexOf(v);
+      if (refs[i]) {
+        refs[i].current.setAttribute("style", `${border}: 1px solid orange`);
+      }
+    };
+    if (v1) {
+      turnOn(v1);
+    }
+    if (v2) {
+      turnOn(v2);
     }
   };
 
@@ -77,8 +86,20 @@ const DNSContainer = props => {
           containerRef={containerRef}
           key={i}
           onUpdate={rect => {
-            checkforGridCollission(vlRefs.current, rect.x, x, "border-left");
-            checkforGridCollission(hlRefs.current, rect.y, y, "border-top");
+            checkforGridCollission(
+              vlRefs.current,
+              rect.x,
+              rect.x + rect.w,
+              x,
+              "border-left"
+            );
+            checkforGridCollission(
+              hlRefs.current,
+              rect.y,
+              rect.y + rect.h,
+              y,
+              "border-top"
+            );
           }}
         />
       ))}
