@@ -43,23 +43,30 @@ const DNSContainer = props => {
     imageDatas.push(imageData);
   }
 
+  const turnOn = (v, arr, refs, border) => {
+    const i = arr.indexOf(v);
+    if (refs[i]) {
+      refs[i].current.setAttribute("style", `${border}: 1px solid orange`);
+    }
+  };
+
   const checkforGridCollission = (refs, low, hi, arr, border) => {
     refs.forEach(ref => {
       ref.current.setAttribute("style", "");
     });
     const v1 = linetool(low, arr);
     const v2 = linetool(hi, arr);
-    const turnOn = v => {
-      const i = arr.indexOf(v);
-      if (refs[i]) {
-        refs[i].current.setAttribute("style", `${border}: 1px solid orange`);
+    const center = linetool((low + hi) / 2, arr);
+
+    if (center) {
+      turnOn(center, arr, refs, border);
+    } else {
+      if (v1) {
+        turnOn(v1, arr, refs, border);
       }
-    };
-    if (v1) {
-      turnOn(v1);
-    }
-    if (v2) {
-      turnOn(v2);
+      if (v2) {
+        turnOn(v2, arr, refs, border);
+      }
     }
   };
 
