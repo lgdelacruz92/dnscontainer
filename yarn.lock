@@ -4917,10 +4917,10 @@ ignore@^4.0.6:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
 
-image-drag-and-scale@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/image-drag-and-scale/-/image-drag-and-scale-1.1.3.tgz#b7222691d7452221e2abc7c439d07f4452eef8ae"
-  integrity sha512-CI3ICdBjy2z6x8ANs9kuAMerXdAu4L+//gK8aP+/J5F2t8+nvYhcPHVqAnR5AFOfh5we8QPKRtwtN9S7Z6zNYQ==
+image-drag-and-scale@^1.1.5-beta.0:
+  version "1.1.5-beta.0"
+  resolved "https://registry.yarnpkg.com/image-drag-and-scale/-/image-drag-and-scale-1.1.5-beta.0.tgz#9c76ca63f9cabb013d94b17e8c2f5104b781ba17"
+  integrity sha512-MjTu08De0ea08+iHyxweYs9MYg1YmU2+kCCipqbaC0S4ucL2LpqY5eVoTG4tDYLYNLsey4FsQOgkqdW5A5LhVw==
   dependencies:
     "@babel/core" "^7.7.2"
     "@material-ui/core" "^4.6.1"
