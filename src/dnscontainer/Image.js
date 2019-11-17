@@ -1,7 +1,7 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import clsx from "clsx";
-import ImageDNS from "image-drag-and-scale";
+import ImageDNS from "react-image-drag-and-scale";
 import { translate } from "./translate";
 
 const useStyles = MaterialUI.makeStyles(theme => {
