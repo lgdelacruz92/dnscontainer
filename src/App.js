@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import DNSContainer from "./dnscontainer/dnscontainer";
+import DNSContainer from "dns-container";
 
 function App() {
   let imageDatas = [];
