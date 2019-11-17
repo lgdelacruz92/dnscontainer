@@ -2,7 +2,14 @@ import React from "react";
 import ReactImageDragAndScale from "react-image-drag-and-scale";
 
 const ImageDNS = React.forwardRef((props, ref) => {
-  const { data, containerRef, selected, onUpdate, onClick } = props;
+  const {
+    data,
+    containerRef,
+    selected,
+    onUpdate,
+    onClick,
+    onEndUpdate
+  } = props;
   const [time, setTime] = React.useState(0);
 
   return (
@@ -20,6 +27,7 @@ const ImageDNS = React.forwardRef((props, ref) => {
           console.log("Click");
           onClick();
         }
+        onEndUpdate();
       }}
     />
   );

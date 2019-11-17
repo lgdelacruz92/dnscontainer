@@ -14,6 +14,19 @@ const useStyles = MaterialUI.makeStyles(theme => {
       opacity: 0.5,
       zIndex: -2,
       transform: props => translate(props.x, props.y)
+    },
+    rectinfo: {
+      width: 70,
+      height: 10,
+      opacity: 0.7,
+      zIndex: 5,
+      background: "black",
+      borderRadius: 5,
+      transform: props => translate(props.x, props.y - 20),
+      color: "white",
+      fontSize: "0.5em",
+      padding: 5,
+      textAlign: "center"
     }
   };
 });
@@ -28,6 +41,7 @@ const Image = props => {
     h: data.scaledHeight
   });
   const [unSelected, setUnselected] = React.useState(false);
+  const [transforming, setTransforming] = React.useState(false);
   const classes = useStyles(state);
 
   const onImageUpdate = () => {
@@ -38,6 +52,12 @@ const Image = props => {
       currentData.scaledHeight !== state.h ||
       currentData.scaledWidth !== state.w
     ) {
+      if (
+        currentData.scaledHeight !== state.h ||
+        currentData.scaledWidth !== state.w
+      ) {
+        setTransforming(true);
+      }
       setState({
         x: currentData.x + data.translateX,
         y: currentData.y + data.translateY,
@@ -60,8 +80,13 @@ const Image = props => {
         containerRef={containerRef}
         selected={unSelected}
         onClick={() => setUnselected(!unSelected)}
+        onEndUpdate={() => setTransforming(false)}
       />
       <div className={clsx(classes.rectangle, data.id)}></div>
+      <div
+        className={clsx(classes.rectinfo)}
+        hidden={!transforming}
+      >{`w: ${state.w.toPrecision(4)} h: ${state.h.toPrecision(4)}`}</div>
     </React.Fragment>
   );
 };
