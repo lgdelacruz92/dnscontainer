@@ -1,8 +1,8 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import clsx from "clsx";
-import ImageDNS from "react-image-drag-and-scale";
 import { translate } from "./translate";
+import ImageDNS from "react-image-drag-and-scale";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -27,7 +27,26 @@ const Image = props => {
     w: data.scaledWidth,
     h: data.scaledHeight
   });
+  const [unSelected, setUnselected] = React.useState(false);
+  const [time, setTime] = React.useState(0);
   const classes = useStyles(state);
+
+  const onUpdate = () => {
+    const currentData = imgRef.current.data;
+    if (
+      currentData.x + data.translateX !== state.x ||
+      currentData.y + data.translateY !== state.y ||
+      currentData.scaledHeight !== state.h ||
+      currentData.scaledWidth !== state.w
+    ) {
+      setState({
+        x: currentData.x + data.translateX,
+        y: currentData.y + data.translateY,
+        w: currentData.scaledWidth,
+        h: currentData.scaledHeight
+      });
+    }
+  };
 
   React.useEffect(() => {
     onUpdate(state, data.id);
@@ -37,22 +56,16 @@ const Image = props => {
     <React.Fragment>
       <ImageDNS
         data={data}
-        containerRef={containerRef}
         ref={imgRef}
-        onUpdate={() => {
-          const currentData = imgRef.current.data;
-          if (
-            currentData.x + data.translateX !== state.x ||
-            currentData.y + data.translateY !== state.y ||
-            currentData.scaledHeight !== state.h ||
-            currentData.scaledWidth !== state.w
-          ) {
-            setState({
-              x: currentData.x + data.translateX,
-              y: currentData.y + data.translateY,
-              w: currentData.scaledWidth,
-              h: currentData.scaledHeight
-            });
+        onStartUpdate={() => {
+          setTime(Date.now());
+        }}
+        onUpdate={onUpdate}
+        containerRef={containerRef}
+        selected={unSelected}
+        onEndUpdate={() => {
+          if (Date.now() - time <= 200) {
+            setUnselected(!unSelected);
           }
         }}
       />
