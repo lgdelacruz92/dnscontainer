@@ -34,7 +34,16 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Image = props => {
-  const { data, containerRef, onUpdate } = props;
+  const {
+    data,
+    containerRef,
+    onUpdate,
+    onClick,
+    onContextMenu,
+    openRightMenu,
+    onMoveDown,
+    onMoveUp
+  } = props;
   const imgRef = React.useRef();
   const [state, setState] = React.useState({
     x: data.x + data.translateX,
@@ -42,9 +51,9 @@ const Image = props => {
     w: data.scaledWidth,
     h: data.scaledHeight
   });
-  const [unSelected, setUnselected] = React.useState(false);
   const [transforming, setTransforming] = React.useState(false);
   const classes = useStyles(state);
+  const [unSelected, setUnselected] = React.useState(false);
 
   const onImageUpdate = () => {
     const currentData = imgRef.current.data;
@@ -73,9 +82,6 @@ const Image = props => {
     onUpdate(state, data.id);
   });
 
-  const [open, setOpen] = React.useState(false);
-  const [autoClearer, setAutoClearer] = React.useState(null);
-
   return (
     <React.Fragment>
       <ImageDNS
@@ -84,20 +90,10 @@ const Image = props => {
         onUpdate={onImageUpdate}
         containerRef={containerRef}
         selected={unSelected}
-        onContextMenu={e => {
-          setOpen(!open);
-          const newTimeout = setTimeout(() => {
-            setOpen(false);
-          }, 3000);
-          setAutoClearer(newTimeout);
-          e.preventDefault();
-          e.stopPropagation();
-          return false;
-        }}
-        onClick={() => {
+        onContextMenu={onContextMenu}
+        onClick={e => {
           setUnselected(!unSelected);
-          setOpen(false);
-          clearTimeout(autoClearer);
+          onClick(e);
         }}
         onEndUpdate={() => setTransforming(false)}
       />
@@ -106,7 +102,12 @@ const Image = props => {
         className={clsx(classes.rectinfo)}
         hidden={!transforming}
       >{`w: ${state.w.toPrecision(4)} h: ${state.h.toPrecision(4)}`}</div>
-      <RightClick open={open} data={data} />
+      <RightClick
+        open={openRightMenu}
+        data={data}
+        onMoveDown={onMoveDown}
+        onMoveUp={onMoveUp}
+      />
     </React.Fragment>
   );
 };

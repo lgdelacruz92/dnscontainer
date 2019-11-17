@@ -30,7 +30,7 @@ const ImageDNS = React.forwardRef((props, ref) => {
       onContextMenu={onContextMenu}
       onEndUpdate={e => {
         if (Date.now() - time < 200 && e.which === 1) {
-          onClick();
+          onClick(e);
         }
         onEndUpdate();
         e.preventDefault();

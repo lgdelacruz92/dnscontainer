@@ -27,7 +27,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const RightClick = props => {
-  const { open, data } = props;
+  const { open, data, onMoveUp, onMoveDown } = props;
   const classes = useStyles(data);
   return (
     <MaterialUI.Paper elevation={3} className={classes.rightClickMenu}>
@@ -37,13 +37,21 @@ const RightClick = props => {
         aria-label="secondary mailbox folders"
         hidden={!open}
       >
-        <MaterialUI.ListItem classes={{ gutters: classes.gutters }} button>
+        <MaterialUI.ListItem
+          onClick={onMoveUp}
+          classes={{ gutters: classes.gutters }}
+          button
+        >
           <MaterialUI.ListItemIcon classes={{ root: classes.listitemicon }}>
             <MaterialIcon.Layers />
           </MaterialUI.ListItemIcon>
           <MaterialUI.ListItemText primary="Move Up" />
         </MaterialUI.ListItem>
-        <MaterialUI.ListItem classes={{ gutters: classes.gutters }} button>
+        <MaterialUI.ListItem
+          onClick={onMoveDown}
+          classes={{ gutters: classes.gutters }}
+          button
+        >
           <MaterialUI.ListItemIcon classes={{ root: classes.listitemicon }}>
             <MaterialIcon.Layers />
           </MaterialUI.ListItemIcon>

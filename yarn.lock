@@ -8380,10 +8380,10 @@ react-error-overlay@^6.0.3:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
   integrity sha512-bOUvMWFQVk5oz8Ded9Xb7WVdEi3QGLC8tH7HmYP0Fdp4Bn3qw0tRFmr5TW6mvahzvmrK4a6bqWGfCevBflP+Xw==
 
-react-image-drag-and-scale@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/react-image-drag-and-scale/-/react-image-drag-and-scale-1.0.6.tgz#ecf83019cdada7bb0edffd45500a8683c84971d6"
-  integrity sha512-TOGmO4iHnDl15qCnP/lbVTbtLqAat7lmiq2K1LHa/QJgJzFVRBd4q12mdBNz3MpQSzaYnPK/RJD1QExhBN7drw==
+react-image-drag-and-scale@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-image-drag-and-scale/-/react-image-drag-and-scale-1.0.8.tgz#7e5825c666a9d2809b4385027b3fff5f114efec8"
+  integrity sha512-8q1aHyEWHbtGBqH7uJZC0mv+VP3zOtTUqzmyWrCO7kYXcpRqeSYrOSb0q8WBx7t6HM47sACY2+HF2dAgccMIgA==
   dependencies:
     react "16.8.6"
     react-dom "16.8.6"
