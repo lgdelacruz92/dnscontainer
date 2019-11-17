@@ -7,7 +7,7 @@
   "description": "This is a library that allows you to drag and scale an image within a div element",
   "repository": "lgdelacruz92/dnscontainer",
   "dependencies": {
-    "dns-container": "^1.0.0",
+    "dns-container": "^1.0.1",
     "image-drag-and-scale": "^1.1.5-beta.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
