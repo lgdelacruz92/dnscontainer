@@ -58,7 +58,17 @@ const DNSContainer = props => {
   }, []);
 
   return (
-    <div ref={containerRef} className={classes.container}>
+    <div
+      ref={containerRef}
+      onContextMenu={e => {
+        console.log("Right click");
+
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }}
+      className={classes.container}
+    >
       {x.map((xi, i) => (
         <VerticalLine ref={vlRefs.current[i]} key={i} x={xi} h={page.h} />
       ))}

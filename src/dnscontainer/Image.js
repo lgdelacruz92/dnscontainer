@@ -26,7 +26,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
       color: "white",
       fontSize: "0.5em",
       padding: 5,
-      textAlign: "center"
+      textAlign: "center",
+      position: "absolute"
     }
   };
 });

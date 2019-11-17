@@ -16,18 +16,22 @@ const ImageDNS = React.forwardRef((props, ref) => {
     <ReactImageDragAndScale
       data={data}
       ref={ref}
-      onStartUpdate={() => {
-        setTime(Date.now());
+      onStartUpdate={e => {
+        if (e.which === 1) {
+          // only left click counts
+          setTime(Date.now());
+        }
+        e.preventDefault();
       }}
       onUpdate={onUpdate}
       selected={selected}
       containerRef={containerRef}
-      onEndUpdate={() => {
-        if (Date.now() - time < 200) {
-          console.log("Click");
+      onEndUpdate={e => {
+        if (Date.now() - time < 200 && e.which === 1) {
           onClick();
         }
         onEndUpdate();
+        e.preventDefault();
       }}
     />
   );
