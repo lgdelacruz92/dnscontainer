@@ -2,7 +2,7 @@ import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import clsx from "clsx";
 import { translate } from "./translate";
-import ImageDNS from "react-image-drag-and-scale";
+import ImageDNS from "./imagedns";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -28,10 +28,9 @@ const Image = props => {
     h: data.scaledHeight
   });
   const [unSelected, setUnselected] = React.useState(false);
-  const [time, setTime] = React.useState(0);
   const classes = useStyles(state);
 
-  const onUpdate = () => {
+  const onImageUpdate = () => {
     const currentData = imgRef.current.data;
     if (
       currentData.x + data.translateX !== state.x ||
@@ -57,17 +56,10 @@ const Image = props => {
       <ImageDNS
         data={data}
         ref={imgRef}
-        onStartUpdate={() => {
-          setTime(Date.now());
-        }}
-        onUpdate={onUpdate}
+        onUpdate={onImageUpdate}
         containerRef={containerRef}
         selected={unSelected}
-        onEndUpdate={() => {
-          if (Date.now() - time <= 200) {
-            setUnselected(!unSelected);
-          }
-        }}
+        onClick={() => setUnselected(!unSelected)}
       />
       <div className={clsx(classes.rectangle, data.id)}></div>
     </React.Fragment>
