@@ -3471,6 +3471,17 @@ dns-container@^1.0.1:
     react-dom "^16.11.0"
     react-scripts "3.2.0"
 
+dns-container@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/dns-container/-/dns-container-1.0.2.tgz#735b246d9fd93e266c304f6f536afdada53bf5e7"
+  integrity sha512-hyPGGjaYFyDGVu3+a2/7wxnAeo2PORvJ445UqW7mjvR2dIWs7UpXzezfpR9ZSOzQ+BbvnHg5Cy0m4M34kWswOw==
+  dependencies:
+    dns-container "^1.0.1"
+    image-drag-and-scale "^1.1.5-beta.0"
+    react "^16.11.0"
+    react-dom "^16.11.0"
+    react-scripts "3.2.0"
+
 dns-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/dns-equal/-/dns-equal-1.0.0.tgz#b39e7f1da6eb0a75ba9c17324b34753c47e0654d"

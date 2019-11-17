@@ -5,6 +5,8 @@
 
 [![NPM](https://img.shields.io/npm/v/image-drag-and-scale.svg)](https://www.npmjs.com/package/image-drag-and-scale) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+[![](https://media.giphy.com/media/RIvgoHlZbxnd4DpjTk/giphy.gif)](https://media.giphy.com/media/RIvgoHlZbxnd4DpjTk/giphy.gif)
+
 ## Install
 
 ```bash
@@ -59,14 +61,9 @@ export default App;
 
 # Version Update
 
-## v1.1.3
+## v1.0.1
 
-> Performance for multiple images is much better
-> Tested with 40 images inside a container
-
-# beta version v1.1.5
-
-> This version is still being tested
+> First release. If you find issues, please post an issue on the github
 
 ## License
 
