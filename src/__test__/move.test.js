@@ -4,7 +4,7 @@ describe("Move Test", () => {
   const createImageDatas = indices => {
     let result = [];
     indices.forEach(i => {
-      result.push({ index: i, id: i });
+      result.push({ id: i });
     });
     return result;
   };
@@ -13,80 +13,16 @@ describe("Move Test", () => {
     moveDown(3, imageDatas);
     expect(imageDatas).toEqual([
       {
-        id: 0,
-        index: 0
+        id: 0
       },
       {
-        id: 1,
-        index: 1
+        id: 1
       },
       {
-        id: 2,
-        index: 3
+        id: 3
       },
       {
-        id: 3,
-        index: 2
-      }
-    ]);
-
-    moveDown(3, imageDatas);
-    expect(imageDatas).toEqual([
-      {
-        id: 0,
-        index: 0
-      },
-      {
-        id: 1,
-        index: 3
-      },
-      {
-        id: 2,
-        index: 1
-      },
-      {
-        id: 3,
-        index: 2
-      }
-    ]);
-
-    moveDown(3, imageDatas);
-    expect(imageDatas).toEqual([
-      {
-        id: 0,
-        index: 3
-      },
-      {
-        id: 1,
-        index: 0
-      },
-      {
-        id: 2,
-        index: 1
-      },
-      {
-        id: 3,
-        index: 2
-      }
-    ]);
-
-    moveDown(3, imageDatas);
-    expect(imageDatas).toEqual([
-      {
-        id: 0,
-        index: 3
-      },
-      {
-        id: 1,
-        index: 0
-      },
-      {
-        id: 2,
-        index: 1
-      },
-      {
-        id: 3,
-        index: 2
+        id: 2
       }
     ]);
   });

@@ -8,7 +8,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
     rightClickMenu: {
       position: "absolute",
       padding: 0,
-      transform: props => translate(props.x, props.y)
+      transform: props => translate(props.x, props.y),
+      zIndex: props => props.index + 3
     },
     list: {
       padding: 0
