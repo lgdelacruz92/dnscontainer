@@ -1,10 +1,11 @@
 import React from "react";
 import { linetool } from "../utils/linetool";
 import Image from "../image/image";
+import { moveDown } from "./layerhandler";
 
 const Images = props => {
   const { x, y, vlRefs, hlRefs, imageDatas, containerRef, clearLines } = props;
-
+  const [state, setState] = React.useState(imageDatas);
   const [autoClearer, setAutoClearer] = React.useState(null);
   const [open, setOpen] = React.useState(() => {
     let result = [];
@@ -81,16 +82,23 @@ const Images = props => {
 
   return (
     <React.Fragment>
-      {imageDatas.map((data, i) => (
+      {state.map((data, i) => (
         <Image
           data={data}
           containerRef={containerRef}
           key={i}
-          onContextMenu={e => onContextMenu(e, i, data)}
-          onClick={e => onClick(e, i, data)}
+          onContextMenu={e => {
+            onContextMenu(e, i, data);
+          }}
+          onClick={e => {
+            onClick(e, i, data);
+          }}
           openRightMenu={open[i]}
           onUpdate={onUpdate}
-          onMoveDown={e => console.log("Move down", e)}
+          onMoveDown={e => {
+            moveDown(i, state);
+            setState([...state]);
+          }}
         />
       ))}
     </React.Fragment>

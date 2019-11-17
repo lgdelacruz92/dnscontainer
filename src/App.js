@@ -17,7 +17,7 @@ function App() {
       src: "https://source.unsplash.com/random/1000x1000",
       alt: "random",
       id: `unique-${i}`,
-      index: 1
+      index: i
     };
     imageDatas.push(imageData);
   }
