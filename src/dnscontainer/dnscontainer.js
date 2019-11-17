@@ -1,9 +1,9 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
-import { useGrid } from "./gridcreator";
-import VerticalLine from "./verticalline";
-import HorizontalLine from "./horizontalline";
-import Images from "./images";
+import { useGrid } from "./grid/gridcreator";
+import VerticalLine from "./grid/verticalline";
+import HorizontalLine from "./grid/horizontalline";
+import Images from "./images/images";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -58,17 +58,7 @@ const DNSContainer = props => {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      onContextMenu={e => {
-        console.log("Right click");
-
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-      }}
-      className={classes.container}
-    >
+    <div ref={containerRef} className={classes.container}>
       {x.map((xi, i) => (
         <VerticalLine ref={vlRefs.current[i]} key={i} x={xi} h={page.h} />
       ))}

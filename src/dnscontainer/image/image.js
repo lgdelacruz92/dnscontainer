@@ -1,8 +1,9 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import clsx from "clsx";
-import { translate } from "./translate";
+import { translate } from "../utils/translate";
 import ImageDNS from "./imagedns";
+import RightClick from "./rightclick";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -72,6 +73,9 @@ const Image = props => {
     onUpdate(state, data.id);
   });
 
+  const [open, setOpen] = React.useState(false);
+  const [autoClearer, setAutoClearer] = React.useState(null);
+
   return (
     <React.Fragment>
       <ImageDNS
@@ -80,7 +84,21 @@ const Image = props => {
         onUpdate={onImageUpdate}
         containerRef={containerRef}
         selected={unSelected}
-        onClick={() => setUnselected(!unSelected)}
+        onContextMenu={e => {
+          setOpen(!open);
+          const newTimeout = setTimeout(() => {
+            setOpen(false);
+          }, 3000);
+          setAutoClearer(newTimeout);
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }}
+        onClick={() => {
+          setUnselected(!unSelected);
+          setOpen(false);
+          clearTimeout(autoClearer);
+        }}
         onEndUpdate={() => setTransforming(false)}
       />
       <div className={clsx(classes.rectangle, data.id)}></div>
@@ -88,6 +106,7 @@ const Image = props => {
         className={clsx(classes.rectinfo)}
         hidden={!transforming}
       >{`w: ${state.w.toPrecision(4)} h: ${state.h.toPrecision(4)}`}</div>
+      <RightClick open={open} data={data} />
     </React.Fragment>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
-import { linetool } from "./linetool";
-import Image from "./Image";
+import { linetool } from "../utils/linetool";
+import Image from "../image/image";
 
 const Images = props => {
   const { x, y, vlRefs, hlRefs, imageDatas, containerRef, clearLines } = props;

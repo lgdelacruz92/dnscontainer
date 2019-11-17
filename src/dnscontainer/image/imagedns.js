@@ -8,7 +8,8 @@ const ImageDNS = React.forwardRef((props, ref) => {
     selected,
     onUpdate,
     onClick,
-    onEndUpdate
+    onEndUpdate,
+    onContextMenu
   } = props;
   const [time, setTime] = React.useState(0);
 
@@ -26,6 +27,7 @@ const ImageDNS = React.forwardRef((props, ref) => {
       onUpdate={onUpdate}
       selected={selected}
       containerRef={containerRef}
+      onContextMenu={onContextMenu}
       onEndUpdate={e => {
         if (Date.now() - time < 200 && e.which === 1) {
           onClick();
