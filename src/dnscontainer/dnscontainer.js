@@ -41,10 +41,14 @@ const DNSContainer = props => {
     }
   };
 
-  const checkforGridCollission = (refs, low, hi, arr, border) => {
+  const clearLines = refs => {
     refs.forEach(ref => {
       ref.current.setAttribute("style", "");
     });
+  };
+
+  const checkforGridCollission = (refs, low, hi, arr, border) => {
+    clearLines(refs);
     const v1 = linetool(low, arr);
     const v2 = linetool(hi, arr);
     const center = linetool((low + hi) / 2, arr);
@@ -69,6 +73,15 @@ const DNSContainer = props => {
   let hlRefResult = [];
   y.forEach(yi => hlRefResult.push(React.createRef()));
   const hlRefs = React.useRef(hlRefResult);
+
+  React.useEffect(() => {
+    const onMouseUp = () => {
+      clearLines(vlRefs.current);
+      clearLines(hlRefs.current);
+    };
+    document.addEventListener("mouseup", onMouseUp);
+    return () => document.removeEventListener("mouseup", onMouseUp);
+  }, []);
 
   return (
     <div ref={containerRef} className={classes.container}>
