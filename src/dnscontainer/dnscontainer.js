@@ -38,7 +38,7 @@ const DNSContainer = props => {
     const i = arr.indexOf(v);
     if (refs[i]) {
       refs[i].current.setAttribute("style", `${border}: 1px solid orange`);
-    }j
+    }
   };
 
   const checkforGridCollission = (refs, low, hi, arr, border) => {

@@ -2,7 +2,7 @@ import babel from "rollup-plugin-babel";
 
 export default [
   {
-    input: "src/dnscontainer/dnscontainer.js",
+    input: "src/dnscontainer/index.js",
     output: {
       name: "dnscontainer",
       file: "dist/index.js",
