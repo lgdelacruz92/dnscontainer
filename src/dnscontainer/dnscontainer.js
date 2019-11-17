@@ -3,8 +3,7 @@ import * as MaterialUI from "@material-ui/core";
 import { useGrid } from "./gridcreator";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
-import Image from "./Image";
-import { linetool } from "./linetool";
+import Images from "./images";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -34,37 +33,6 @@ const DNSContainer = props => {
   const [x, y] = useGrid({ w: page.w, h: page.h, u: page.u });
   const classes = useStyles({ page });
 
-  const turnOn = (v, arr, refs, border) => {
-    const i = arr.indexOf(v);
-    if (refs[i]) {
-      refs[i].current.setAttribute("style", `${border}: 1px solid orange`);
-    }
-  };
-
-  const clearLines = refs => {
-    refs.forEach(ref => {
-      ref.current.setAttribute("style", "");
-    });
-  };
-
-  const checkforGridCollission = (refs, low, hi, arr, border) => {
-    clearLines(refs);
-    const v1 = linetool(low, arr);
-    const v2 = linetool(hi, arr);
-    const center = linetool((low + hi) / 2, arr);
-
-    if (center) {
-      turnOn(center, arr, refs, border);
-    } else {
-      if (v1) {
-        turnOn(v1, arr, refs, border);
-      }
-      if (v2) {
-        turnOn(v2, arr, refs, border);
-      }
-    }
-  };
-
   const containerRef = React.useRef();
   let vlRefResult = [];
   x.forEach(xi => vlRefResult.push(React.createRef()));
@@ -73,6 +41,12 @@ const DNSContainer = props => {
   let hlRefResult = [];
   y.forEach(yi => hlRefResult.push(React.createRef()));
   const hlRefs = React.useRef(hlRefResult);
+
+  const clearLines = refs => {
+    refs.forEach(ref => {
+      ref.current.setAttribute("style", "");
+    });
+  };
 
   React.useEffect(() => {
     const onMouseUp = () => {
@@ -91,29 +65,15 @@ const DNSContainer = props => {
       {y.map((yi, i) => (
         <HorizontalLine ref={hlRefs.current[i]} y={yi} w={page.w} key={i} />
       ))}
-      {imageDatas.map((data, i) => (
-        <Image
-          data={data}
-          containerRef={containerRef}
-          key={i}
-          onUpdate={rect => {
-            checkforGridCollission(
-              vlRefs.current,
-              rect.x,
-              rect.x + rect.w,
-              x,
-              "border-left"
-            );
-            checkforGridCollission(
-              hlRefs.current,
-              rect.y,
-              rect.y + rect.h,
-              y,
-              "border-top"
-            );
-          }}
-        />
-      ))}
+      <Images
+        containerRef={containerRef}
+        x={x}
+        y={y}
+        vlRefs={vlRefs}
+        hlRefs={hlRefs}
+        imageDatas={imageDatas}
+        clearLines={clearLines}
+      />
     </div>
   );
 };
