@@ -41,6 +41,7 @@ const DNSContainer = props => {
         vlRef={vlRef}
         hlRef={hlRef}
         topLineRef={topLineRef}
+        bottomLineRef={bottomLineRef}
         containerRef={containerRef}
         imageDatas={imageDatas}
       />

@@ -4,6 +4,7 @@ import RightClick from "./rightclick";
 import RectInfo from "./rectinfo";
 import CenterLiner from "./centerliner";
 import TopLiner from "./topliner";
+import BottomLiner from "./bottomliner";
 import * as MaterialUI from "@material-ui/core";
 
 const useStyles = MaterialUI.makeStyles(theme => {
@@ -90,6 +91,11 @@ const Image = React.forwardRef((props, ref) => {
       <TopLiner
         data={state}
         topLineRef={topLineRef}
+        siblingRefs={siblingRefs}
+      />
+      <BottomLiner
+        data={state}
+        bottomLineRef={bottomLineRef}
         siblingRefs={siblingRefs}
       />
       <RectInfo data={state} open={transforming} />
