@@ -42,6 +42,7 @@ const Image = React.forwardRef((props, ref) => {
   });
   const [transforming, setTransforming] = React.useState(false);
   const [unSelected, setUnselected] = React.useState(false);
+  const [rightClick, setRightClick] = React.useState(false);
 
   const onImageUpdate = () => {
     const currentData = imgRef.current.data;
@@ -72,54 +73,59 @@ const Image = React.forwardRef((props, ref) => {
   });
 
   return (
-    <div className={classes.image}>
-      <ImageDNS
-        {...props}
-        ref={imgRef}
-        onUpdate={onImageUpdate}
-        selected={unSelected}
-        onContextMenu={() => {
-          return false;
-        }}
-        onClick={e => {
-          setUnselected(!unSelected);
-        }}
-        onEndUpdate={() => setTransforming(false)}
-      />
-      <CenterLiner
-        data={state}
-        hlRef={hlRef}
-        vlRef={vlRef}
-        siblingRefs={siblingRefs}
-      />
-      <TopLiner
-        data={state}
-        topLineRef={topLineRef}
-        siblingRefs={siblingRefs}
-      />
-      <BottomLiner
-        data={state}
-        bottomLineRef={bottomLineRef}
-        siblingRefs={siblingRefs}
-      />
-      <LeftLiner
-        data={state}
-        leftLineRef={leftLineRef}
-        siblingRefs={siblingRefs}
-      />
-      <RightLiner
-        data={state}
-        rightLineRef={rightLineRef}
-        siblingRefs={siblingRefs}
-      />
+    <React.Fragment>
+      <div className={classes.image}>
+        <ImageDNS
+          {...props}
+          ref={imgRef}
+          onUpdate={onImageUpdate}
+          selected={unSelected}
+          onContextMenu={e => {
+            setRightClick(true);
+            e.preventDefault();
+            return false;
+          }}
+          onClick={e => {
+            setRightClick(false);
+            setUnselected(!unSelected);
+          }}
+          onEndUpdate={() => setTransforming(false)}
+        />
+        <CenterLiner
+          data={state}
+          hlRef={hlRef}
+          vlRef={vlRef}
+          siblingRefs={siblingRefs}
+        />
+        <TopLiner
+          data={state}
+          topLineRef={topLineRef}
+          siblingRefs={siblingRefs}
+        />
+        <BottomLiner
+          data={state}
+          bottomLineRef={bottomLineRef}
+          siblingRefs={siblingRefs}
+        />
+        <LeftLiner
+          data={state}
+          leftLineRef={leftLineRef}
+          siblingRefs={siblingRefs}
+        />
+        <RightLiner
+          data={state}
+          rightLineRef={rightLineRef}
+          siblingRefs={siblingRefs}
+        />
+      </div>
       <RectInfo data={state} open={transforming} />
       <RightClick
-        open={false}
+        open={rightClick}
         data={state}
         onMoveDown={onMoveDown}
         onMoveUp={onMoveUp}
       />
-    </div>
+    </React.Fragment>
   );
 });
 

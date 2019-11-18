@@ -9,7 +9,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
       position: "absolute",
       padding: 0,
       transform: props => translate(props.x, props.y),
-      zIndex: props => props.index + 3
+      zIndex: 10
     },
     list: {
       padding: 0
