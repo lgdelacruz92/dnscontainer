@@ -1,6 +1,5 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
-import { useGrid } from "./grid/gridcreator";
 import VerticalLine from "./grid/verticalline";
 import HorizontalLine from "./grid/horizontalline";
 import Images from "./images/images";
@@ -42,8 +41,8 @@ const DNSContainer = props => {
         containerRef={containerRef}
         imageDatas={imageDatas}
       />
-      <div ref={vlRef}></div>
-      <div ref={hlRef}></div>
+      <VerticalLine ref={vlRef} x={0} h={page.h} />
+      <HorizontalLine ref={hlRef} x={0} w={page.w} />
     </div>
   );
 };

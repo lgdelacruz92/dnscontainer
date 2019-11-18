@@ -4,7 +4,7 @@ import { translate } from "../utils/translate";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
-    verticalLine: {
+    horizontalLine: {
       position: "absolute",
       width: props => props.w,
       transform: props => translate(0, props.y),
@@ -16,7 +16,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 const HorizontalLine = React.forwardRef((props, ref) => {
   const { y, w } = props;
   const classes = useStyles({ y, w });
-  return <div ref={ref} className={classes.verticalLine}></div>;
+  return <div ref={ref} className={classes.horizontalLine}></div>;
 });
 
 export default HorizontalLine;

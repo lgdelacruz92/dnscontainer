@@ -13,12 +13,26 @@ const GridChecker = props => {
     });
 
     const result = lineWithSiblings(data, siblings);
+
     if (result.length > 0) {
-      console.log(
-        "Should triggering vl ref or hl ref",
-        vlRef.current,
-        hlRef.current
-      );
+      result.forEach(line => {
+        if (line.orientationCentered === "horizontal") {
+          vlRef.current.setAttribute(
+            "style",
+            `border-left: 2px solid orange; transform: translateX(${line.offsetX}px)`
+          );
+        }
+
+        if (line.orientationCentered === "vertical") {
+          hlRef.current.setAttribute(
+            "style",
+            `border-top: 2px solid orange; transform: translateY(${line.offsetY}px)`
+          );
+        }
+      });
+    } else {
+      hlRef.current.setAttribute("style", "");
+      vlRef.current.setAttribute("style", "");
     }
   });
   return <div></div>;
