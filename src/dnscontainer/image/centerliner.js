@@ -1,7 +1,7 @@
 import React from "react";
 import { lineWithSiblings } from "../siblingliner/siblingliner";
 
-const GridChecker = props => {
+const CenterLiner = props => {
   const { data, siblingRefs, vlRef, hlRef } = props;
   React.useEffect(() => {
     const siblings = [];
@@ -38,4 +38,4 @@ const GridChecker = props => {
   return <div></div>;
 };
 
-export default GridChecker;
+export default CenterLiner;

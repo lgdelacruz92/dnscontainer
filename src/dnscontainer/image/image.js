@@ -2,7 +2,7 @@ import React from "react";
 import ImageDNS from "./imagedns";
 import RightClick from "./rightclick";
 import RectInfo from "./rectinfo";
-import GridChecker from "./gridchecker";
+import CenterLiner from "./centerliner";
 import * as MaterialUI from "@material-ui/core";
 
 const useStyles = MaterialUI.makeStyles(theme => {
@@ -15,7 +15,16 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Image = React.forwardRef((props, ref) => {
-  const { data, onMoveDown, onMoveUp, siblingRefs, vlRef, hlRef } = props;
+  const {
+    data,
+    onMoveDown,
+    onMoveUp,
+    siblingRefs,
+    vlRef,
+    hlRef,
+    topLineRef,
+    bottomLineRef
+  } = props;
   const imgRef = React.useRef();
   const classes = useStyles(data.index);
   const [state, setState] = React.useState({
@@ -71,10 +80,15 @@ const Image = React.forwardRef((props, ref) => {
         }}
         onEndUpdate={() => setTransforming(false)}
       />
-      <GridChecker
+      <CenterLiner
         data={state}
         hlRef={hlRef}
         vlRef={vlRef}
+        siblingRefs={siblingRefs}
+      />
+      <TopLiner
+        data={state}
+        topLineRef={topLineRef}
         siblingRefs={siblingRefs}
       />
       <RectInfo data={state} open={transforming} />

@@ -3,7 +3,14 @@ import Image from "../image/image";
 import { moveDown } from "./layerhandler";
 
 const Images = props => {
-  const { containerRef, imageDatas, vlRef, hlRef } = props;
+  const {
+    containerRef,
+    imageDatas,
+    vlRef,
+    hlRef,
+    topLineRef,
+    bottomLineRef
+  } = props;
   const [state, setState] = React.useState(imageDatas);
   const refs = React.useRef([]);
   state.forEach(s => refs.current.push(React.createRef()));
@@ -19,6 +26,8 @@ const Images = props => {
             hlRef={hlRef}
             vlRef={vlRef}
             data={imageData}
+            topLineRef={topLineRef}
+            bottomLineRef={bottomLineRef}
             containerRef={containerRef}
             onMoveDown={i => {
               moveDown(i, state);

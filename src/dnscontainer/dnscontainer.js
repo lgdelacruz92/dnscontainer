@@ -32,6 +32,8 @@ const DNSContainer = props => {
   const containerRef = React.useRef();
   const vlRef = React.useRef();
   const hlRef = React.useRef();
+  const topLineRef = React.useRef();
+  const bottomLineRef = React.useRef();
 
   return (
     <div ref={containerRef} className={classes.container}>
@@ -43,6 +45,8 @@ const DNSContainer = props => {
       />
       <VerticalLine ref={vlRef} x={0} h={page.h} />
       <HorizontalLine ref={hlRef} x={0} w={page.w} />
+      <HorizontalLine ref={topLineRef} x={0} w={page.w} />
+      <HorizontalLine ref={bottomLineRef} x={0} w={page.w} />
     </div>
   );
 };
