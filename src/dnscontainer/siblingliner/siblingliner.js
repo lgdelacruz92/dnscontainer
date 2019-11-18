@@ -17,3 +17,21 @@ export const isHorizontallyCentered = (rect1, rect2) => {
     return null;
   }
 };
+
+export const lineWithSiblings = (rect, siblings) => {
+  let result = [];
+
+  siblings.forEach(sibling => {
+    const verticalCenter = isVerticalCentered(sibling, rect);
+    if (verticalCenter) {
+      result.push({ vertical: verticalCenter, type: "center" });
+    }
+
+    const horizontalCenter = isHorizontallyCentered(sibling, rect);
+    if (horizontalCenter) {
+      result.push({ horizontal: horizontalCenter, type: "center" });
+    }
+  });
+
+  return result;
+};
