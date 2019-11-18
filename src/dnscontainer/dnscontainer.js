@@ -28,8 +28,8 @@ const DNSContainer = props => {
       "imageDatas must be an array of type ImageData. Please refer to getting started in the packages."
     );
   }
-
-  const page = { w: width, h: height, u: 5 };
+  const unit = 50;
+  const page = { w: width, h: height, u: unit };
   const [x, y] = useGrid({ w: page.w, h: page.h, u: page.u });
   const classes = useStyles({ page });
 
@@ -41,21 +41,6 @@ const DNSContainer = props => {
   let hlRefResult = [];
   y.forEach(yi => hlRefResult.push(React.createRef()));
   const hlRefs = React.useRef(hlRefResult);
-
-  const clearLines = refs => {
-    refs.forEach(ref => {
-      ref.current.setAttribute("style", "");
-    });
-  };
-
-  React.useEffect(() => {
-    const onMouseUp = () => {
-      clearLines(vlRefs.current);
-      clearLines(hlRefs.current);
-    };
-    document.addEventListener("mouseup", onMouseUp);
-    return () => document.removeEventListener("mouseup", onMouseUp);
-  }, []);
 
   return (
     <div ref={containerRef} className={classes.container}>
@@ -69,10 +54,11 @@ const DNSContainer = props => {
         containerRef={containerRef}
         x={x}
         y={y}
+        page={page}
+        unit={unit}
         vlRefs={vlRefs}
         hlRefs={hlRefs}
         imageDatas={imageDatas}
-        clearLines={clearLines}
       />
     </div>
   );

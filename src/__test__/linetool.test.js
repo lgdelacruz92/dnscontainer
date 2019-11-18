@@ -26,7 +26,7 @@ describe("Line Tool", () => {
   test("Detection test 3", () => {
     const t = 50;
     let collidedX = linetool(1, t);
-    expect(collidedX).toEqual([0, 1]);
+    expect(collidedX).toEqual(null);
 
     collidedX = linetool(55, t);
     expect(collidedX).toEqual(null);
@@ -34,28 +34,37 @@ describe("Line Tool", () => {
 
   test("Detection test 4", () => {
     const t = 50;
-    let collidedX = linetool(99, t);
+    let collidedX = linetool(99, t, 5, 150);
     expect(collidedX).toEqual([100, 1]);
 
     collidedX = linetool(55, t);
     expect(collidedX).toEqual(null);
   });
 
-  test("Detection test 4", () => {
+  test("Detection test 5", () => {
     const t = 5;
-    let collidedX = linetool(99, t);
+    let collidedX = linetool(99, t, 5, 150);
     expect(collidedX).toEqual([100, 1]);
 
     collidedX = linetool(55, t);
     expect(collidedX).toEqual([55, 0]);
   });
 
-  test("Detection test 4", () => {
+  test("Detection test 6", () => {
     const t = 50;
-    let collidedX = linetool(96, t, 5);
+    let collidedX = linetool(96, t, 5, 150);
     expect(collidedX).toEqual([100, 4]);
 
     collidedX = linetool(55, t, 5);
     expect(collidedX).toEqual([50, 5]);
+  });
+
+  test("Detection test 7", () => {
+    const t = 50;
+    let collidedX = linetool(149, t, 5, 200);
+    expect(collidedX).toEqual([150, 1]);
+
+    collidedX = linetool(197, t, 5, 200);
+    expect(collidedX).toEqual(null);
   });
 });

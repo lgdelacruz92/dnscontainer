@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "../image/image";
 import { moveDown } from "./layerhandler";
+import { linetool } from "../utils/linetool";
 
 const Images = props => {
-  const { imageDatas, containerRef } = props;
+  const { imageDatas, containerRef, unit, vlRefs, hlRefs, page } = props;
   const [state, setState] = React.useState(imageDatas);
   const [autoClearer, setAutoClearer] = React.useState(null);
   const [open, setOpen] = React.useState(() => {
@@ -37,7 +38,12 @@ const Images = props => {
     }
   };
 
-  const onUpdate = rect => {};
+  const onUpdate = rect => {
+    const g = linetool(rect.y, unit, 1, page.w);
+    if (g) {
+      console.log("moving", g);
+    }
+  };
 
   return (
     <React.Fragment>

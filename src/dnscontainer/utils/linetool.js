@@ -1,9 +1,10 @@
-export const linetool = (val, t, threshold) => {
+export const linetool = (val, t, threshold, max) => {
   const gl = glo(val, t);
   const gh = ghi(val, t);
   const [clG, dist] = closestG(val, gl, gh);
   const th = threshold || 2;
-  if (dist <= th) {
+  const m = max || 100;
+  if (dist <= th && t <= clG && clG <= m - t) {
     return [clG, dist];
   } else {
     return null;
