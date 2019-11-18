@@ -33,8 +33,42 @@ function App() {
     index: 1
   };
 
-  const [state, setState] = React.useState([imageData1, imageData2]);
-  console.log("Rendering app");
+  const imageData3 = {
+    x: 20,
+    y: 120,
+    translateX: 0,
+    translateY: 0,
+    scaledWidth: 100,
+    scaledHeight: 100,
+    width: 100,
+    height: 100,
+    src: "https://source.unsplash.com/random/1000x1000",
+    alt: "random",
+    id: `unique-125`,
+    index: 2
+  };
+
+  const imageData4 = {
+    x: 20,
+    y: 120,
+    translateX: 0,
+    translateY: 0,
+    scaledWidth: 100,
+    scaledHeight: 100,
+    width: 100,
+    height: 100,
+    src: "https://source.unsplash.com/random/1000x1000",
+    alt: "random",
+    id: `unique-126`,
+    index: 3
+  };
+
+  const [state, setState] = React.useState([
+    imageData1,
+    imageData2,
+    imageData3,
+    imageData4
+  ]);
   return (
     <div className="App">
       <button
