@@ -1,10 +1,9 @@
 import React from "react";
-import { linetool } from "../utils/linetool";
 import Image from "../image/image";
 import { moveDown } from "./layerhandler";
 
 const Images = props => {
-  const { x, y, vlRefs, hlRefs, imageDatas, containerRef, clearLines } = props;
+  const { imageDatas, containerRef } = props;
   const [state, setState] = React.useState(imageDatas);
   const [autoClearer, setAutoClearer] = React.useState(null);
   const [open, setOpen] = React.useState(() => {
@@ -12,15 +11,6 @@ const Images = props => {
     imageDatas.forEach(im => result.push(false));
     return result;
   });
-
-  const turnOn = (v, arr, refs, border) => {
-    const i = arr.indexOf(v);
-    if (refs[i]) {
-      refs[i].current.setAttribute("style", `${border}: 1px solid orange`);
-    }
-  };
-
-  const checkforGridCollission = (refs, low, hi, arr, border) => {};
 
   const onContextMenu = (e, i, data) => {
     if (e.target.classList.contains(data.id)) {
