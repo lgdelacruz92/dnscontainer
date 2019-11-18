@@ -12,7 +12,6 @@ const Images = props => {
         return (
           <Image
             key={i}
-            index={i}
             data={imageData}
             containerRef={containerRef}
             onMoveDown={i => {

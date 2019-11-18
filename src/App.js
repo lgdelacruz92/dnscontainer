@@ -14,7 +14,8 @@ function App() {
     height: 100,
     src: "https://source.unsplash.com/random/1000x1000",
     alt: "random",
-    id: `unique-123`
+    id: `unique-123`,
+    index: 0
   };
 
   const imageData2 = {
@@ -28,7 +29,8 @@ function App() {
     height: 100,
     src: "https://source.unsplash.com/random/1000x1000",
     alt: "random",
-    id: `unique-124`
+    id: `unique-124`,
+    index: 1
   };
 
   const [state, setState] = React.useState([imageData1, imageData2]);
@@ -37,9 +39,9 @@ function App() {
     <div className="App">
       <button
         onClick={() => {
-          const temp = state[0];
-          state[0] = state[1];
-          state[1] = temp;
+          const temp = state[0].index;
+          state[0].index = state[1].index;
+          state[1].index = temp;
           setState([...state]);
         }}
       >

@@ -15,9 +15,9 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Image = props => {
-  const { data, onMoveDown, onMoveUp, index } = props;
+  const { data, onMoveDown, onMoveUp } = props;
   const imgRef = React.useRef();
-  const classes = useStyles(index);
+  const classes = useStyles(data.index);
   const [state, setState] = React.useState({
     x: data.x + data.translateX,
     y: data.y + data.translateY,
