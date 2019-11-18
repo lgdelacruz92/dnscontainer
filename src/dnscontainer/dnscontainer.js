@@ -40,6 +40,7 @@ const DNSContainer = props => {
       <Images
         vlRef={vlRef}
         hlRef={hlRef}
+        topLineRef={topLineRef}
         containerRef={containerRef}
         imageDatas={imageDatas}
       />

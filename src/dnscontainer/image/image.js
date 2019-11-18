@@ -3,6 +3,7 @@ import ImageDNS from "./imagedns";
 import RightClick from "./rightclick";
 import RectInfo from "./rectinfo";
 import CenterLiner from "./centerliner";
+import TopLiner from "./topliner";
 import * as MaterialUI from "@material-ui/core";
 
 const useStyles = MaterialUI.makeStyles(theme => {
