@@ -122,8 +122,14 @@ const Image = React.forwardRef((props, ref) => {
       <RightClick
         open={rightClick}
         data={state}
-        onMoveDown={onMoveDown}
-        onMoveUp={onMoveUp}
+        onMoveDown={() => {
+          onMoveDown(data.index);
+          setRightClick(false);
+        }}
+        onMoveUp={() => {
+          onMoveUp(data.index);
+          setRightClick(false);
+        }}
       />
     </React.Fragment>
   );
