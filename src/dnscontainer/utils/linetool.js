@@ -1,21 +1,29 @@
-export const linetool = (x, arr) => {
-  const linesToCheck = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] >= x) {
-      linesToCheck.push(arr[i]);
-      if (i > 0) {
-        linesToCheck.push(arr[i - 1]);
-      }
-      break;
-    }
+export const linetool = (val, t, threshold) => {
+  const gl = glo(val, t);
+  const gh = ghi(val, t);
+  const [clG, dist] = closestG(val, gl, gh);
+  const th = threshold || 2;
+  if (dist <= th) {
+    return [clG, dist];
+  } else {
+    return null;
   }
+};
 
-  if (linesToCheck.length > 0) {
-    for (let xi = 0; xi < linesToCheck.length; xi++) {
-      if (linesToCheck[xi] - 1 <= x && x <= linesToCheck[xi] + 1) {
-        return linesToCheck[xi];
-      }
-    }
+export const glo = (m, t) => {
+  return Math.floor(m / t) * t;
+};
+
+export const ghi = (m, t) => {
+  return Math.ceil(m / t) * t;
+};
+
+export const closestG = (m, gl, gh) => {
+  const lo = m - gl;
+  const hi = gh - m;
+  if (lo < hi) {
+    return [gl, lo];
+  } else {
+    return [gh, hi];
   }
-  return null;
 };
