@@ -19,7 +19,7 @@ function App() {
   };
 
   const imageData2 = {
-    x: 40,
+    x: 20,
     y: 120,
     translateX: 0,
     translateY: 0,

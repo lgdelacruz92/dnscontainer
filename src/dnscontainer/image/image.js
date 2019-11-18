@@ -19,6 +19,7 @@ const Image = React.forwardRef((props, ref) => {
   const imgRef = React.useRef();
   const classes = useStyles(data.index);
   const [state, setState] = React.useState({
+    id: data.id,
     x: data.x + data.translateX,
     y: data.y + data.translateY,
     w: data.scaledWidth,
@@ -42,6 +43,7 @@ const Image = React.forwardRef((props, ref) => {
         setTransforming(true);
       }
       setState({
+        id: data.id,
         x: currentData.x + data.translateX,
         y: currentData.y + data.translateY,
         w: currentData.scaledWidth,

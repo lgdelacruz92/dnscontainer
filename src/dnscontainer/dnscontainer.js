@@ -31,10 +31,19 @@ const DNSContainer = props => {
   const page = { w: width, h: height };
   const classes = useStyles({ page });
   const containerRef = React.useRef();
+  const vlRef = React.useRef();
+  const hlRef = React.useRef();
 
   return (
     <div ref={containerRef} className={classes.container}>
-      <Images containerRef={containerRef} imageDatas={imageDatas} />
+      <Images
+        vlRef={vlRef}
+        hlRef={hlRef}
+        containerRef={containerRef}
+        imageDatas={imageDatas}
+      />
+      <div ref={vlRef}></div>
+      <div ref={hlRef}></div>
     </div>
   );
 };
