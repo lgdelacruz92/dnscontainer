@@ -3,24 +3,35 @@ import "./App.css";
 import DNSContainer from "./dnscontainer";
 
 function App() {
-  let imageDatas = [];
-  for (let i = 0; i < 2; i++) {
-    const imageData = {
-      x: 20 + 10 * i,
-      y: 100,
-      translateX: 0,
-      translateY: 0,
-      scaledWidth: 100,
-      scaledHeight: 100,
-      width: 100,
-      height: 100,
-      src: "https://source.unsplash.com/random/1000x1000",
-      alt: "random",
-      id: `unique-${i}`,
-      index: i
-    };
-    imageDatas.push(imageData);
-  }
+  const imageData1 = {
+    x: 20,
+    y: 100,
+    translateX: 0,
+    translateY: 0,
+    scaledWidth: 100,
+    scaledHeight: 100,
+    width: 100,
+    height: 100,
+    src: "https://source.unsplash.com/random/1000x1000",
+    alt: "random",
+    id: `unique-123`
+  };
+
+  const imageData2 = {
+    x: 40,
+    y: 120,
+    translateX: 0,
+    translateY: 0,
+    scaledWidth: 100,
+    scaledHeight: 100,
+    width: 100,
+    height: 100,
+    src: "https://source.unsplash.com/random/1000x1000",
+    alt: "random",
+    id: `unique-124`
+  };
+
+  let imageDatas = [imageData2, imageData1];
 
   return (
     <div className="App">

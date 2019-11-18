@@ -40,7 +40,7 @@ const Image = props => {
   };
 
   return (
-    <div id="Testing image">
+    <div id={`image-${props.index}`}>
       <ImageDNS
         {...props}
         ref={imgRef}

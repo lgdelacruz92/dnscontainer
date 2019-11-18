@@ -11,6 +11,7 @@ const Images = props => {
       {state.map((imageData, i) => (
         <Image
           key={i}
+          index={i}
           data={imageData}
           containerRef={containerRef}
           onMoveDown={i => {
