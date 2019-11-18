@@ -31,11 +31,21 @@ function App() {
     id: `unique-124`
   };
 
-  let imageDatas = [imageData2, imageData1];
-
+  const [state, setState] = React.useState([imageData1, imageData2]);
+  console.log("Rendering app");
   return (
     <div className="App">
-      <DNSContainer width={500} height={700} imageDatas={imageDatas} />
+      <button
+        onClick={() => {
+          const temp = state[0];
+          state[0] = state[1];
+          state[1] = temp;
+          setState([...state]);
+        }}
+      >
+        Click
+      </button>
+      <DNSContainer width={500} height={700} imageDatas={state} />
     </div>
   );
 }

@@ -3,10 +3,21 @@ import ImageDNS from "./imagedns";
 import RightClick from "./rightclick";
 import RectInfo from "./rectinfo";
 import GridChecker from "./gridchecker";
+import * as MaterialUI from "@material-ui/core";
+
+const useStyles = MaterialUI.makeStyles(theme => {
+  return {
+    image: {
+      position: "absolute",
+      zIndex: index => index
+    }
+  };
+});
 
 const Image = props => {
-  const { data, onMoveDown, onMoveUp } = props;
+  const { data, onMoveDown, onMoveUp, index } = props;
   const imgRef = React.useRef();
+  const classes = useStyles(index);
   const [state, setState] = React.useState({
     x: data.x + data.translateX,
     y: data.y + data.translateY,
@@ -40,7 +51,7 @@ const Image = props => {
   };
 
   return (
-    <div id={`image-${props.index}`}>
+    <div className={classes.image}>
       <ImageDNS
         {...props}
         ref={imgRef}

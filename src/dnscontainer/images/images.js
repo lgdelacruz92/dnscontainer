@@ -8,21 +8,23 @@ const Images = props => {
 
   return (
     <React.Fragment>
-      {state.map((imageData, i) => (
-        <Image
-          key={i}
-          index={i}
-          data={imageData}
-          containerRef={containerRef}
-          onMoveDown={i => {
-            moveDown(i, state);
-            setState([...state]);
-          }}
-          vlRefs={vlRefs}
-          hlRefs={hlRefs}
-          page={page}
-        />
-      ))}
+      {state.map((imageData, i) => {
+        return (
+          <Image
+            key={i}
+            index={i}
+            data={imageData}
+            containerRef={containerRef}
+            onMoveDown={i => {
+              moveDown(i, state);
+              setState([...state]);
+            }}
+            vlRefs={vlRefs}
+            hlRefs={hlRefs}
+            page={page}
+          />
+        );
+      })}
     </React.Fragment>
   );
 };
