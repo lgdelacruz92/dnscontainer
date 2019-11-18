@@ -1,48 +1,11 @@
 import React from "react";
-import * as MaterialUI from "@material-ui/core";
-import clsx from "clsx";
-import { translate } from "../utils/translate";
 import ImageDNS from "./imagedns";
 import RightClick from "./rightclick";
-
-const useStyles = MaterialUI.makeStyles(theme => {
-  return {
-    rectangle: {
-      position: "absolute",
-      width: props => props.w,
-      height: props => props.h,
-      background: "black",
-      opacity: 0.5,
-      transform: props => translate(props.x, props.y)
-    },
-    rectinfo: {
-      width: 70,
-      height: 10,
-      opacity: 0.7,
-      zIndex: 5,
-      background: "black",
-      borderRadius: 5,
-      transform: props => translate(props.x, props.y - 20),
-      color: "white",
-      fontSize: "0.5em",
-      padding: 5,
-      textAlign: "center",
-      position: "absolute"
-    }
-  };
-});
+import RectInfo from "./rectinfo";
+import GridChecker from "./gridchecker";
 
 const Image = props => {
-  const {
-    data,
-    containerRef,
-    onUpdate,
-    onClick,
-    onContextMenu,
-    openRightMenu,
-    onMoveDown,
-    onMoveUp
-  } = props;
+  const { data, onMoveDown, onMoveUp } = props;
   const imgRef = React.useRef();
   const [state, setState] = React.useState({
     x: data.x + data.translateX,
@@ -51,7 +14,6 @@ const Image = props => {
     h: data.scaledHeight
   });
   const [transforming, setTransforming] = React.useState(false);
-  const classes = useStyles(state);
   const [unSelected, setUnselected] = React.useState(false);
 
   const onImageUpdate = () => {
@@ -77,37 +39,34 @@ const Image = props => {
     }
   };
 
-  React.useEffect(() => {
-    onUpdate(state, data.id);
-  });
-
   return (
-    <React.Fragment>
-      <div className={clsx(classes.rectangle, data.id)}></div>
+    <div id="Testing image">
       <ImageDNS
-        data={data}
+        {...props}
         ref={imgRef}
         onUpdate={onImageUpdate}
-        containerRef={containerRef}
         selected={unSelected}
-        onContextMenu={onContextMenu}
+        onContextMenu={() => {
+          return false;
+        }}
         onClick={e => {
           setUnselected(!unSelected);
-          onClick(e);
         }}
         onEndUpdate={() => setTransforming(false)}
       />
-      <div
-        className={clsx(classes.rectinfo)}
-        hidden={!transforming}
-      >{`w: ${state.w.toPrecision(4)} h: ${state.h.toPrecision(4)}`}</div>
+      <GridChecker
+        vlRefs={props.vlRefs}
+        hlRefs={props.hlRefs}
+        page={props.page}
+      />
+      <RectInfo data={state} open={transforming} />
       <RightClick
-        open={openRightMenu}
-        data={data}
+        open={false}
+        data={state}
         onMoveDown={onMoveDown}
         onMoveUp={onMoveUp}
       />
-    </React.Fragment>
+    </div>
   );
 };
 

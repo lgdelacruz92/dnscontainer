@@ -28,8 +28,8 @@ const DNSContainer = props => {
       "imageDatas must be an array of type ImageData. Please refer to getting started in the packages."
     );
   }
-  const unit = 50;
-  const page = { w: width, h: height, u: unit };
+  const gridUnit = 50;
+  const page = { w: width, h: height, u: gridUnit };
   const [x, y] = useGrid({ w: page.w, h: page.h, u: page.u });
   const classes = useStyles({ page });
 
@@ -52,10 +52,7 @@ const DNSContainer = props => {
       ))}
       <Images
         containerRef={containerRef}
-        x={x}
-        y={y}
         page={page}
-        unit={unit}
         vlRefs={vlRefs}
         hlRefs={hlRefs}
         imageDatas={imageDatas}
