@@ -14,8 +14,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
   };
 });
 
-const Image = props => {
-  const { data, onMoveDown, onMoveUp } = props;
+const Image = React.forwardRef((props, ref) => {
+  const { data, onMoveDown, onMoveUp, siblingRefs } = props;
   const imgRef = React.useRef();
   const classes = useStyles(data.index);
   const [state, setState] = React.useState({
@@ -50,6 +50,10 @@ const Image = props => {
     }
   };
 
+  React.useEffect(() => {
+    ref.current = state;
+  });
+
   return (
     <div className={classes.image}>
       <ImageDNS
@@ -65,7 +69,7 @@ const Image = props => {
         }}
         onEndUpdate={() => setTransforming(false)}
       />
-      <GridChecker />
+      <GridChecker data={state} siblingRefs={siblingRefs} />
       <RectInfo data={state} open={transforming} />
       <RightClick
         open={false}
@@ -75,6 +79,6 @@ const Image = props => {
       />
     </div>
   );
-};
+});
 
 export default Image;

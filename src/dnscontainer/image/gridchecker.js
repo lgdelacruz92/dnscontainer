@@ -2,7 +2,7 @@ import React from "react";
 import * as MaterialUI from "@material-ui/core";
 
 const GridChecker = props => {
-  const { vlRefs, hlRefs, page } = props;
+  const { data, siblingsRef } = props;
   return <div></div>;
 };
 

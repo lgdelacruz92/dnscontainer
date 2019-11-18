@@ -5,6 +5,8 @@ import { moveDown } from "./layerhandler";
 const Images = props => {
   const { containerRef, imageDatas } = props;
   const [state, setState] = React.useState(imageDatas);
+  const refs = React.useRef([]);
+  state.forEach(s => refs.current.push(React.createRef()));
 
   return (
     <React.Fragment>
@@ -12,6 +14,8 @@ const Images = props => {
         return (
           <Image
             key={i}
+            ref={refs.current[i]}
+            siblingRefs={refs}
             data={imageData}
             containerRef={containerRef}
             onMoveDown={i => {
