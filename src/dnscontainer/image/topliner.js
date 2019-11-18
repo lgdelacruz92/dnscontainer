@@ -13,7 +13,7 @@ const TopLiner = props => {
 
     let lineOffsetY = null;
     for (let i = 0; i < siblings.length; i++) {
-      if (siblings[i].y === data.y) {
+      if (Math.abs(siblings[i].y - data.y) < 2) {
         lineOffsetY = data.y;
         break;
       }

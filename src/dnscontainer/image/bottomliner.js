@@ -13,7 +13,7 @@ const BottomLiner = props => {
 
     let lineOffsetY = null;
     for (let i = 0; i < siblings.length; i++) {
-      if (siblings[i].y + siblings[i].h === data.y + data.h) {
+      if (Math.abs(siblings[i].y + siblings[i].h - (data.y + data.h)) < 2) {
         lineOffsetY = data.y + data.h;
         break;
       }

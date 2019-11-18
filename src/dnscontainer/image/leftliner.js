@@ -13,7 +13,7 @@ const LeftLiner = props => {
 
     let lineOffsetX = null;
     for (let i = 0; i < siblings.length; i++) {
-      if (siblings[i].x === data.x) {
+      if (Math.abs(siblings[i].x - data.x) < 2) {
         lineOffsetX = data.x;
         break;
       }

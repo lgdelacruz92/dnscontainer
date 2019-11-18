@@ -13,7 +13,7 @@ const RightLiner = props => {
 
     let lineOffsetX = null;
     for (let i = 0; i < siblings.length; i++) {
-      if (siblings[i].x + siblings[i].w === data.x + data.w) {
+      if (Math.abs(siblings[i].x + siblings[i].w - (data.x + data.w)) < 2) {
         lineOffsetX = data.x + data.w;
         break;
       }
