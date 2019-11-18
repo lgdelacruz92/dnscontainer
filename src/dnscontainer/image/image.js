@@ -5,6 +5,8 @@ import RectInfo from "./rectinfo";
 import CenterLiner from "./centerliner";
 import TopLiner from "./topliner";
 import BottomLiner from "./bottomliner";
+import LeftLiner from "./leftliner";
+import RightLiner from "./rightliner";
 import * as MaterialUI from "@material-ui/core";
 
 const useStyles = MaterialUI.makeStyles(theme => {
@@ -24,6 +26,8 @@ const Image = React.forwardRef((props, ref) => {
     siblingRefs,
     vlRef,
     hlRef,
+    leftLineRef,
+    rightLineRef,
     topLineRef,
     bottomLineRef
   } = props;
@@ -96,6 +100,16 @@ const Image = React.forwardRef((props, ref) => {
       <BottomLiner
         data={state}
         bottomLineRef={bottomLineRef}
+        siblingRefs={siblingRefs}
+      />
+      <LeftLiner
+        data={state}
+        leftLineRef={leftLineRef}
+        siblingRefs={siblingRefs}
+      />
+      <RightLiner
+        data={state}
+        rightLineRef={rightLineRef}
         siblingRefs={siblingRefs}
       />
       <RectInfo data={state} open={transforming} />

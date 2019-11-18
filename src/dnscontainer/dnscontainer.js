@@ -31,6 +31,8 @@ const DNSContainer = props => {
   const classes = useStyles({ page });
   const containerRef = React.useRef();
   const vlRef = React.useRef();
+  const leftLineRef = React.useRef();
+  const rightLineRef = React.useRef();
   const hlRef = React.useRef();
   const topLineRef = React.useRef();
   const bottomLineRef = React.useRef();
@@ -40,12 +42,16 @@ const DNSContainer = props => {
       <Images
         vlRef={vlRef}
         hlRef={hlRef}
+        leftLineRef={leftLineRef}
+        rightLineRef={rightLineRef}
         topLineRef={topLineRef}
         bottomLineRef={bottomLineRef}
         containerRef={containerRef}
         imageDatas={imageDatas}
       />
       <VerticalLine ref={vlRef} x={0} h={page.h} />
+      <VerticalLine ref={leftLineRef} x={0} h={page.h} />
+      <VerticalLine ref={rightLineRef} x={0} h={page.h} />
       <HorizontalLine ref={hlRef} x={0} w={page.w} />
       <HorizontalLine ref={topLineRef} x={0} w={page.w} />
       <HorizontalLine ref={bottomLineRef} x={0} w={page.w} />

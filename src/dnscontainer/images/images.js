@@ -8,6 +8,8 @@ const Images = props => {
     imageDatas,
     vlRef,
     hlRef,
+    leftLineRef,
+    rightLineRef,
     topLineRef,
     bottomLineRef
   } = props;
@@ -26,6 +28,8 @@ const Images = props => {
             hlRef={hlRef}
             vlRef={vlRef}
             data={imageData}
+            leftLineRef={leftLineRef}
+            rightLineRef={rightLineRef}
             topLineRef={topLineRef}
             bottomLineRef={bottomLineRef}
             containerRef={containerRef}
