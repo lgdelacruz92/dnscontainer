@@ -34,7 +34,7 @@ const DNSContainer = props => {
 
   return (
     <div ref={containerRef} className={classes.container}>
-      <Images containerRef={containerRef} page={page} imageDatas={imageDatas} />
+      <Images containerRef={containerRef} imageDatas={imageDatas} />
     </div>
   );
 };

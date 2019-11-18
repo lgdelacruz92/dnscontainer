@@ -65,11 +65,7 @@ const Image = props => {
         }}
         onEndUpdate={() => setTransforming(false)}
       />
-      <GridChecker
-        vlRefs={props.vlRefs}
-        hlRefs={props.hlRefs}
-        page={props.page}
-      />
+      <GridChecker />
       <RectInfo data={state} open={transforming} />
       <RightClick
         open={false}

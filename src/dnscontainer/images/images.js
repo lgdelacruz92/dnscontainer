@@ -3,7 +3,7 @@ import Image from "../image/image";
 import { moveDown } from "./layerhandler";
 
 const Images = props => {
-  const { containerRef, page, vlRefs, hlRefs, imageDatas } = props;
+  const { containerRef, imageDatas } = props;
   const [state, setState] = React.useState(imageDatas);
 
   return (
@@ -18,9 +18,6 @@ const Images = props => {
               moveDown(i, state);
               setState([...state]);
             }}
-            vlRefs={vlRefs}
-            hlRefs={hlRefs}
-            page={page}
           />
         );
       })}
