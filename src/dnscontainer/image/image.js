@@ -15,7 +15,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Image = React.forwardRef((props, ref) => {
-  const { data, onMoveDown, onMoveUp, siblingRefs } = props;
+  const { data, onMoveDown, onMoveUp, siblingRefs, vlRef, hlRef } = props;
   const imgRef = React.useRef();
   const classes = useStyles(data.index);
   const [state, setState] = React.useState({
@@ -71,7 +71,12 @@ const Image = React.forwardRef((props, ref) => {
         }}
         onEndUpdate={() => setTransforming(false)}
       />
-      <GridChecker data={state} siblingRefs={siblingRefs} />
+      <GridChecker
+        data={state}
+        hlRef={hlRef}
+        vlRef={vlRef}
+        siblingRefs={siblingRefs}
+      />
       <RectInfo data={state} open={transforming} />
       <RightClick
         open={false}

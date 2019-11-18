@@ -2,7 +2,7 @@ import React from "react";
 import { lineWithSiblings } from "../siblingliner/siblingliner";
 
 const GridChecker = props => {
-  const { data, siblingRefs } = props;
+  const { data, siblingRefs, vlRef, hlRef } = props;
   React.useEffect(() => {
     const siblings = [];
 
@@ -14,6 +14,11 @@ const GridChecker = props => {
 
     const result = lineWithSiblings(data, siblings);
     if (result.length > 0) {
+      console.log(
+        "Should triggering vl ref or hl ref",
+        vlRef.current,
+        hlRef.current
+      );
     }
   });
   return <div></div>;
