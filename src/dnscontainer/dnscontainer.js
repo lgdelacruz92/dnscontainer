@@ -28,35 +28,13 @@ const DNSContainer = props => {
       "imageDatas must be an array of type ImageData. Please refer to getting started in the packages."
     );
   }
-  const gridUnit = 50;
-  const page = { w: width, h: height, u: gridUnit };
-  const [x, y] = useGrid({ w: page.w, h: page.h, u: page.u });
+  const page = { w: width, h: height };
   const classes = useStyles({ page });
-
   const containerRef = React.useRef();
-  let vlRefResult = [];
-  x.forEach(xi => vlRefResult.push(React.createRef()));
-  const vlRefs = React.useRef(vlRefResult);
-
-  let hlRefResult = [];
-  y.forEach(yi => hlRefResult.push(React.createRef()));
-  const hlRefs = React.useRef(hlRefResult);
 
   return (
     <div ref={containerRef} className={classes.container}>
-      {x.map((xi, i) => (
-        <VerticalLine ref={vlRefs.current[i]} key={i} x={xi} h={page.h} />
-      ))}
-      {y.map((yi, i) => (
-        <HorizontalLine ref={hlRefs.current[i]} y={yi} w={page.w} key={i} />
-      ))}
-      <Images
-        containerRef={containerRef}
-        page={page}
-        vlRefs={vlRefs}
-        hlRefs={hlRefs}
-        imageDatas={imageDatas}
-      />
+      <Images containerRef={containerRef} page={page} imageDatas={imageDatas} />
     </div>
   );
 };
