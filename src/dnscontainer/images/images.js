@@ -20,23 +20,7 @@ const Images = props => {
     }
   };
 
-  const checkforGridCollission = (refs, low, hi, arr, border) => {
-    clearLines(refs);
-    const v1 = linetool(low, arr);
-    const v2 = linetool(hi, arr);
-    const center = linetool((low + hi) / 2, arr);
-
-    if (center) {
-      turnOn(center, arr, refs, border);
-    } else {
-      if (v1) {
-        turnOn(v1, arr, refs, border);
-      }
-      if (v2) {
-        turnOn(v2, arr, refs, border);
-      }
-    }
-  };
+  const checkforGridCollission = (refs, low, hi, arr, border) => {};
 
   const onContextMenu = (e, i, data) => {
     if (e.target.classList.contains(data.id)) {
@@ -63,22 +47,7 @@ const Images = props => {
     }
   };
 
-  const onUpdate = rect => {
-    checkforGridCollission(
-      vlRefs.current,
-      rect.x,
-      rect.x + rect.w,
-      x,
-      "border-left"
-    );
-    checkforGridCollission(
-      hlRefs.current,
-      rect.y,
-      rect.y + rect.h,
-      y,
-      "border-top"
-    );
-  };
+  const onUpdate = rect => {};
 
   return (
     <React.Fragment>

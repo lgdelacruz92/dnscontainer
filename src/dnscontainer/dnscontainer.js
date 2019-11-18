@@ -29,7 +29,7 @@ const DNSContainer = props => {
     );
   }
 
-  const page = { w: width, h: height, u: 10 };
+  const page = { w: width, h: height, u: 5 };
   const [x, y] = useGrid({ w: page.w, h: page.h, u: page.u });
   const classes = useStyles({ page });
 

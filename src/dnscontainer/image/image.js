@@ -13,7 +13,6 @@ const useStyles = MaterialUI.makeStyles(theme => {
       height: props => props.h,
       background: "black",
       opacity: 0.5,
-      zIndex: -2,
       transform: props => translate(props.x, props.y)
     },
     rectinfo: {
@@ -84,6 +83,7 @@ const Image = props => {
 
   return (
     <React.Fragment>
+      <div className={clsx(classes.rectangle, data.id)}></div>
       <ImageDNS
         data={data}
         ref={imgRef}
@@ -97,7 +97,6 @@ const Image = props => {
         }}
         onEndUpdate={() => setTransforming(false)}
       />
-      <div className={clsx(classes.rectangle, data.id)}></div>
       <div
         className={clsx(classes.rectinfo)}
         hidden={!transforming}
