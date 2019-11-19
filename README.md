@@ -26,7 +26,6 @@ yarn add dns-container
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./src/App.js) -->
 <!-- The below code snippet is automatically added from ./src/App.js -->
-
 ```js
 import React from "react";
 import "./App.css";
@@ -45,32 +44,43 @@ function App() {
     src: "https://source.unsplash.com/random/1000x1000",
     alt: "random",
     id: `unique-123`,
-    index: 0
+    index: 1,
+    type: "image"
+  };
+
+  const imageData2 = {
+    x: 20,
+    y: 100,
+    translateX: 0,
+    translateY: 0,
+    scaledWidth: 100,
+    scaledHeight: 100,
+    width: 100,
+    height: 100,
+    src: "https://source.unsplash.com/random/1000x1000",
+    alt: "random",
+    id: `unique-124`,
+    index: 2,
+    type: "image"
   };
 
   const textData1 = {
     id: "id-unq-121",
-    index: 4
+    index: 0,
+    type: "text"
   };
 
-  const textDatas = [textData1];
-  const imageDatas = [imageData1];
+  const datas = [textData1, imageData1, imageData2];
 
   return (
     <div className="App">
-      <DNSContainer
-        width={500}
-        height={700}
-        imageDatas={imageDatas}
-        textDatas={textDatas}
-      />
+      <DNSContainer width={500} height={700} datas={datas} />
     </div>
   );
 }
 
 export default App;
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 # Version Update
