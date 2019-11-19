@@ -34,12 +34,10 @@ const Images = props => {
             bottomLineRef={bottomLineRef}
             containerRef={containerRef}
             onMoveDown={i => {
-              console.log("index", i);
               moveDown(i, state);
               setState([...state]);
             }}
             onMoveUp={i => {
-              console.log("index", i);
               moveUp(i, state);
               setState([...state]);
             }}

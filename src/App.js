@@ -15,12 +15,12 @@ function App() {
     src: "https://source.unsplash.com/random/1000x1000",
     alt: "random",
     id: `unique-123`,
-    index: 0
+    index: 1
   };
 
   const textData1 = {
     id: "id-unq-121",
-    index: 4
+    index: 0
   };
 
   const textDatas = [textData1];
