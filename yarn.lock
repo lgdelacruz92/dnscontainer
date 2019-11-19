@@ -8375,6 +8375,17 @@ react-dom@^16.11.0:
     prop-types "^15.6.2"
     scheduler "^0.18.0"
 
+react-editable-and-draggable-text-2@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-editable-and-draggable-text-2/-/react-editable-and-draggable-text-2-1.0.3.tgz#6c450dbf45d08342951fe8b18fdb6649c079c8ab"
+  integrity sha512-SP645GGa/a8KSplP1Prp4FwsjtYzHRmb9bDsNjggAMELflpLBXJz0dMfqKFiQ9JyVzKnsJw94X1WeCt/eVHwMQ==
+  dependencies:
+    "@material-ui/core" "^4.6.1"
+    clsx "^1.0.4"
+    react "^16.11.0"
+    react-dom "^16.11.0"
+    react-scripts "3.2.0"
+
 react-error-overlay@^6.0.3:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
@@ -8394,7 +8405,7 @@ react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-scripts@^3.2.0:
+react-scripts@3.2.0, react-scripts@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-3.2.0.tgz#58ccd6b4ffa27f1b4d2986cbdcaa916660e9e33c"
   integrity sha512-6LzuKbE2B4eFQG6i1FnTScn9HDcWBfXXnOwW9xKFPJ/E3rK8i1ufbOZ0ocKyRPxJAKdN7iqg3i7lt0+oxkSVOA==

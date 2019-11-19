@@ -63,6 +63,16 @@ function App() {
     index: 3
   };
 
+  const textData1 = {
+    id: "id-unq-121"
+  };
+
+  const textData2 = {
+    id: "id-unq-122"
+  };
+
+  const textDatas = [textData1, textData2];
+
   const [state, setState] = React.useState([
     imageData1,
     imageData2,
@@ -71,17 +81,12 @@ function App() {
   ]);
   return (
     <div className="App">
-      <button
-        onClick={() => {
-          const temp = state[0].index;
-          state[0].index = state[1].index;
-          state[1].index = temp;
-          setState([...state]);
-        }}
-      >
-        Click
-      </button>
-      <DNSContainer width={500} height={700} imageDatas={state} />
+      <DNSContainer
+        width={500}
+        height={700}
+        imageDatas={state}
+        textDatas={textDatas}
+      />
     </div>
   );
 }

@@ -50,6 +50,7 @@
     "@material-ui/core": "^4.6.1",
     "clsx": "^1.0.4",
     "prop-types": "^15.5.4",
+    "react-editable-and-draggable-text-2": "^1.0.3",
     "react-image-drag-and-scale": "^1.0.10",
     "rollup": "^1.27.0",
     "rollup-plugin-babel": "^4.3.3",
