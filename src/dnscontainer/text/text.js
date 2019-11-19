@@ -14,6 +14,17 @@ const useStyles = MaterialUI.makeStyles(theme => {
 const Text = props => {
   const { textData } = props;
   const classes = useStyles(textData);
+
+  React.useEffect(() => {
+    const span = document.getElementById("text-draggable");
+    if (span) {
+      span.focus();
+      span.addEventListener("click", () => console.log("Span is clicked"));
+      span.addEventListener("focus", () => console.log("Span is focused"));
+      span.addEventListener("blur", () => console.log("Span is blurred"));
+    }
+    return () => {};
+  });
   return (
     <div className={classes.text}>
       <TextDNS textData={textData} />
