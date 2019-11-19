@@ -30,6 +30,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 const RightClick = props => {
   const { open, data, onMoveUp, onMoveDown } = props;
   const classes = useStyles(data);
+
   return (
     <MaterialUI.Paper elevation={3} className={classes.rightClickMenu}>
       <MaterialUI.List
@@ -39,7 +40,7 @@ const RightClick = props => {
         hidden={!open}
       >
         <MaterialUI.ListItem
-          onClick={onMoveUp}
+          onClick={() => onMoveUp(data.index)}
           classes={{ gutters: classes.gutters }}
           button
         >
@@ -49,7 +50,7 @@ const RightClick = props => {
           <MaterialUI.ListItemText primary="Move Up" />
         </MaterialUI.ListItem>
         <MaterialUI.ListItem
-          onClick={onMoveDown}
+          onClick={() => onMoveDown(data.index)}
           classes={{ gutters: classes.gutters }}
           button
         >

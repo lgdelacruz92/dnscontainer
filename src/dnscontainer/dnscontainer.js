@@ -2,8 +2,7 @@ import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import VerticalLine from "./grid/verticalline";
 import HorizontalLine from "./grid/horizontalline";
-import Images from "./images/images";
-import Texts from "./texts/texts";
+import Content from "./content/content";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -19,21 +18,16 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const DNSContainer = props => {
-  const { width, height, imageDatas, textDatas } = props;
-  if (!width || !height || !imageDatas) {
+  const { width, height, datas } = props;
+  if (!width || !height || !datas) {
     throw Error("Width, height, and imageDatas array is required");
   }
-  if (!Array.isArray(imageDatas)) {
+  if (!Array.isArray(datas)) {
     throw Error(
-      "imageDatas must be an array of type ImageData. Please refer to getting started in the packages."
+      "datas must be an array. Please refer to getting started in the packages."
     );
   }
 
-  if (!Array.isArray(textDatas)) {
-    throw Error(
-      "textDatas must be an array of type TextData. Please refer to getting started in the packages."
-    );
-  }
   const page = { w: width, h: height };
   const classes = useStyles({ page });
   const containerRef = React.useRef();
@@ -61,7 +55,7 @@ const DNSContainer = props => {
 
   return (
     <div ref={containerRef} className={classes.container}>
-      <Images
+      <Content
         vlRef={vlRef}
         hlRef={hlRef}
         leftLineRef={leftLineRef}
@@ -69,9 +63,8 @@ const DNSContainer = props => {
         topLineRef={topLineRef}
         bottomLineRef={bottomLineRef}
         containerRef={containerRef}
-        imageDatas={imageDatas}
+        datas={datas}
       />
-      <Texts textDatas={textDatas} />
       <VerticalLine ref={vlRef} x={0} h={page.h} />
       <VerticalLine ref={leftLineRef} x={0} h={page.h} />
       <VerticalLine ref={rightLineRef} x={0} h={page.h} />

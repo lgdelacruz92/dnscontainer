@@ -71,7 +71,6 @@ const Image = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     ref.current = state;
   });
-
   return (
     <React.Fragment>
       <div className={classes.image}>
@@ -121,15 +120,9 @@ const Image = React.forwardRef((props, ref) => {
       <RectInfo data={state} open={transforming} />
       <RightClick
         open={rightClick}
-        data={state}
-        onMoveDown={() => {
-          onMoveDown(data.index);
-          setRightClick(false);
-        }}
-        onMoveUp={() => {
-          onMoveUp(data.index);
-          setRightClick(false);
-        }}
+        data={data}
+        onMoveDown={onMoveDown}
+        onMoveUp={onMoveUp}
       />
     </React.Fragment>
   );
