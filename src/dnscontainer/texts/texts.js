@@ -5,11 +5,11 @@ import Text from "../text/text";
 const Texts = props => {
   const { textDatas } = props;
   return (
-    <div>
+    <React.Fragment>
       {textDatas.map(textData => (
-        <Text textData={textData} />
+        <Text textData={textData} key={textData.id} />
       ))}
-    </div>
+    </React.Fragment>
   );
 };
 
