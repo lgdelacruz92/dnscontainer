@@ -14,20 +14,32 @@ const useStyles = MaterialUI.makeStyles(theme => {
 const Text = props => {
   const { textData } = props;
   const classes = useStyles(textData);
+  const textDNSRef = React.useRef();
 
   React.useEffect(() => {
-    const span = document.getElementById("text-draggable");
-    if (span) {
-      span.focus();
-      span.addEventListener("click", () => console.log("Span is clicked"));
-      span.addEventListener("focus", () => console.log("Span is focused"));
-      span.addEventListener("blur", () => console.log("Span is blurred"));
-    }
-    return () => {};
-  });
+    // function onTextClick(e) {
+    //   textDNSRef.current.focus();
+    //   e.preventDefault();
+    //   e.stopPropagation();
+    // }
+    // const onDocumentClick = e => {
+    //   textDNSRef.current.blur();
+    //   console.log("Clicked outside");
+    //   e.preventDefault();
+    //   e.stopPropagation();
+    // };
+    // if (textDNSRef.current) {
+    //   textDNSRef.current.addEventListener("click", onTextClick);
+    //   document.addEventListener("click", onDocumentClick);
+    // }
+    // return () => {
+    //   textDNSRef.current.removeEventListener("click", onTextClick);
+    //   document.removeEventListener("click", onDocumentClick);
+    // };
+  }, []);
   return (
     <div className={classes.text}>
-      <TextDNS textData={textData} />
+      <TextDNS textData={textData} ref={textDNSRef} onUpdate={() => {}} />
     </div>
   );
 };
