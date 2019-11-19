@@ -13,15 +13,15 @@
     "react-scripts": "^3.2.0"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.6.1",
+    "@material-ui/core": "^4.x",
     "clsx": "^1.0.4",
     "prop-types": "^15.5.4",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0",
     "typescript": "^3.7.2",
-    "react-editable-and-draggable-text-2": "^1.1.2",
-    "react-image-drag-and-scale": "^1.0.12",
+    "react-editable-and-draggable-text-2": "^1.x",
+    "react-image-drag-and-scale": "^1.x",
     "@material-ui/icons": "^4.5.1"
   },
   "scripts": {
