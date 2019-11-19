@@ -15,28 +15,6 @@ const Text = props => {
   const { textData } = props;
   const classes = useStyles(textData);
   const textDNSRef = React.useRef();
-
-  React.useEffect(() => {
-    // function onTextClick(e) {
-    //   textDNSRef.current.focus();
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    // }
-    // const onDocumentClick = e => {
-    //   textDNSRef.current.blur();
-    //   console.log("Clicked outside");
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    // };
-    // if (textDNSRef.current) {
-    //   textDNSRef.current.addEventListener("click", onTextClick);
-    //   document.addEventListener("click", onDocumentClick);
-    // }
-    // return () => {
-    //   textDNSRef.current.removeEventListener("click", onTextClick);
-    //   document.removeEventListener("click", onDocumentClick);
-    // };
-  }, []);
   return (
     <div className={classes.text}>
       <TextDNS textData={textData} ref={textDNSRef} onUpdate={() => {}} />

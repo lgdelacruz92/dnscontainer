@@ -1,5 +1,5 @@
 import React from "react";
-import ReactImageDragAndScale from "../../image/image";
+import ReactImageDragAndScale from "react-image-drag-and-scale";
 
 const ImageDNS = React.forwardRef((props, ref) => {
   const {
