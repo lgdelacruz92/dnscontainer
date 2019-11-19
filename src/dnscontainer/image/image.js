@@ -80,11 +80,6 @@ const Image = React.forwardRef((props, ref) => {
           ref={imgRef}
           onUpdate={onImageUpdate}
           selected={unSelected}
-          onContextMenu={e => {
-            setRightClick(true);
-            e.preventDefault();
-            return false;
-          }}
           onClick={e => {
             setRightClick(false);
             setUnselected(!unSelected);

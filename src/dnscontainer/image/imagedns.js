@@ -1,5 +1,5 @@
 import React from "react";
-import ReactImageDragAndScale from "react-image-drag-and-scale";
+import ReactImageDragAndScale from "../../image/image";
 
 const ImageDNS = React.forwardRef((props, ref) => {
   const {
@@ -22,7 +22,6 @@ const ImageDNS = React.forwardRef((props, ref) => {
           // only left click counts
           setTime(Date.now());
         }
-        e.preventDefault();
       }}
       onUpdate={onUpdate}
       selected={selected}
@@ -33,7 +32,6 @@ const ImageDNS = React.forwardRef((props, ref) => {
           onClick(e);
         }
         onEndUpdate();
-        e.preventDefault();
       }}
     />
   );
