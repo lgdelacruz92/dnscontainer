@@ -8,7 +8,14 @@ export default [
       file: "dist/index.js",
       format: "es"
     },
-    external: ["react", "@material-core", "clsx"],
+    external: [
+      "react",
+      "@material-ui/core",
+      "clsx",
+      "react-editable-and-draggable-text-2",
+      "react-image-drag-and-scale",
+      "@material-ui/icons"
+    ],
     plugins: [
       babel({
         exclude: "node_modules/.**"
