@@ -1,6 +1,6 @@
 # DNS Container
 
-> This library is built on top of image-drag-and-scale to provide user with a container
+> This library is built on top of react-image-drag-and-scale to provide user with a container
 > that detects it's dimensions and provides grid suggestions.
 
 [![NPM](https://img.shields.io/npm/v/image-drag-and-scale.svg)](https://www.npmjs.com/package/image-drag-and-scale) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -85,7 +85,7 @@ export default App;
 
 # Version Update
 
-## v1.0.1
+## v1.1.1
 
 > First release. If you find issues, please post an issue on the github
 
