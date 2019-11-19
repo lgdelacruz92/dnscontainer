@@ -38,23 +38,23 @@ describe("Move Test", () => {
       },
       {
         id: 1,
-        index: 3
-      },
-      {
-        id: 2,
         index: 1
       },
       {
-        id: 3,
+        id: 2,
         index: 2
+      },
+      {
+        id: 3,
+        index: 3
       }
     ]);
 
-    moveDown(3, imageDatas);
+    moveDown(1, imageDatas);
     expect(imageDatas).toEqual([
       {
         id: 0,
-        index: 3
+        index: 1
       },
       {
         id: 1,
@@ -62,11 +62,11 @@ describe("Move Test", () => {
       },
       {
         id: 2,
-        index: 1
+        index: 2
       },
       {
         id: 3,
-        index: 2
+        index: 3
       }
     ]);
   });
@@ -97,15 +97,15 @@ describe("Move Test", () => {
     expect(imageDatas).toEqual([
       {
         id: 0,
-        index: 1
+        index: 0
       },
       {
         id: 1,
-        index: 2
+        index: 1
       },
       {
         id: 2,
-        index: 0
+        index: 2
       },
       {
         id: 3,
@@ -121,15 +121,15 @@ describe("Move Test", () => {
       },
       {
         id: 1,
-        index: 2
+        index: 0
       },
       {
         id: 2,
-        index: 3
+        index: 2
       },
       {
         id: 3,
-        index: 0
+        index: 3
       }
     ]);
   });

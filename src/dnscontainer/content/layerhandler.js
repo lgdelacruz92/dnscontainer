@@ -1,12 +1,18 @@
 // 0 <= x <= arr.length
 export const moveDown = (x, arr) => {
+  let indexChanged = null;
+
   for (let i = 0; i < arr.length; i++) {
     if (x === arr[i].index) {
-      if (i > 0) {
-        const temp = arr[i - 1].index;
-        arr[i - 1].index = arr[i].index;
-        arr[i].index = temp;
-      }
+      arr[i].index -= 1;
+      indexChanged = i;
+      break;
+    }
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (x - 1 === arr[i].index && indexChanged !== null && indexChanged !== i) {
+      arr[i].index += 1;
       break;
     }
   }
@@ -14,14 +20,18 @@ export const moveDown = (x, arr) => {
 };
 
 export const moveUp = (x, arr) => {
+  let indexChanged = null;
   for (let i = 0; i < arr.length; i++) {
-    console.log("move up called", x, arr[i]);
     if (x === arr[i].index) {
-      if (i < arr.length - 1) {
-        const temp = arr[i].index;
-        arr[i].index = arr[i + 1].index;
-        arr[i + 1].index = temp;
-      }
+      arr[i].index += 1;
+      indexChanged = i;
+      break;
+    }
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (x + 1 === arr[i].index && indexChanged !== null && indexChanged !== i) {
+      arr[i].index -= 1;
       break;
     }
   }
