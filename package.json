@@ -1,6 +1,6 @@
 {
   "name": "dns-container",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "license": "MIT",
   "author": "lgdelacruz92",
   "main": "dist/index.js",
@@ -16,8 +16,8 @@
     "@material-ui/core": "^4.x",
     "clsx": "^1.0.4",
     "prop-types": "^15.5.4",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "react": "^16.x",
+    "react-dom": "^16.x",
     "react-scripts": "3.2.0",
     "typescript": "^3.x",
     "react-editable-and-draggable-text-2": "^1.x",
