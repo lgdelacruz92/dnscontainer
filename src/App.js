@@ -42,10 +42,18 @@ function App() {
   };
 
   const datas = [textData1, imageData1, imageData2];
+  const dnsRef = React.useRef();
 
   return (
     <div className="App">
-      <DNSContainer width={500} height={700} datas={datas} />
+      <DNSContainer width={500} height={700} datas={datas} ref={dnsRef} />
+      <button
+        onClick={() => {
+          console.log("Dns snapshot", dnsRef.current);
+        }}
+      >
+        Take Snapshot
+      </button>
     </div>
   );
 }

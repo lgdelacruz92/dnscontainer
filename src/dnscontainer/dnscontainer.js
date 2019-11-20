@@ -2,7 +2,7 @@ import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import VerticalLine from "./grid/verticalline";
 import HorizontalLine from "./grid/horizontalline";
-import Content from "./content/content";
+import Content from "./content/contents";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -17,7 +17,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
   };
 });
 
-const DNSContainer = props => {
+const DNSContainer = React.forwardRef((props, ref) => {
   const { width, height, datas } = props;
   if (!width || !height || !datas) {
     throw Error("Width, height, and imageDatas array is required");
@@ -53,9 +53,18 @@ const DNSContainer = props => {
     };
   }, []);
 
+  const contentsRef = React.useRef();
+
+  React.useEffect(() => {
+    if (ref) {
+      ref.current = contentsRef.current;
+    }
+  });
+
   return (
     <div ref={containerRef} className={classes.container}>
       <Content
+        ref={contentsRef}
         vlRef={vlRef}
         hlRef={hlRef}
         leftLineRef={leftLineRef}
@@ -73,6 +82,6 @@ const DNSContainer = props => {
       <HorizontalLine ref={bottomLineRef} x={0} w={page.w} />
     </div>
   );
-};
+});
 
 export default DNSContainer;

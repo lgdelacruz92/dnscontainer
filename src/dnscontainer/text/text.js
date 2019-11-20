@@ -11,15 +11,18 @@ const useStyles = MaterialUI.makeStyles(theme => {
   };
 });
 
-const Text = props => {
+const Text = React.forwardRef((props, ref) => {
   const { textData } = props;
   const classes = useStyles(textData);
   const textDNSRef = React.useRef();
+  React.useEffect(() => {
+    ref.current = textDNSRef.current;
+  });
   return (
     <div className={classes.text}>
       <TextDNS textData={textData} ref={textDNSRef} onUpdate={() => {}} />
     </div>
   );
-};
+});
 
 export default Text;

@@ -69,8 +69,12 @@ const Image = React.forwardRef((props, ref) => {
   };
 
   React.useEffect(() => {
-    ref.current = state;
+    ref.current = {
+      rect: state,
+      imgRef: imgRef.current
+    };
   });
+
   return (
     <React.Fragment>
       <div className={classes.image}>
