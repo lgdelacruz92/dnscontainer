@@ -19,7 +19,7 @@
     "prop-types": "^15.5.4",
     "react": "^16.x",
     "react-dom": "^16.x",
-    "react-editable-and-draggable-text-2": "^1.x",
+    "react-editable-and-draggable-text-2": "^1.1.6",
     "react-image-drag-and-scale": "^1.x",
     "react-scripts": "3.2.0",
     "typescript": "^3.x"
