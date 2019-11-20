@@ -8593,10 +8593,10 @@ react-dom@^16.11.0:
     prop-types "^15.6.2"
     scheduler "^0.18.0"
 
-react-editable-and-draggable-text-2@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-editable-and-draggable-text-2/-/react-editable-and-draggable-text-2-1.1.2.tgz#5bb5168fc1960307091cd6d1d7e651e4c8b398c3"
-  integrity sha512-iuP5zRVZXQBWOsHqry+evyZ1RitxDwmmFGruLsJaVbwRKNdL69G8k3gtczZL76w5fbunJyjY//wtEBZmKFA3Ww==
+react-editable-and-draggable-text-2@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/react-editable-and-draggable-text-2/-/react-editable-and-draggable-text-2-1.1.6.tgz#f1c925725158e78a265bf8a4ef4a992a2b4fa7d3"
+  integrity sha512-JXEPM/OO0RbTx+qjuhP1EQFfJl7ubAoLT9N0v162NbkbAz18xFew69LYPNOil6F/InDvpp8UpHgFaqgyEB0a/w==
   dependencies:
     "@material-ui/core" "^4.6.1"
     clsx "^1.0.4"

@@ -14,15 +14,15 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.x",
+    "@material-ui/icons": "^4.5.1",
     "clsx": "^1.0.4",
     "prop-types": "^15.5.4",
     "react": "^16.x",
     "react-dom": "^16.x",
-    "react-scripts": "3.2.0",
-    "typescript": "^3.x",
     "react-editable-and-draggable-text-2": "^1.x",
     "react-image-drag-and-scale": "^1.x",
-    "@material-ui/icons": "^4.5.1"
+    "react-scripts": "3.2.0",
+    "typescript": "^3.x"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -55,7 +55,7 @@
     "clsx": "^1.0.4",
     "markdown-magic": "^1.0.0",
     "prop-types": "^15.5.4",
-    "react-editable-and-draggable-text-2": "^1.1.2",
+    "react-editable-and-draggable-text-2": "^1.1.6",
     "react-image-drag-and-scale": "^1.0.12",
     "rollup": "^1.27.0",
     "rollup-plugin-babel": "^4.3.3",
