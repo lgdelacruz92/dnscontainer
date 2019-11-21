@@ -66,6 +66,10 @@ function App() {
 
   const textData1 = {
     id: "id-unq-121",
+    x: 100,
+    y: 100,
+    fontWeight: "bold",
+    text: "Hello",
     index: 0,
     type: "text"
   };
@@ -93,7 +97,7 @@ export default App;
 
 # Version Update
 
-## v1.1.9
+## v1.2.0
 
 > First release. If you find issues, please post an issue on the github
 
