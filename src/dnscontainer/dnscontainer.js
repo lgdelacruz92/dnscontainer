@@ -15,16 +15,16 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const DNSContainer = React.forwardRef((props, ref) => {
-  const { width, height } = props;
+  let { width, height } = props;
   if (!width || !height) {
-    throw Error("Width, height, and imageDatas array is required");
+    width = 500;
+    height = 500;
   }
 
-  const containerRef = React.useRef();
-  const classes = useStyles(props);
+  const classes = useStyles({ width: width, height: height });
 
   return (
-    <div ref={containerRef} className={classes.container}>
+    <div ref={ref} className={classes.container}>
       {props.children}
     </div>
   );
