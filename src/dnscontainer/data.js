@@ -27,7 +27,24 @@ export let imageData2 = {
   src: "https://source.unsplash.com/random/1000x1000",
   alt: "random",
   id: "unique-id-124",
-  index: 0,
+  index: 1,
   type: "image",
   paperId: "p1"
+};
+
+export let text = {
+  x: 100,
+  y: 100,
+  type: "text",
+  textDecoration: "none",
+  textAlign: "center",
+  text: "Hewllkdfasdf",
+  paperId: "p1",
+  index: 2,
+  id: "unique-id-125",
+  fontWeight: "normal",
+  fontStyle: "normal",
+  fontSize: 16,
+  fontFamily: "sans-serif",
+  color: "black"
 };
