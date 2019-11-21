@@ -37,6 +37,10 @@ function App() {
 
   const textData1 = {
     id: "id-unq-121",
+    x: 100,
+    y: 100,
+    fontWeight: "bold",
+    text: "Hello",
     index: 0,
     type: "text"
   };

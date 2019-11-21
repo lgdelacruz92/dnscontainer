@@ -42,13 +42,10 @@ const Contents = React.forwardRef((props, ref) => {
               bottomLineRef={bottomLineRef}
               containerRef={containerRef}
               onMoveDown={i => {
-                console.log("move down", i);
                 moveDown(i, state);
                 setState([...state]);
               }}
               onMoveUp={i => {
-                console.log("move up", i);
-
                 moveUp(i, state);
                 setState([...state]);
               }}
