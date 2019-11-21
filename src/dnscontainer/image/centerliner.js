@@ -1,16 +1,11 @@
 import React from "react";
 import { lineWithSiblings } from "../siblingliner/siblingliner";
+import { getSiblingRects } from "./siblingcollector";
 
 const CenterLiner = props => {
   const { data, siblingRefs, vlRef, hlRef } = props;
   React.useEffect(() => {
-    const siblings = [];
-
-    siblingRefs.current.forEach(s => {
-      if (s.current && data.id !== s.current.id && siblings.length < 5) {
-        siblings.push(s.current);
-      }
-    });
+    const siblings = getSiblingRects({ data, siblingRefs });
 
     const result = lineWithSiblings(data, siblings);
 

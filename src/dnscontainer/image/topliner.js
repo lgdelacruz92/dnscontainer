@@ -1,15 +1,10 @@
 import React from "react";
+import { getSiblingRects } from "./siblingcollector";
 
 const TopLiner = props => {
   const { data, siblingRefs, topLineRef } = props;
   React.useEffect(() => {
-    const siblings = [];
-
-    siblingRefs.current.forEach(s => {
-      if (s.current && data.id !== s.current.id && siblings.length < 3) {
-        siblings.push(s.current);
-      }
-    });
+    const siblings = getSiblingRects({ data, siblingRefs });
 
     let lineOffsetY = null;
     for (let i = 0; i < siblings.length; i++) {
@@ -22,7 +17,7 @@ const TopLiner = props => {
     if (lineOffsetY) {
       topLineRef.current.setAttribute(
         "style",
-        `border-top: 1px solid orange; transform: translateY(${lineOffsetY}px)`
+        `border-top: 2px solid orange; transform: translateY(${lineOffsetY}px)`
       );
     } else {
       topLineRef.current.setAttribute("style", "");

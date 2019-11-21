@@ -14,12 +14,10 @@ const LeftLiner = props => {
       }
     }
 
-    console.log("Attempting to line left", data, siblings, leftLineRef);
-
     if (lineOffsetX) {
       leftLineRef.current.setAttribute(
         "style",
-        `border-left: 1px solid orange; transform: translateX(${lineOffsetX}px)`
+        `border-left: 2px solid orange; transform: translateX(${lineOffsetX}px)`
       );
     } else {
       leftLineRef.current.setAttribute("style", "");
