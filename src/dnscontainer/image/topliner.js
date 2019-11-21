@@ -22,7 +22,7 @@ const TopLiner = props => {
     if (lineOffsetY) {
       topLineRef.current.setAttribute(
         "style",
-        `border: 1px solid orange; transform: translateY(${lineOffsetY}px)`
+        `border-top: 1px solid orange; transform: translateY(${lineOffsetY}px)`
       );
     } else {
       topLineRef.current.setAttribute("style", "");

@@ -22,7 +22,7 @@ const RightLiner = props => {
     if (lineOffsetX) {
       rightLineRef.current.setAttribute(
         "style",
-        `border: 1px solid orange; transform: translateX(${lineOffsetX}px)`
+        `border-left: 1px solid orange; transform: translateX(${lineOffsetX}px)`
       );
     } else {
       rightLineRef.current.setAttribute("style", "");
