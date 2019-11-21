@@ -26,6 +26,7 @@ yarn add dns-container
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./src/App.js) -->
 <!-- The below code snippet is automatically added from ./src/App.js -->
+
 ```js
 import React from "react";
 import "./App.css";
@@ -89,13 +90,16 @@ function App() {
 
 export default App;
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 # Version Update
 
-## v1.1.7
+## v1.1.8
 
 > First release. If you find issues, please post an issue on the github
+
+> Text support!
 
 ## License
 
