@@ -2,17 +2,16 @@ import React from "react";
 import DNSImage from "react-image-drag-and-scale";
 
 const Image = props => {
-  const { onChange, onClick } = props;
+  const { onChange, onClick, onChangeEnd } = props;
   const myRef = React.useRef();
+  const [time, setTime] = React.useState(0);
   return (
     <DNSImage
       ref={myRef}
       data={props.data}
-      onContextMenu={e => {
-        console.log("Context menu clicked", e);
-      }}
+      onContextMenu={e => {}}
       onStartUpdate={e => {
-        console.log("Update starting", e);
+        setTime(Date.now());
       }}
       onUpdate={() => {
         const imageData = myRef.current.data;
@@ -28,7 +27,10 @@ const Image = props => {
       }}
       containerRef={props.containerRef}
       onEndUpdate={e => {
-        console.log("End update", e);
+        if (Date.now() - time < 2000) {
+          onClick(e);
+        }
+        onChangeEnd(e);
       }}
     />
   );
