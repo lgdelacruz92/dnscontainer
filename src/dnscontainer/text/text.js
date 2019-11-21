@@ -15,12 +15,16 @@ const Text = React.forwardRef((props, ref) => {
   const { textData } = props;
   const classes = useStyles(textData);
   const textDNSRef = React.useRef();
-  React.useEffect(() => {
-    ref.current = textDNSRef.current;
-  });
+
   return (
     <div className={classes.text}>
-      <TextDNS textData={textData} ref={textDNSRef} onUpdate={() => {}} />
+      <TextDNS
+        textData={textData}
+        ref={textDNSRef}
+        onUpdate={() => {
+          ref.current = textDNSRef.current;
+        }}
+      />
     </div>
   );
 });

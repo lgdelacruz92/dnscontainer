@@ -2,7 +2,7 @@ import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import VerticalLine from "./grid/verticalline";
 import HorizontalLine from "./grid/horizontalline";
-import Content from "./content/contents";
+import Contents from "./content/contents";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -63,7 +63,7 @@ const DNSContainer = React.forwardRef((props, ref) => {
 
   return (
     <div ref={containerRef} className={classes.container}>
-      <Content
+      <Contents
         ref={contentsRef}
         vlRef={vlRef}
         hlRef={hlRef}
