@@ -9,7 +9,7 @@ function App() {
   const containerRef = React.useRef();
   const contentsRef = React.useRef([]);
 
-  const datas = [imageData, imageData2, text];
+  const datas = [imageData, text, imageData2];
   if (datas.length !== contentsRef.current.length) {
     datas.forEach(d => contentsRef.current.push(React.createRef()));
   }
