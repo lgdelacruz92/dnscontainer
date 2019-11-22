@@ -1,37 +1,80 @@
 import React from "react";
-import Image from "./image/image";
-import Text from "./text/text";
+import ContentBase from "./contentbase";
+import { collectSiblings } from "./utils/siblingscollector";
+
+import {
+  isLeftAligned,
+  isRightAligned,
+  isHorizontallyCentered,
+  isTopAligned,
+  isBottomAligned,
+  isVerticallyCentered
+} from "./utils/siblingliner";
+import { drawLineVert, drawLineHori } from "./linedrawer";
 
 const Content = React.forwardRef((props, ref) => {
-  const { containerRef, data, onChange, onChangeEnd } = props;
+  const {
+    contentsRef,
+    data,
+    containerRef,
+    onChangeEnd,
+    leftLineRef,
+    rightLineRef,
+    topLineRef,
+    bottomLineRef,
+    vertLineRef,
+    horiLineRef
+  } = props;
+  return (
+    <ContentBase
+      ref={ref}
+      key={data.id}
+      data={data}
+      containerRef={containerRef}
+      contentsRef={contentsRef}
+      onChangeEnd={onChangeEnd}
+      onChange={targetId => {
+        const children = contentsRef.current.map(c => c.current);
+        const target = children.find(d => d.id === targetId);
+        const siblings = collectSiblings(target, children);
+        siblings.forEach(sibling => {
+          drawLineVert(isLeftAligned, target, sibling, leftLineRef, target.x);
+          drawLineVert(
+            isHorizontallyCentered,
+            target,
+            sibling,
+            horiLineRef,
+            (target.x * 2 + target.w) / 2
+          );
+          drawLineVert(
+            isRightAligned,
+            target,
+            sibling,
+            rightLineRef,
+            target.x + target.w
+          );
 
-  const _onChange = rect => {
-    ref.current = rect;
-    onChange(data.id);
-  };
+          drawLineHori(isTopAligned, target, sibling, topLineRef, target.y);
 
-  if (data.type === "image") {
-    return (
-      <Image
-        key={data.id}
-        containerRef={containerRef}
-        id={data.id}
-        onChange={_onChange}
-        onChangeEnd={onChangeEnd}
-      />
-    );
-  } else if (data.type === "text") {
-    return (
-      <Text
-        key={data.id}
-        id={data.id}
-        onChange={_onChange}
-        onChangeEnd={onChangeEnd}
-      />
-    );
-  } else {
-    return null;
-  }
+          drawLineHori(
+            isBottomAligned,
+            target,
+            sibling,
+            bottomLineRef,
+            target.y + target.h
+          );
+
+          drawLineHori(
+            isVerticallyCentered,
+            target,
+            sibling,
+            vertLineRef,
+            (target.y * 2 + target.h) / 2
+          );
+        });
+      }}
+    />
+  );
 });
 
 export default Content;
