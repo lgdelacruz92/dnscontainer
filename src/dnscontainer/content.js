@@ -1,16 +1,13 @@
 import React from "react";
 import Image from "./image/image";
 import Text from "./text/text";
-import { collectSiblings } from "./utils/siblingscollector";
 
 const Content = React.forwardRef((props, ref) => {
-  const { containerRef, data, siblingsRef } = props;
+  const { containerRef, data, onChange } = props;
 
-  const onChange = val => {
+  const _onChange = val => {
     ref.current = val;
-
-    const children = siblingsRef.map(sr => sr.current);
-    const siblings = collectSiblings(data, children);
+    onChange(data.id);
   };
 
   if (data.type === "image") {
@@ -19,12 +16,12 @@ const Content = React.forwardRef((props, ref) => {
         key={data.id}
         containerRef={containerRef}
         id={data.id}
-        onChange={onChange}
+        onChange={_onChange}
         onChangeEnd={() => {}}
       />
     );
   } else if (data.type === "text") {
-    return <Text key={data.id} id={data.id} onChange={onChange} />;
+    return <Text key={data.id} id={data.id} onChange={_onChange} />;
   } else {
     return null;
   }

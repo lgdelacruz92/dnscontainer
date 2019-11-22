@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import DNSContainer from "./dnscontainer";
+import { collectSiblings } from "./dnscontainer/utils/siblingscollector";
 
 import { imageData, imageData2, text } from "./dnscontainer/data";
 import Content from "./dnscontainer/content";
@@ -16,6 +17,13 @@ function App() {
 
   return (
     <div className="App">
+      <button
+        onClick={() => {
+          console.log(contentsRef.current, "The contents");
+        }}
+      >
+        Click
+      </button>
       <DNSContainer ref={containerRef} width={500} height={700}>
         {datas.map((data, i) => (
           <Content
@@ -23,9 +31,12 @@ function App() {
             key={data.id}
             data={data}
             containerRef={containerRef}
-            onChange={data => {}}
+            onChange={targetId => {
+              const children = contentsRef.current.map(c => c.current);
+              const target = datas.find(d => d.id === targetId);
+              const siblings = collectSiblings(target, children);
+            }}
             onChangeEnd={() => {}}
-            siblingsRef={contentsRef.current}
           />
         ))}
       </DNSContainer>
