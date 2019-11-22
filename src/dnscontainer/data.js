@@ -48,3 +48,5 @@ export let text = {
   fontFamily: "sans-serif",
   color: "black"
 };
+
+export const data = [imageData, imageData2, text];

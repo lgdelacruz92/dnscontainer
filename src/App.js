@@ -14,17 +14,10 @@ function App() {
         {[imageData, imageData2, text].map(data => {
           if (data.type === "image") {
             return (
-              <Image
-                key={data.id}
-                containerRef={containerRef}
-                onChange={newImageData => {}}
-                onClick={() => {}}
-                onChangeEnd={() => {}}
-                data={data}
-              />
+              <Image key={data.id} containerRef={containerRef} id={data.id} />
             );
           } else if (data.type === "text") {
-            return <Text data={data} key={data.id} onChange={data => {}} />;
+            return <Text id={data.id} key={data.id} onChange={data => {}} />;
           } else {
             return null;
           }

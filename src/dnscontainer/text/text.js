@@ -1,6 +1,7 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import TextDNS from "react-editable-and-draggable-text-2";
+import { data } from "../data";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -12,34 +13,43 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Text = props => {
-  const { data, onChange } = props;
-  const classes = useStyles(data);
+  const { id } = props;
+  const [state, setState] = React.useState(null);
+  const classes = useStyles(state ? state : { index: 0 });
   const textDNSRef = React.useRef();
+
+  const onChange = data => {};
+
+  React.useEffect(() => {
+    setState(data.find(d => d.id === id));
+  }, [id]);
 
   return (
     <div className={classes.text}>
-      <TextDNS
-        textData={data}
-        ref={textDNSRef}
-        onUpdate={() => {
-          const spanRect = textDNSRef.current.span.getBoundingClientRect();
-          const textData = textDNSRef.current.textData;
-          onChange({
-            x: textData.x,
-            y: textData.y,
-            w: spanRect.width,
-            h: spanRect.height,
-            id: textData.id,
-            text: textData.text,
-            textAlign: textData.textAlign,
-            textDecoration: textData.textDecoration,
-            fontSize: textData.fontSize,
-            fontStyle: textData.fontStyle,
-            fontFamily: textData.fontFamily,
-            fontWeight: textData.fontWeight
-          });
-        }}
-      />
+      {state ? (
+        <TextDNS
+          textData={state}
+          ref={textDNSRef}
+          onUpdate={() => {
+            const spanRect = textDNSRef.current.span.getBoundingClientRect();
+            const textData = textDNSRef.current.textData;
+            onChange({
+              x: textData.x,
+              y: textData.y,
+              w: spanRect.width,
+              h: spanRect.height,
+              id: textData.id,
+              text: textData.text,
+              textAlign: textData.textAlign,
+              textDecoration: textData.textDecoration,
+              fontSize: textData.fontSize,
+              fontStyle: textData.fontStyle,
+              fontFamily: textData.fontFamily,
+              fontWeight: textData.fontWeight
+            });
+          }}
+        />
+      ) : null}
     </div>
   );
 };
