@@ -56,7 +56,7 @@ const Image = props => {
             if (Date.now() - time < 2000) {
               onClick(e);
             }
-            onChangeEnd(e);
+            onChangeEnd(e, myRef.current.data);
           }}
         />
       ) : null}

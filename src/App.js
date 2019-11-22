@@ -109,7 +109,9 @@ function App() {
                 );
               });
             }}
-            onChangeEnd={() => {}}
+            onChangeEnd={(e, realData) => {
+              console.log("my real data changed", realData);
+            }}
           />
         ))}
         <VerticalLine ref={leftLineRef} />
