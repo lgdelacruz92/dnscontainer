@@ -1,5 +1,9 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
+import { imageData, imageData2, text } from "./data";
+import Content from "./content";
+import VerticalLine from "./verticalline";
+import HorizontalLine from "./horizontalline";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -14,7 +18,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
   };
 });
 
-const DNSContainer = React.forwardRef((props, ref) => {
+const DNSContainer = props => {
   let { width, height } = props;
   if (!width || !height) {
     width = 500;
@@ -22,12 +26,59 @@ const DNSContainer = React.forwardRef((props, ref) => {
   }
 
   const classes = useStyles({ width: width, height: height });
+  const containerRef = React.useRef();
+  const contentsRef = React.useRef([]);
+  const leftLineRef = React.useRef();
+  const rightLineRef = React.useRef();
+  const topLineRef = React.useRef();
+  const bottomLineRef = React.useRef();
+  const horiLineRef = React.useRef();
+  const vertLineRef = React.useRef();
+
+  const datas = [imageData, text, imageData2];
+  if (datas.length !== contentsRef.current.length) {
+    datas.forEach(d => contentsRef.current.push(React.createRef()));
+  }
 
   return (
-    <div ref={ref} className={classes.container}>
-      {props.children}
+    <div
+      ref={containerRef}
+      className={classes.container}
+      onMouseUp={() => {
+        leftLineRef.current.setAttribute("style", "");
+        rightLineRef.current.setAttribute("style", "");
+        topLineRef.current.setAttribute("style", "");
+        bottomLineRef.current.setAttribute("style", "");
+        horiLineRef.current.setAttribute("style", "");
+        vertLineRef.current.setAttribute("style", "");
+      }}
+    >
+      {datas.map((data, i) => (
+        <Content
+          ref={contentsRef.current[i]}
+          key={data.id}
+          data={data}
+          leftLineRef={leftLineRef}
+          rightLineRef={rightLineRef}
+          topLineRef={topLineRef}
+          bottomLineRef={bottomLineRef}
+          vertLineRef={vertLineRef}
+          horiLineRef={horiLineRef}
+          containerRef={containerRef}
+          contentsRef={contentsRef}
+          onChangeEnd={(e, realData) => {
+            console.log("my real data changed", realData);
+          }}
+        />
+      ))}
+      <VerticalLine ref={leftLineRef} />
+      <VerticalLine ref={rightLineRef} />
+      <VerticalLine ref={horiLineRef} />
+      <HorizontalLine ref={topLineRef} />
+      <HorizontalLine ref={bottomLineRef} />
+      <HorizontalLine ref={vertLineRef} />
     </div>
   );
-});
+};
 
 export default DNSContainer;
