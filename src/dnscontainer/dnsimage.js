@@ -1,5 +1,4 @@
 import React from "react";
-import * as MaterialUI from "@material-ui/core";
 import PropTypes from "prop-types";
 
 const DNSImage = props => {
@@ -9,6 +8,6 @@ const DNSImage = props => {
 export default DNSImage;
 
 DNSImage.propTypes = {
-  data: PropTypes.object,
-  onChangeEnd: PropTypes.func
+  data: PropTypes.object.isRequired,
+  onChangeEnd: PropTypes.func.isRequired
 };

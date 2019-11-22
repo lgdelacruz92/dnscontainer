@@ -2,7 +2,8 @@ import React from "react";
 import "./App.css";
 import DNSContainer from "./dnscontainer";
 import DNSImage from "./dnscontainer/dnsimage";
-import { imageData, imageData2 } from "./dnscontainer/data";
+import { imageData, imageData2, text } from "./dnscontainer/data";
+import DNSText from "./dnscontainer/dnstext";
 
 function App() {
   return (
@@ -17,6 +18,12 @@ function App() {
         />
         <DNSImage
           data={imageData2}
+          onChangeEnd={d => {
+            console.log("chane end", d);
+          }}
+        />
+        <DNSText
+          data={text}
           onChangeEnd={d => {
             console.log("chane end", d);
           }}
