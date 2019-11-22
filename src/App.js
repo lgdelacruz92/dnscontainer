@@ -2,10 +2,10 @@ import React from "react";
 import "./App.css";
 import DNSContainer from "./dnscontainer";
 import { collectSiblings } from "./dnscontainer/utils/siblingscollector";
-
 import { imageData, imageData2, text } from "./dnscontainer/data";
 import Content from "./dnscontainer/content";
 import VerticalLine from "./dnscontainer/verticalline";
+import HorizontalLine from "./dnscontainer/horizontalline";
 import {
   isLeftAligned,
   isRightAligned,
@@ -18,6 +18,7 @@ function App() {
   const contentsRef = React.useRef([]);
   const leftLineRef = React.useRef();
   const rightLineRef = React.useRef();
+  const topLineRef = React.useRef();
   const horiLineRef = React.useRef();
 
   const datas = [imageData, text, imageData2];
@@ -75,6 +76,7 @@ function App() {
         <VerticalLine ref={leftLineRef} />
         <VerticalLine ref={rightLineRef} />
         <VerticalLine ref={horiLineRef} />
+        <HorizontalLine ref={topLineRef} />
       </DNSContainer>
     </div>
   );
