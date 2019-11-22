@@ -10,7 +10,7 @@ export let imageData = {
   src: "https://source.unsplash.com/random/1000x1000",
   alt: "random",
   id: "unique-id-123",
-  index: 0,
+  index: 1,
   type: "image",
   paperId: "p1"
 };
@@ -27,7 +27,7 @@ export let imageData2 = {
   src: "https://source.unsplash.com/random/1000x1000",
   alt: "random",
   id: "unique-id-124",
-  index: 1,
+  index: 0,
   type: "image",
   paperId: "p1"
 };

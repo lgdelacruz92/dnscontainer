@@ -24,7 +24,7 @@ function App() {
               />
             );
           } else if (data.type === "text") {
-            return <Text data={data} />;
+            return <Text data={data} key={data.id} onChange={data => {}} />;
           } else {
             return null;
           }
