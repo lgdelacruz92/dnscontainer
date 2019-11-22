@@ -5,8 +5,9 @@ import Text from "./text/text";
 const Content = React.forwardRef((props, ref) => {
   const { containerRef, data, onChange } = props;
 
-  const _onChange = val => {
-    ref.current = val;
+  const _onChange = (rect, realData) => {
+    ref.current = rect;
+    console.log("Real data", realData);
     onChange(data.id);
   };
 

@@ -38,15 +38,18 @@ const Image = props => {
           }}
           onUpdate={() => {
             const imageData = myRef.current.data;
-            onChange({
-              x: imageData.x + imageData.translateX,
-              y: imageData.y + imageData.translateY,
-              h: imageData.scaledHeight,
-              w: imageData.scaledWidth,
-              src: imageData.src,
-              id: imageData.id,
-              type: imageData.type
-            });
+            onChange(
+              {
+                x: imageData.x + imageData.translateX,
+                y: imageData.y + imageData.translateY,
+                h: imageData.scaledHeight,
+                w: imageData.scaledWidth,
+                src: imageData.src,
+                id: imageData.id,
+                type: imageData.type
+              },
+              imageData
+            );
           }}
           containerRef={props.containerRef}
           onEndUpdate={e => {

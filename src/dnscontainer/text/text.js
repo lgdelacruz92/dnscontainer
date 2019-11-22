@@ -31,20 +31,23 @@ const Text = props => {
           onUpdate={() => {
             const spanRect = textDNSRef.current.span.getBoundingClientRect();
             const textData = textDNSRef.current.textData;
-            onChange({
-              x: textData.x,
-              y: textData.y,
-              w: spanRect.width,
-              h: spanRect.height,
-              id: textData.id,
-              text: textData.text,
-              textAlign: textData.textAlign,
-              textDecoration: textData.textDecoration,
-              fontSize: textData.fontSize,
-              fontStyle: textData.fontStyle,
-              fontFamily: textData.fontFamily,
-              fontWeight: textData.fontWeight
-            });
+            onChange(
+              {
+                x: textData.x,
+                y: textData.y,
+                w: spanRect.width,
+                h: spanRect.height,
+                id: textData.id,
+                text: textData.text,
+                textAlign: textData.textAlign,
+                textDecoration: textData.textDecoration,
+                fontSize: textData.fontSize,
+                fontStyle: textData.fontStyle,
+                fontFamily: textData.fontFamily,
+                fontWeight: textData.fontWeight
+              },
+              textData
+            );
           }}
         />
       ) : null}
