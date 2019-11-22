@@ -83,7 +83,6 @@ function App() {
                 key={data.id}
                 data={data}
                 onChangeEnd={data => {
-                  console.log("Current data", data);
                   firebase
                     .collection("ImageContents")
                     .doc(data.id)
