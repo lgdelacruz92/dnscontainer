@@ -1,6 +1,5 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
-import { imageData, imageData2, text } from "./data";
 import Content from "./content";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
@@ -35,9 +34,15 @@ const DNSContainer = props => {
   const horiLineRef = React.useRef();
   const vertLineRef = React.useRef();
 
-  const datas = [imageData, text, imageData2];
-  if (datas.length !== contentsRef.current.length) {
-    datas.forEach(d => contentsRef.current.push(React.createRef()));
+  const datas = [];
+  if (props.children.constructor === [].constructor) {
+    props.children.forEach(d => {
+      datas.push(d.props.data);
+      contentsRef.current.push(React.createRef());
+    });
+  } else if (props.children.constructor === {}.constructor) {
+    datas.push(props.children.props.data);
+    contentsRef.current.push(React.createRef());
   }
 
   return (
