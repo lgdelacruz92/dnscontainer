@@ -3,7 +3,7 @@ import Image from "./image/image";
 import Text from "./text/text";
 
 const Content = React.forwardRef((props, ref) => {
-  const { containerRef, data, onChangeEnd } = props;
+  const { containerRef, data, onChangeEnd, siblingsRef } = props;
 
   const onChange = val => {
     ref.current = val;

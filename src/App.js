@@ -25,6 +25,7 @@ function App() {
             containerRef={containerRef}
             onChange={data => {}}
             onChangeEnd={() => {}}
+            siblingsRef={contentsRef.current}
           />
         ))}
       </DNSContainer>
