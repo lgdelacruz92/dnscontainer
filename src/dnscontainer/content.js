@@ -2,7 +2,7 @@ import React from "react";
 import Image from "./image/image";
 import Text from "./text/text";
 
-const Content = props => {
+const Content = React.forwardRef((props, ref) => {
   const { containerRef, data, onChange, onChangeEnd } = props;
   if (data.type === "image") {
     return (
@@ -19,6 +19,6 @@ const Content = props => {
   } else {
     return null;
   }
-};
+});
 
 export default Content;

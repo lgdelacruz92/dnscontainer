@@ -7,12 +7,14 @@ import Content from "./dnscontainer/content";
 
 function App() {
   const containerRef = React.useRef();
+  const contentsRef = React.useRef([]);
 
   return (
     <div className="App">
       <DNSContainer ref={containerRef} width={500} height={700}>
-        {[imageData, imageData2, text].map(data => (
+        {[imageData, imageData2, text].map((data, i) => (
           <Content
+            ref={contentsRef.current[i]}
             key={data.id}
             data={data}
             containerRef={containerRef}
