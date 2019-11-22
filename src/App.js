@@ -3,6 +3,46 @@ import "./App.css";
 import DNSContainer from "./dnscontainer";
 import DNSImage from "./dnscontainer/dnsimage";
 import firebase from "./firebase";
+import DNSText from "./dnscontainer/dnstext";
+
+const formatToImageObj = doc => {
+  return {
+    alt: doc.get("alt"),
+    height: doc.get("height"),
+    id: doc.id,
+    index: doc.get("index"),
+    paperId: doc.get("paperId"),
+    scaledHeight: doc.get("scaledHeight"),
+    scaledWidth: doc.get("scaledWidth"),
+    selected: doc.get("selected"),
+    src: doc.get("src"),
+    translateX: doc.get("translateX"),
+    translateY: doc.get("translateY"),
+    type: doc.get("type"),
+    width: doc.get("width"),
+    x: doc.get("x"),
+    y: doc.get("y")
+  };
+};
+
+const formatToTextDoc = doc => {
+  return {
+    color: doc.get("color"),
+    fontFamily: doc.get("fontFamily"),
+    fontSize: doc.get("fontSize"),
+    fontStyle: doc.get("fontStyle"),
+    fontWeight: doc.get("fontWeight"),
+    id: doc.id,
+    index: doc.get("index"),
+    paperId: doc.get("paperId"),
+    text: doc.get("text"),
+    textAlign: doc.get("textAlign"),
+    textDecoration: doc.get("textDecoration"),
+    type: doc.get("type"),
+    x: doc.get("x"),
+    y: doc.get("y")
+  };
+};
 
 function App() {
   const [datas, setDatas] = React.useState([]);
@@ -10,31 +50,27 @@ function App() {
     firebase
       .collection("ImageContents")
       .where("paperId", "==", "psd123")
-      .onSnapshot((docQuery: any) => {
+      .onSnapshot(docQuery => {
+        let newDocs = [];
         if (docQuery.docs.length > 0) {
-          let newDocs = [];
           docQuery.docs.forEach(doc => {
-            const newDoc = {
-              alt: doc.get("alt"),
-              height: doc.get("height"),
-              id: doc.id,
-              index: doc.get("index"),
-              paperId: doc.get("paperId"),
-              scaledHeight: doc.get("scaledHeight"),
-              scaledWidth: doc.get("scaledWidth"),
-              selected: doc.get("selected"),
-              src: doc.get("src"),
-              translateX: doc.get("translateX"),
-              translateY: doc.get("translateY"),
-              type: doc.get("type"),
-              width: doc.get("width"),
-              x: doc.get("x"),
-              y: doc.get("y")
-            };
+            const newDoc = formatToImageObj(doc);
             newDocs.push(newDoc);
           });
-          setDatas(newDocs);
         }
+
+        firebase
+          .collection("TextContents")
+          .where("paperId", "==", "psd123")
+          .onSnapshot(docQueryText => {
+            if (docQueryText.docs.length > 0) {
+              docQueryText.docs.forEach(doc => {
+                const newDoc = formatToTextDoc(doc);
+                newDocs.push(newDoc);
+              });
+            }
+            setDatas(newDocs);
+          });
       });
   }, []);
   return (
@@ -42,15 +78,29 @@ function App() {
       <button onClick={() => {}}>Click</button>
       <DNSContainer width={500} height={700}>
         {datas.map(data => {
-          return (
-            <DNSImage
-              key={data.id}
-              data={data}
-              onChangeEnd={data => {
-                console.log("Updated image", data);
-              }}
-            />
-          );
+          if (data.type === "image") {
+            return (
+              <DNSImage
+                key={data.id}
+                data={data}
+                onChangeEnd={data => {
+                  console.log("Updated image", data);
+                }}
+              />
+            );
+          } else if (data.type === "text") {
+            return (
+              <DNSText
+                key={data.id}
+                data={data}
+                onChangeEnd={data => {
+                  console.log("Text is updated", data);
+                }}
+              />
+            );
+          } else {
+            return null;
+          }
         })}
       </DNSContainer>
     </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactImageDragAndScale from "react-image-drag-and-scale";
 import * as MaterialUI from "@material-ui/core";
-import { data } from "../data";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
