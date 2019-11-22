@@ -75,28 +75,40 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <button onClick={() => {}}>Click</button>
+      <button
+        onClick={() => {
+          firebase
+            .collection("ImageContents")
+            .doc()
+            .set({
+              x: 50,
+              y: 200,
+              translateX: 0,
+              translateY: 0,
+              scaledWidth: 100,
+              scaledHeight: 100,
+              width: 100,
+              height: 100,
+              src: "https://source.unsplash.com/random/1000x1000",
+              alt: "random",
+              id: "unique-id-123",
+              index: 2,
+              type: "image",
+              paperId: "psd123"
+            });
+        }}
+      >
+        Click
+      </button>
       <DNSContainer width={500} height={700}>
         {datas.map(data => {
           if (data.type === "image") {
             return (
-              <DNSImage
-                key={data.id}
-                data={data}
-                onChangeEnd={data => {
-                  console.log("Updated image", data);
-                }}
-              />
+              <DNSImage key={data.id} data={data} onChangeEnd={data => {}} />
             );
           } else if (data.type === "text") {
             return (
-              <DNSText
-                key={data.id}
-                data={data}
-                onChangeEnd={data => {
-                  console.log("Text is updated", data);
-                }}
-              />
+              <DNSText key={data.id} data={data} onChangeEnd={data => {}} />
             );
           } else {
             return null;

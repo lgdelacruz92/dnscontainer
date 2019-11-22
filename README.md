@@ -26,6 +26,7 @@ yarn add dns-container
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./src/App.js) -->
 <!-- The below code snippet is automatically added from ./src/App.js -->
+
 ```js
 import React from "react";
 import "./App.css";
@@ -79,29 +80,141 @@ function App() {
 
   return (
     <div className="App">
-      <DNSContainer width={500} height={700} datas={datas} ref={dnsRef} />
-      <button
-        onClick={() => {
-          console.log("Dns snapshot", dnsRef.current);
-        }}
-      >
-        Take Snapshot
-      </button>
+      <DNSContainer width={500} height={700} >
+        <DNSImage data={imageData1}>
+        <DNSImage data={imageData2}>
+        <DNSText data={textData1}>
+      </DNSContainer>
     </div>
   );
 }
 
 export default App;
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+## Advance example with keeping the contents persistent using firebase
+
+```js
+import React from "react";
+import "./App.css";
+import DNSContainer from "./dnscontainer";
+import DNSImage from "./dnscontainer/dnsimage";
+import firebase from "./firebase";
+import DNSText from "./dnscontainer/dnstext";
+
+const formatToImageObj = doc => {
+  return {
+    alt: doc.get("alt"),
+    height: doc.get("height"),
+    id: doc.id,
+    index: doc.get("index"),
+    paperId: doc.get("paperId"),
+    scaledHeight: doc.get("scaledHeight"),
+    scaledWidth: doc.get("scaledWidth"),
+    selected: doc.get("selected"),
+    src: doc.get("src"),
+    translateX: doc.get("translateX"),
+    translateY: doc.get("translateY"),
+    type: doc.get("type"),
+    width: doc.get("width"),
+    x: doc.get("x"),
+    y: doc.get("y")
+  };
+};
+
+const formatToTextDoc = doc => {
+  return {
+    color: doc.get("color"),
+    fontFamily: doc.get("fontFamily"),
+    fontSize: doc.get("fontSize"),
+    fontStyle: doc.get("fontStyle"),
+    fontWeight: doc.get("fontWeight"),
+    id: doc.id,
+    index: doc.get("index"),
+    paperId: doc.get("paperId"),
+    text: doc.get("text"),
+    textAlign: doc.get("textAlign"),
+    textDecoration: doc.get("textDecoration"),
+    type: doc.get("type"),
+    x: doc.get("x"),
+    y: doc.get("y")
+  };
+};
+
+function App() {
+  const [datas, setDatas] = React.useState([]);
+  React.useState(() => {
+    firebase
+      .collection("ImageContents")
+      .where("paperId", "==", "psd123")
+      .onSnapshot(docQuery => {
+        let newDocs = [];
+        if (docQuery.docs.length > 0) {
+          docQuery.docs.forEach(doc => {
+            const newDoc = formatToImageObj(doc);
+            newDocs.push(newDoc);
+          });
+        }
+
+        firebase
+          .collection("TextContents")
+          .where("paperId", "==", "psd123")
+          .onSnapshot(docQueryText => {
+            if (docQueryText.docs.length > 0) {
+              docQueryText.docs.forEach(doc => {
+                const newDoc = formatToTextDoc(doc);
+                newDocs.push(newDoc);
+              });
+            }
+            setDatas(newDocs);
+          });
+      });
+  }, []);
+  return (
+    <div className="App">
+      <button onClick={() => {}}>Click</button>
+      <DNSContainer width={500} height={700}>
+        {datas.map(data => {
+          if (data.type === "image") {
+            return (
+              <DNSImage
+                key={data.id}
+                data={data}
+                onChangeEnd={data => {
+                  console.log("Updated image", data);
+                }}
+              />
+            );
+          } else if (data.type === "text") {
+            return (
+              <DNSText
+                key={data.id}
+                data={data}
+                onChangeEnd={data => {
+                  console.log("Text is updated", data);
+                }}
+              />
+            );
+          } else {
+            return null;
+          }
+        })}
+      </DNSContainer>
+    </div>
+  );
+}
+
+export default App;
+```
 
 # Version Update
 
-## v1.2.0
+## v2.0.0
 
-> First release. If you find issues, please post an issue on the github
-
-> Text support!
+> What is new?
+> you can not monitor the data on update making it easier to keep data persistent
 
 ## License
 

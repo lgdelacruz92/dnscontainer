@@ -11,7 +11,6 @@ const ContentBase = React.forwardRef((props, ref) => {
   };
 
   if (data.type === "image") {
-    console.log("content base", data);
     return (
       <Image
         key={data.id}
