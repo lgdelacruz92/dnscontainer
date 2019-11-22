@@ -9,8 +9,18 @@ function App() {
     <div className="App">
       <button onClick={() => {}}>Click</button>
       <DNSContainer width={500} height={700}>
-        <DNSImage data={imageData} />
-        <DNSImage data={imageData2} />
+        <DNSImage
+          data={imageData}
+          onChangeEnd={d => {
+            console.log("change end", d);
+          }}
+        />
+        <DNSImage
+          data={imageData2}
+          onChangeEnd={d => {
+            console.log("chane end", d);
+          }}
+        />
       </DNSContainer>
     </div>
   );

@@ -35,14 +35,18 @@ const DNSContainer = props => {
   const vertLineRef = React.useRef();
 
   const datas = [];
+  const onChangeEndEvents = {};
   if (props.children.constructor === [].constructor) {
     props.children.forEach(d => {
       datas.push(d.props.data);
+      onChangeEndEvents[d.props.data.id] = d.props.onChangeEnd;
       contentsRef.current.push(React.createRef());
     });
   } else if (props.children.constructor === {}.constructor) {
     datas.push(props.children.props.data);
     contentsRef.current.push(React.createRef());
+    onChangeEndEvents[props.children.props.data.id] =
+      props.children.props.onChangeEnd;
   }
 
   return (
@@ -72,7 +76,8 @@ const DNSContainer = props => {
           containerRef={containerRef}
           contentsRef={contentsRef}
           onChangeEnd={(e, realData) => {
-            console.log("my real data changed", realData);
+            const onChangeEnd = onChangeEndEvents[realData.id];
+            onChangeEnd(realData);
           }}
         />
       ))}
