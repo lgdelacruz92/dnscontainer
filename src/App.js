@@ -36,11 +36,11 @@ function App() {
             containerRef={containerRef}
             onChange={targetId => {
               const children = contentsRef.current.map(c => c.current);
-              const target = datas.find(d => d.id === targetId);
+              const target = children.find(d => d.id === targetId);
               const siblings = collectSiblings(target, children);
               siblings.forEach(sibling => {
                 if (isLeftAligned(target, sibling)) {
-                  console.log("Left aligned");
+                  console.log("Left aligned", target, sibling);
                 }
               });
             }}
