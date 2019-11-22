@@ -14,4 +14,12 @@ export const isTopAligned = (me, sibling) => {
 
 export const isBottomAligned = (me, sibling) => {
   return me.y + me.h === sibling.y + sibling.h;
-}
+};
+
+export const isRightAligned = (me, sibling) => {
+  return me.x + me.w === sibling.x + sibling.w;
+};
+
+export const isLeftAligned = (me, sibling) => {
+  return me.x === sibling.x;
+};

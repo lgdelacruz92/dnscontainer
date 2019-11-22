@@ -2,7 +2,9 @@ import {
   isVerticallyCentered,
   isHorizontallyCentered,
   isTopAligned,
-  isBottomAligned
+  isBottomAligned,
+  isRightAligned,
+  isLeftAligned
 } from "../dnscontainer/utils/siblingliner";
 describe("Sibling Liner", () => {
   test("Vertical align test", () => {
@@ -55,6 +57,16 @@ describe("Sibling Liner", () => {
 
     sibling = { x: 50, y: 50, w: 100, h: 100 };
     result = isRightAligned({ x: 45, y: 45, w: 100, h: 100 }, sibling);
+    expect(result).toEqual(false);
+  });
+
+  test("Is left align", () => {
+    let sibling = { x: 50, y: 50, w: 100, h: 100 };
+    let result = isLeftAligned({ x: 50, y: 50, w: 100, h: 100 }, sibling);
+    expect(result).toEqual(true);
+
+    sibling = { x: 50, y: 50, w: 100, h: 100 };
+    result = isLeftAligned({ x: 45, y: 45, w: 100, h: 100 }, sibling);
     expect(result).toEqual(false);
   });
 });
