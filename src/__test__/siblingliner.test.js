@@ -1,6 +1,8 @@
 import {
   isVerticallyCentered,
-  isHorizontallyCentered
+  isHorizontallyCentered,
+  isTopAligned,
+  isBottomAligned
 } from "../dnscontainer/utils/siblingliner";
 describe("Sibling Liner", () => {
   test("Vertical align test", () => {
@@ -26,21 +28,33 @@ describe("Sibling Liner", () => {
     expect(result).toEqual(false);
   });
 
-  // test("Line up test", () => {
-  //   let siblings = [
-  //     { x: 0, y: 0, w: 100, h: 100 },
-  //     { x: 50, y: 0, w: 100, h: 100 },
-  //     { x: 100, y: 0, w: 100, h: 100 },
-  //     { x: 0, y: 50, w: 100, h: 100 },
-  //     { x: 50, y: 50, w: 100, h: 100 }
-  //   ];
-  //   let result = lineWithSiblings({ x: 0, y: 0, w: 100, h: 100 }, siblings);
-  //   expect(result).toEqual([
-  //     { vertical: 50, type: "center" },
-  //     { horizontal: 50, type: "center" },
-  //     { vertical: 50, type: "center" },
-  //     { vertical: 50, type: "center" },
-  //     { horizontal: 50, type: "center" }
-  //   ]);
-  // });
+  test("Is top align", () => {
+    let sibling = { x: 50, y: 50, w: 100, h: 100 };
+    let result = isTopAligned({ x: 50, y: 50, w: 100, h: 100 }, sibling);
+    expect(result).toEqual(true);
+
+    sibling = { x: 50, y: 50, w: 100, h: 100 };
+    result = isTopAligned({ x: 45, y: 45, w: 100, h: 100 }, sibling);
+    expect(result).toEqual(false);
+  });
+
+  test("Is bottom align", () => {
+    let sibling = { x: 50, y: 50, w: 100, h: 100 };
+    let result = isBottomAligned({ x: 50, y: 50, w: 100, h: 100 }, sibling);
+    expect(result).toEqual(true);
+
+    sibling = { x: 50, y: 50, w: 100, h: 100 };
+    result = isBottomAligned({ x: 45, y: 45, w: 100, h: 100 }, sibling);
+    expect(result).toEqual(false);
+  });
+
+  test("Is right align", () => {
+    let sibling = { x: 50, y: 50, w: 100, h: 100 };
+    let result = isRightAligned({ x: 50, y: 50, w: 100, h: 100 }, sibling);
+    expect(result).toEqual(true);
+
+    sibling = { x: 50, y: 50, w: 100, h: 100 };
+    result = isRightAligned({ x: 45, y: 45, w: 100, h: 100 }, sibling);
+    expect(result).toEqual(false);
+  });
 });
