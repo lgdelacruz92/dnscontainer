@@ -3,7 +3,12 @@ import Image from "./image/image";
 import Text from "./text/text";
 
 const Content = React.forwardRef((props, ref) => {
-  const { containerRef, data, onChange, onChangeEnd } = props;
+  const { containerRef, data, onChangeEnd } = props;
+
+  const onChange = val => {
+    ref.current = val;
+  };
+
   if (data.type === "image") {
     return (
       <Image
