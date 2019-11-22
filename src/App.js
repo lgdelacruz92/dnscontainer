@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 import DNSContainer from "./dnscontainer";
-import Image from "./dnscontainer/image/image";
-import Text from "./dnscontainer/text/text";
+
 import { imageData, imageData2, text } from "./dnscontainer/data";
+import Content from "./dnscontainer/content";
 
 function App() {
   const containerRef = React.useRef();
@@ -11,17 +11,15 @@ function App() {
   return (
     <div className="App">
       <DNSContainer ref={containerRef} width={500} height={700}>
-        {[imageData, imageData2, text].map(data => {
-          if (data.type === "image") {
-            return (
-              <Image key={data.id} containerRef={containerRef} id={data.id} />
-            );
-          } else if (data.type === "text") {
-            return <Text id={data.id} key={data.id} onChange={data => {}} />;
-          } else {
-            return null;
-          }
-        })}
+        {[imageData, imageData2, text].map(data => (
+          <Content
+            key={data.id}
+            data={data}
+            containerRef={containerRef}
+            onChange={data => {}}
+            onChangeEnd={() => {}}
+          />
+        ))}
       </DNSContainer>
     </div>
   );

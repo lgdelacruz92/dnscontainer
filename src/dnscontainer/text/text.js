@@ -13,12 +13,10 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Text = props => {
-  const { id } = props;
+  const { id, onChange } = props;
   const [state, setState] = React.useState(null);
   const classes = useStyles(state ? state : { index: 0 });
   const textDNSRef = React.useRef();
-
-  const onChange = data => {};
 
   React.useEffect(() => {
     setState(data.find(d => d.id === id));

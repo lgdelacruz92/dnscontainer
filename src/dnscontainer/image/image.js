@@ -13,7 +13,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Image = props => {
-  const { id } = props;
+  const { id, onChange, onChangeEnd } = props;
   const myRef = React.useRef();
   const [state, setState] = React.useState(null);
   const [time, setTime] = React.useState(0);
@@ -21,10 +21,6 @@ const Image = props => {
   const classes = useStyles(state ? state : { index: 0 });
 
   const onClick = e => {};
-
-  const onChange = d => {};
-
-  const onChangeEnd = e => {};
 
   React.useEffect(() => {
     setState(data.find(d => d.id === id));
