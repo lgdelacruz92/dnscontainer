@@ -6,13 +6,19 @@ import { collectSiblings } from "./dnscontainer/utils/siblingscollector";
 import { imageData, imageData2, text } from "./dnscontainer/data";
 import Content from "./dnscontainer/content";
 import VerticalLine from "./dnscontainer/verticalline";
-import { isLeftAligned } from "./dnscontainer/utils/siblingliner";
-import { drawLine } from "./dnscontainer/linedrawer";
+import {
+  isLeftAligned,
+  isRightAligned,
+  isHorizontallyCentered
+} from "./dnscontainer/utils/siblingliner";
+import { drawLineVert } from "./dnscontainer/linedrawer";
 
 function App() {
   const containerRef = React.useRef();
   const contentsRef = React.useRef([]);
   const leftLineRef = React.useRef();
+  const rightLineRef = React.useRef();
+  const horiLineRef = React.useRef();
 
   const datas = [imageData, text, imageData2];
   if (datas.length !== contentsRef.current.length) {
@@ -40,13 +46,35 @@ function App() {
               const target = children.find(d => d.id === targetId);
               const siblings = collectSiblings(target, children);
               siblings.forEach(sibling => {
-                drawLine(isLeftAligned, target, sibling, leftLineRef);
+                drawLineVert(
+                  isLeftAligned,
+                  target,
+                  sibling,
+                  leftLineRef,
+                  target.x
+                );
+                drawLineVert(
+                  isHorizontallyCentered,
+                  target,
+                  sibling,
+                  horiLineRef,
+                  (target.x * 2 + target.w) / 2
+                );
+                drawLineVert(
+                  isRightAligned,
+                  target,
+                  sibling,
+                  rightLineRef,
+                  target.x + target.w
+                );
               });
             }}
             onChangeEnd={() => {}}
           />
         ))}
         <VerticalLine ref={leftLineRef} />
+        <VerticalLine ref={rightLineRef} />
+        <VerticalLine ref={horiLineRef} />
       </DNSContainer>
     </div>
   );
