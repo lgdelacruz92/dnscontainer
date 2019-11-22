@@ -7,7 +7,7 @@ import { imageData, imageData2, text } from "./dnscontainer/data";
 import Content from "./dnscontainer/content";
 import VerticalLine from "./dnscontainer/verticalline";
 import { isLeftAligned } from "./dnscontainer/utils/siblingliner";
-import { translate } from "./dnscontainer/utils/translate";
+import { drawLine } from "./dnscontainer/linedrawer";
 
 function App() {
   const containerRef = React.useRef();
@@ -40,17 +40,7 @@ function App() {
               const target = children.find(d => d.id === targetId);
               const siblings = collectSiblings(target, children);
               siblings.forEach(sibling => {
-                if (isLeftAligned(target, sibling)) {
-                  leftLineRef.current.setAttribute(
-                    "style",
-                    [
-                      "display: block",
-                      `transform: ${translate(target.x, 0)}`
-                    ].join(";")
-                  );
-                } else {
-                  leftLineRef.current.setAttribute("style", "");
-                }
+                drawLine(isLeftAligned, target, sibling, leftLineRef);
               });
             }}
             onChangeEnd={() => {}}
