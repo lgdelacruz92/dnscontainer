@@ -5,10 +5,12 @@ import { collectSiblings } from "./dnscontainer/utils/siblingscollector";
 
 import { imageData, imageData2, text } from "./dnscontainer/data";
 import Content from "./dnscontainer/content";
+import VerticalLine from "./dnscontainer/verticalline";
 
 function App() {
   const containerRef = React.useRef();
   const contentsRef = React.useRef([]);
+  const leftLineRef = React.useRef();
 
   const datas = [imageData, text, imageData2];
   if (datas.length !== contentsRef.current.length) {
@@ -39,6 +41,9 @@ function App() {
             onChangeEnd={() => {}}
           />
         ))}
+        <VerticalLine ref={leftLineRef} />
+        <VerticalLine />
+        <VerticalLine />
       </DNSContainer>
     </div>
   );
