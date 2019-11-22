@@ -1,4 +1,7 @@
-import { isVerticallyCentered } from "../dnscontainer/utils/siblingliner";
+import {
+  isVerticallyCentered,
+  isHorizontallyCentered
+} from "../dnscontainer/utils/siblingliner";
 describe("Sibling Liner", () => {
   test("Vertical align test", () => {
     let sibling = { x: 50, y: 50, w: 100, h: 100 };
@@ -10,15 +13,18 @@ describe("Sibling Liner", () => {
     expect(result).toEqual(false);
   });
 
-  // test("Horizontal align test", () => {
-  //   let rect = { x: 50, y: 50, w: 100, h: 100 };
-  //   let result = isHorizontallyCentered({ x: 50, y: 50, w: 100, h: 100 }, rect);
-  //   expect(result).toEqual(100);
+  test("Horizontal align test", () => {
+    let sibling = { x: 50, y: 50, w: 100, h: 100 };
+    let result = isHorizontallyCentered(
+      { x: 50, y: 50, w: 100, h: 100 },
+      sibling
+    );
+    expect(result).toEqual(true);
 
-  //   rect = { x: 50, y: 50, w: 100, h: 100 };
-  //   result = isHorizontallyCentered({ x: 45, y: 45, w: 100, h: 100 }, rect);
-  //   expect(result).toEqual(null);
-  // });
+    sibling = { x: 50, y: 50, w: 100, h: 100 };
+    result = isHorizontallyCentered({ x: 45, y: 45, w: 100, h: 100 }, sibling);
+    expect(result).toEqual(false);
+  });
 
   // test("Line up test", () => {
   //   let siblings = [
