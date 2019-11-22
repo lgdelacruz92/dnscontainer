@@ -38,15 +38,19 @@ const DNSContainer = props => {
   const onChangeEndEvents = {};
   if (props.children.constructor === [].constructor) {
     props.children.forEach(d => {
-      datas.push(d.props.data);
-      onChangeEndEvents[d.props.data.id] = d.props.onChangeEnd;
-      contentsRef.current.push(React.createRef());
+      if (d.props.data) {
+        datas.push(d.props.data);
+        onChangeEndEvents[d.props.data.id] = d.props.onChangeEnd;
+        contentsRef.current.push(React.createRef());
+      }
     });
   } else if (props.children.constructor === {}.constructor) {
-    datas.push(props.children.props.data);
-    contentsRef.current.push(React.createRef());
-    onChangeEndEvents[props.children.props.data.id] =
-      props.children.props.onChangeEnd;
+    if (props.children.props.data) {
+      datas.push(props.children.props.data);
+      contentsRef.current.push(React.createRef());
+      onChangeEndEvents[props.children.props.data.id] =
+        props.children.props.onChangeEnd;
+    }
   }
 
   return (

@@ -11,11 +11,12 @@ const ContentBase = React.forwardRef((props, ref) => {
   };
 
   if (data.type === "image") {
+    console.log("content base", data);
     return (
       <Image
         key={data.id}
         containerRef={containerRef}
-        id={data.id}
+        data={data}
         onChange={_onChange}
         onChangeEnd={onChangeEnd}
       />
@@ -24,7 +25,7 @@ const ContentBase = React.forwardRef((props, ref) => {
     return (
       <Text
         key={data.id}
-        id={data.id}
+        data={data}
         onChange={_onChange}
         onChangeEnd={onChangeEnd}
       />
