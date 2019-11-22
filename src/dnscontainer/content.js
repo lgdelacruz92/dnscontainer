@@ -11,7 +11,6 @@ const Content = React.forwardRef((props, ref) => {
 
     const children = siblingsRef.map(sr => sr.current);
     const siblings = collectSiblings(data, children);
-    console.log("My siblings", siblings);
   };
 
   if (data.type === "image") {

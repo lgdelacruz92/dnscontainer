@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import DNSContainer from "./dnscontainer";
 
-import { imageData, imageData2, text, data } from "./dnscontainer/data";
+import { imageData, imageData2, text } from "./dnscontainer/data";
 import Content from "./dnscontainer/content";
 
 function App() {
