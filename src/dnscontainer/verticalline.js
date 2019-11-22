@@ -6,7 +6,9 @@ const useStyles = MaterialUI.makeStyles(theme => {
       height: "100%",
       width: 1,
       borderLeft: "2px solid orange",
-      position: "absolute"
+      position: "absolute",
+      display: "none",
+      zIndex: 400
     }
   };
 });
