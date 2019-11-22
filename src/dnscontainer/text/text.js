@@ -1,6 +1,6 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
-import TextDNS from "react-editable-and-draggable-text-2";
+import TextEditableAndDraggableText from "react-editable-and-draggable-text-2";
 import { data } from "../data";
 
 const useStyles = MaterialUI.makeStyles(theme => {
@@ -25,7 +25,7 @@ const Text = props => {
   return (
     <div className={classes.text}>
       {state ? (
-        <TextDNS
+        <TextEditableAndDraggableText
           textData={state}
           ref={textDNSRef}
           onChangeEnd={id => {

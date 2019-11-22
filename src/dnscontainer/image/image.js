@@ -1,5 +1,5 @@
 import React from "react";
-import DNSImage from "react-image-drag-and-scale";
+import ReactImageDragAndScale from "react-image-drag-and-scale";
 import * as MaterialUI from "@material-ui/core";
 import { data } from "../data";
 
@@ -29,7 +29,7 @@ const Image = props => {
   return (
     <div className={classes.image}>
       {state ? (
-        <DNSImage
+        <ReactImageDragAndScale
           ref={myRef}
           data={state}
           onContextMenu={e => {}}
