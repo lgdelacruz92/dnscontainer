@@ -10,7 +10,9 @@ import {
   isLeftAligned,
   isRightAligned,
   isHorizontallyCentered,
-  isTopAligned
+  isTopAligned,
+  isBottomAligned,
+  isVerticallyCentered
 } from "./dnscontainer/utils/siblingliner";
 import { drawLineVert, drawLineHori } from "./dnscontainer/linedrawer";
 
@@ -20,7 +22,9 @@ function App() {
   const leftLineRef = React.useRef();
   const rightLineRef = React.useRef();
   const topLineRef = React.useRef();
+  const bottomLineRef = React.useRef();
   const horiLineRef = React.useRef();
+  const vertLineRef = React.useRef();
 
   const datas = [imageData, text, imageData2];
   if (datas.length !== contentsRef.current.length) {
@@ -28,7 +32,17 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      onMouseUp={() => {
+        leftLineRef.current.setAttribute("style", "");
+        rightLineRef.current.setAttribute("style", "");
+        topLineRef.current.setAttribute("style", "");
+        bottomLineRef.current.setAttribute("style", "");
+        horiLineRef.current.setAttribute("style", "");
+        vertLineRef.current.setAttribute("style", "");
+      }}
+    >
       <button
         onClick={() => {
           console.log(contentsRef.current, "The contents");
@@ -77,6 +91,22 @@ function App() {
                   topLineRef,
                   target.y
                 );
+
+                drawLineHori(
+                  isBottomAligned,
+                  target,
+                  sibling,
+                  bottomLineRef,
+                  target.y + target.h
+                );
+
+                drawLineHori(
+                  isVerticallyCentered,
+                  target,
+                  sibling,
+                  vertLineRef,
+                  (target.y * 2 + target.h) / 2
+                );
               });
             }}
             onChangeEnd={() => {}}
@@ -86,6 +116,8 @@ function App() {
         <VerticalLine ref={rightLineRef} />
         <VerticalLine ref={horiLineRef} />
         <HorizontalLine ref={topLineRef} />
+        <HorizontalLine ref={bottomLineRef} />
+        <HorizontalLine ref={vertLineRef} />
       </DNSContainer>
     </div>
   );
