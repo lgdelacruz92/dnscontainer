@@ -9,9 +9,10 @@ import HorizontalLine from "./dnscontainer/horizontalline";
 import {
   isLeftAligned,
   isRightAligned,
-  isHorizontallyCentered
+  isHorizontallyCentered,
+  isTopAligned
 } from "./dnscontainer/utils/siblingliner";
-import { drawLineVert } from "./dnscontainer/linedrawer";
+import { drawLineVert, drawLineHori } from "./dnscontainer/linedrawer";
 
 function App() {
   const containerRef = React.useRef();
@@ -67,6 +68,14 @@ function App() {
                   sibling,
                   rightLineRef,
                   target.x + target.w
+                );
+
+                drawLineHori(
+                  isTopAligned,
+                  target,
+                  sibling,
+                  topLineRef,
+                  target.y
                 );
               });
             }}

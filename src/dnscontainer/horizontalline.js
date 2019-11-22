@@ -8,7 +8,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
       borderTop: "2px solid orange",
       width: "100%",
       height: 1,
-      zIndex: 400
+      zIndex: 400,
+      display: "none"
     }
   };
 });
