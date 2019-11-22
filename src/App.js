@@ -6,6 +6,7 @@ import { collectSiblings } from "./dnscontainer/utils/siblingscollector";
 import { imageData, imageData2, text } from "./dnscontainer/data";
 import Content from "./dnscontainer/content";
 import VerticalLine from "./dnscontainer/verticalline";
+import { isLeftAligned } from "./dnscontainer/utils/siblingliner";
 
 function App() {
   const containerRef = React.useRef();
@@ -37,13 +38,16 @@ function App() {
               const children = contentsRef.current.map(c => c.current);
               const target = datas.find(d => d.id === targetId);
               const siblings = collectSiblings(target, children);
+              siblings.forEach(sibling => {
+                if (isLeftAligned(target, sibling)) {
+                  console.log("Left aligned");
+                }
+              });
             }}
             onChangeEnd={() => {}}
           />
         ))}
         <VerticalLine ref={leftLineRef} />
-        <VerticalLine />
-        <VerticalLine />
       </DNSContainer>
     </div>
   );
