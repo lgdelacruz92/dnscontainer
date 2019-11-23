@@ -1,6 +1,7 @@
 import React from "react";
 import ReactImageDragAndScale from "react-image-drag-and-scale";
 import * as MaterialUI from "@material-ui/core";
+import RightClickMenu from "../rightclickmenu";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -15,15 +16,28 @@ const Image = props => {
   const { data, onChange, onChangeEnd, onClick } = props;
   const myRef = React.useRef();
   const [time, setTime] = React.useState(0);
+  const [rightClickOpen, setRightClickOpen] = React.useState(false);
 
   const classes = useStyles(data);
+
+  React.useEffect(() => {
+    const onClick = () => {
+      setRightClickOpen(false);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
 
   return (
     <div className={classes.image}>
       <ReactImageDragAndScale
         ref={myRef}
         data={data}
-        onContextMenu={e => {}}
+        onContextMenu={e => {
+          setRightClickOpen(true);
+          e.preventDefault();
+          return false;
+        }}
         onStartUpdate={e => {
           setTime(Date.now());
         }}
@@ -49,6 +63,29 @@ const Image = props => {
           }
           onChangeEnd(e, myRef.current.data);
         }}
+      />
+      <RightClickMenu
+        x={
+          myRef.current
+            ? myRef.current.data.x + myRef.current.data.translateX + 10
+            : 0
+        }
+        y={
+          myRef.current
+            ? myRef.current.data.y + +myRef.current.data.translateY + 10
+            : 0
+        }
+        onMoveUp={() => {
+          myRef.current.data.index += 1;
+          onChangeEnd(null, myRef.current.data);
+        }}
+        onMoveDown={() => {
+          if (myRef.current.data.index > 0) {
+            myRef.current.data.index -= 1;
+            onChangeEnd(null, myRef.current.data);
+          }
+        }}
+        open={rightClickOpen}
       />
     </div>
   );

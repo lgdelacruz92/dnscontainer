@@ -83,10 +83,18 @@ function App() {
                 key={data.id}
                 data={data}
                 onChangeEnd={data => {
-                  firebase
+                  const imageRef = firebase
                     .collection("ImageContents")
-                    .doc(data.id)
-                    .update({ ...data });
+                    .doc(data.id);
+                  firebase.runTransaction(transaction => {
+                    return transaction.get(imageRef).then(function(img) {
+                      if (!img.exists) {
+                        throw Error("Document does not exist!");
+                      }
+
+                      transaction.update(imageRef, { ...data });
+                    });
+                  });
                 }}
               />
             );
@@ -96,10 +104,19 @@ function App() {
                 key={data.id}
                 data={data}
                 onChangeEnd={data => {
-                  firebase
+                  const textRef = firebase
                     .collection("TextContents")
-                    .doc(data.id)
-                    .update({ ...data });
+                    .doc(data.id);
+
+                  firebase.runTransaction(transaction => {
+                    return transaction.get(textRef).then(function(text) {
+                      if (!text.exists) {
+                        throw Error("Document does not exist!");
+                      }
+
+                      transaction.update(textRef, { ...data });
+                    });
+                  });
                 }}
               />
             );
