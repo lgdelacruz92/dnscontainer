@@ -14,7 +14,8 @@ export default [
       "clsx",
       "react-editable-and-draggable-text-2",
       "react-image-drag-and-scale",
-      "@material-ui/icons"
+      "@material-ui/icons",
+      "prop-types"
     ],
     plugins: [
       babel({
