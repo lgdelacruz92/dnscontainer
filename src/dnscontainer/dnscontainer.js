@@ -35,8 +35,9 @@ const DNSContainer = props => {
   const vertLineRef = React.useRef();
 
   const children = React.Children.toArray(props.children);
-  contentsRef.current.push(React.useRef());
-  contentsRef.current.push(React.useRef());
+  children.forEach(c => {
+    contentsRef.current.push(React.createRef());
+  });
 
   return (
     <div
