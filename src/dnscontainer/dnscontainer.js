@@ -34,24 +34,8 @@ const DNSContainer = props => {
   const horiLineRef = React.useRef();
   const vertLineRef = React.useRef();
 
-  const datas = [];
-  const onChangeEndEvents = {};
-  if (props.children.constructor === [].constructor) {
-    props.children.forEach(d => {
-      if (d.props.data) {
-        datas.push(d.props.data);
-        onChangeEndEvents[d.props.data.id] = d.props.onChangeEnd;
-        contentsRef.current.push(React.createRef());
-      }
-    });
-  } else if (props.children.constructor === {}.constructor) {
-    if (props.children.props.data) {
-      datas.push(props.children.props.data);
-      contentsRef.current.push(React.createRef());
-      onChangeEndEvents[props.children.props.data.id] =
-        props.children.props.onChangeEnd;
-    }
-  }
+  const children = React.Children.toArray(props.children);
+  console.log(children);
 
   return (
     <div
@@ -66,25 +50,15 @@ const DNSContainer = props => {
         vertLineRef.current.setAttribute("style", "");
       }}
     >
-      {datas.map((data, i) => (
-        <Content
-          ref={contentsRef.current[i]}
-          key={data.id}
-          data={data}
-          leftLineRef={leftLineRef}
-          rightLineRef={rightLineRef}
-          topLineRef={topLineRef}
-          bottomLineRef={bottomLineRef}
-          vertLineRef={vertLineRef}
-          horiLineRef={horiLineRef}
-          containerRef={containerRef}
-          contentsRef={contentsRef}
-          onChangeEnd={(e, realData) => {
-            const onChangeEnd = onChangeEndEvents[realData.id];
-            onChangeEnd(realData);
-          }}
-        />
-      ))}
+      <Content
+        contents={children}
+        leftLineRef={leftLineRef}
+        rightLineRef={rightLineRef}
+        topLineRef={topLineRef}
+        bottomLineRef={bottomLineRef}
+        horiLineRef={horiLineRef}
+        vertLineRef={vertLineRef}
+      />
       <VerticalLine ref={leftLineRef} />
       <VerticalLine ref={rightLineRef} />
       <VerticalLine ref={horiLineRef} />
