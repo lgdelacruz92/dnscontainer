@@ -1,6 +1,6 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
-import Content from "./content";
+import DNSContent from "./dnscontent";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
 
@@ -35,7 +35,8 @@ const DNSContainer = props => {
   const vertLineRef = React.useRef();
 
   const children = React.Children.toArray(props.children);
-  console.log(children);
+  contentsRef.current.push(React.useRef());
+  contentsRef.current.push(React.useRef());
 
   return (
     <div
@@ -50,15 +51,23 @@ const DNSContainer = props => {
         vertLineRef.current.setAttribute("style", "");
       }}
     >
-      <Content
-        contents={children}
-        leftLineRef={leftLineRef}
-        rightLineRef={rightLineRef}
-        topLineRef={topLineRef}
-        bottomLineRef={bottomLineRef}
-        horiLineRef={horiLineRef}
-        vertLineRef={vertLineRef}
-      />
+      {children.map((c, i) => (
+        <DNSContent
+          key={i}
+          ref={contentsRef.current[i]}
+          contentsRef={contentsRef}
+          containerRef={containerRef}
+          onChangeEnd={children[i].props.onChangeEnd}
+          content={children[i].props.data}
+          leftLineRef={leftLineRef}
+          rightLineRef={rightLineRef}
+          topLineRef={topLineRef}
+          bottomLineRef={bottomLineRef}
+          horiLineRef={horiLineRef}
+          vertLineRef={vertLineRef}
+        />
+      ))}
+
       <VerticalLine ref={leftLineRef} />
       <VerticalLine ref={rightLineRef} />
       <VerticalLine ref={horiLineRef} />

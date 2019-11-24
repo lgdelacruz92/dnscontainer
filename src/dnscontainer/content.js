@@ -25,6 +25,7 @@ const Content = React.forwardRef((props, ref) => {
     vertLineRef,
     horiLineRef
   } = props;
+
   return (
     <ContentBase
       ref={ref}
