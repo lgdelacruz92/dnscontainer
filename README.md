@@ -30,60 +30,26 @@ yarn add dns-container
 ```js
 import React from "react";
 import "./App.css";
-import DNSContainer from "./dnscontainer";
+import DNSContainer, { DNSText, DNSImage } from "./dnscontainer";
+import { imageData, imageData2, text } from "./dnscontainer/data";
 
 function App() {
-  const imageData1 = {
-    x: 20,
-    y: 100,
-    translateX: 0,
-    translateY: 0,
-    scaledWidth: 100,
-    scaledHeight: 100,
-    width: 100,
-    height: 100,
-    src: "https://source.unsplash.com/random/1000x1000",
-    alt: "random",
-    id: `unique-123`,
-    index: 1,
-    type: "image"
-  };
-
-  const imageData2 = {
-    x: 20,
-    y: 100,
-    translateX: 0,
-    translateY: 0,
-    scaledWidth: 100,
-    scaledHeight: 100,
-    width: 100,
-    height: 100,
-    src: "https://source.unsplash.com/random/1000x1000",
-    alt: "random",
-    id: `unique-124`,
-    index: 2,
-    type: "image"
-  };
-
-  const textData1 = {
-    id: "id-unq-121",
-    x: 100,
-    y: 100,
-    fontWeight: "bold",
-    text: "Hello",
-    index: 0,
-    type: "text"
-  };
-
-  const datas = [textData1, imageData1, imageData2];
-  const dnsRef = React.useRef();
-
   return (
     <div className="App">
-      <DNSContainer width={500} height={700} >
-        <DNSImage data={imageData1}>
-        <DNSImage data={imageData2}>
-        <DNSText data={textData1}>
+      <DNSContainer width={500} height={700}>
+        <DNSImage
+          data={imageData}
+          onChangeEnd={newImageData => {
+            console.log("new image data");
+          }}
+        />
+        <DNSImage
+          data={imageData2}
+          onChangeEnd={newImageData => {
+            console.log("new image data 2");
+          }}
+        />
+        <DNSText data={text} onChangeEnd={newTextData => {}} />
       </DNSContainer>
     </div>
   );
@@ -94,124 +60,9 @@ export default App;
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-## Advance example with keeping the contents persistent using firebase
-
-```js
-import React from "react";
-import "./App.css";
-import DNSContainer from "./dnscontainer";
-import DNSImage from "./dnscontainer/dnsimage";
-import firebase from "./firebase";
-import DNSText from "./dnscontainer/dnstext";
-
-const formatToImageObj = doc => {
-  return {
-    alt: doc.get("alt"),
-    height: doc.get("height"),
-    id: doc.id,
-    index: doc.get("index"),
-    paperId: doc.get("paperId"),
-    scaledHeight: doc.get("scaledHeight"),
-    scaledWidth: doc.get("scaledWidth"),
-    selected: doc.get("selected"),
-    src: doc.get("src"),
-    translateX: doc.get("translateX"),
-    translateY: doc.get("translateY"),
-    type: doc.get("type"),
-    width: doc.get("width"),
-    x: doc.get("x"),
-    y: doc.get("y")
-  };
-};
-
-const formatToTextDoc = doc => {
-  return {
-    color: doc.get("color"),
-    fontFamily: doc.get("fontFamily"),
-    fontSize: doc.get("fontSize"),
-    fontStyle: doc.get("fontStyle"),
-    fontWeight: doc.get("fontWeight"),
-    id: doc.id,
-    index: doc.get("index"),
-    paperId: doc.get("paperId"),
-    text: doc.get("text"),
-    textAlign: doc.get("textAlign"),
-    textDecoration: doc.get("textDecoration"),
-    type: doc.get("type"),
-    x: doc.get("x"),
-    y: doc.get("y")
-  };
-};
-
-function App() {
-  const [datas, setDatas] = React.useState([]);
-  React.useState(() => {
-    firebase
-      .collection("ImageContents")
-      .where("paperId", "==", "psd123")
-      .onSnapshot(docQuery => {
-        let newDocs = [];
-        if (docQuery.docs.length > 0) {
-          docQuery.docs.forEach(doc => {
-            const newDoc = formatToImageObj(doc);
-            newDocs.push(newDoc);
-          });
-        }
-
-        firebase
-          .collection("TextContents")
-          .where("paperId", "==", "psd123")
-          .onSnapshot(docQueryText => {
-            if (docQueryText.docs.length > 0) {
-              docQueryText.docs.forEach(doc => {
-                const newDoc = formatToTextDoc(doc);
-                newDocs.push(newDoc);
-              });
-            }
-            setDatas(newDocs);
-          });
-      });
-  }, []);
-  return (
-    <div className="App">
-      <button onClick={() => {}}>Click</button>
-      <DNSContainer width={500} height={700}>
-        {datas.map(data => {
-          if (data.type === "image") {
-            return (
-              <DNSImage
-                key={data.id}
-                data={data}
-                onChangeEnd={data => {
-                  console.log("Updated image", data);
-                }}
-              />
-            );
-          } else if (data.type === "text") {
-            return (
-              <DNSText
-                key={data.id}
-                data={data}
-                onChangeEnd={data => {
-                  console.log("Text is updated", data);
-                }}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
-      </DNSContainer>
-    </div>
-  );
-}
-
-export default App;
-```
-
 # Version Update
 
-## v3.0.0
+## v3.0.3
 
 > What is new?
 > you can not monitor the data on update making it easier to keep data persistent
