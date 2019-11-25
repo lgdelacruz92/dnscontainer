@@ -1,6 +1,6 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
-import DNSContent from "./dnscontent";
+import Content from "./content";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
 
@@ -53,13 +53,13 @@ const DNSContainer = props => {
       }}
     >
       {children.map((c, i) => (
-        <DNSContent
+        <Content
           key={i}
           ref={contentsRef.current[i]}
           contentsRef={contentsRef}
           containerRef={containerRef}
           onChangeEnd={children[i].props.onChangeEnd}
-          content={children[i].props.data}
+          data={children[i].props.data}
           leftLineRef={leftLineRef}
           rightLineRef={rightLineRef}
           topLineRef={topLineRef}
