@@ -19,6 +19,7 @@ const Text = props => {
   React.useEffect(() => {
     const textDNSReference = textDNSRef.current.span;
     const onRightClick = e => {
+      textDNSRef.current.textData.type = "text";
       onContextMenu({ e, data: textDNSRef.current.textData });
     };
 

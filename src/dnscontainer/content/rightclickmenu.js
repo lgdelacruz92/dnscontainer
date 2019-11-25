@@ -11,7 +11,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
       position: "absolute",
       borderRadius: 5,
       padding: 5,
-      width: 130
+      width: 130,
+      zIndex: 500
     },
     option: {
       display: "flex",
