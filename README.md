@@ -62,7 +62,7 @@ export default App;
 
 # Version Update
 
-## v3.0.3
+## v3.0.5
 
 > What is new?
 > you can not monitor the data on update making it easier to keep data persistent
