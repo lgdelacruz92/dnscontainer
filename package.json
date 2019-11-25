@@ -1,6 +1,6 @@
 {
   "name": "dns-container",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "license": "MIT",
   "author": "lgdelacruz92",
   "main": "dist/index.js",
