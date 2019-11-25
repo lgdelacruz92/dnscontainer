@@ -1,6 +1,6 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
-import Content from "./content";
+import Content from "./content/content";
 import VerticalLine from "./verticalline";
 import HorizontalLine from "./horizontalline";
 

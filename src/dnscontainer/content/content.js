@@ -1,6 +1,6 @@
 import React from "react";
 import ContentBase from "./contentbase";
-import { collectSiblings } from "./utils/siblingscollector";
+import { collectSiblings } from "../utils/siblingscollector";
 
 import {
   isLeftAligned,
@@ -9,8 +9,8 @@ import {
   isTopAligned,
   isBottomAligned,
   isVerticallyCentered
-} from "./utils/siblingliner";
-import { drawLineVert, drawLineHori } from "./linedrawer";
+} from "../utils/siblingliner";
+import { drawLineVert, drawLineHori } from "../linedrawer";
 
 const Content = React.forwardRef((props, ref) => {
   const {

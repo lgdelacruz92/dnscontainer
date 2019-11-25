@@ -1,7 +1,7 @@
 import React from "react";
 import ReactImageDragAndScale from "react-image-drag-and-scale";
 import * as MaterialUI from "@material-ui/core";
-import RightClickMenu from "../rightclickmenu";
+import RightClickMenu from "../../rightclickmenu";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {

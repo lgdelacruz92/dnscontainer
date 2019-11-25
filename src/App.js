@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
-import DNSContainer, { DNSText } from "./dnscontainer";
-import DNSImage from "./dnscontainer/dnsimage";
+import DNSContainer, { DNSText, DNSImage } from "./dnscontainer";
 import { imageData, imageData2, text } from "./dnscontainer/data";
 
 function App() {
