@@ -58,8 +58,14 @@ const DNSContainer = props => {
           ref={contentsRef.current[i]}
           contentsRef={contentsRef}
           containerRef={containerRef}
-          onChangeEnd={children[i].props.onChangeEnd}
-          data={children[i].props.data}
+          onChangeEnd={
+            children[i].props ? children[i].props.onChangeEnd : () => {}
+          }
+          data={
+            children[i].props && children[i].props.data
+              ? children[i].props.data
+              : {}
+          }
           leftLineRef={leftLineRef}
           rightLineRef={rightLineRef}
           topLineRef={topLineRef}
