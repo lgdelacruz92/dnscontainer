@@ -1,7 +1,7 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
 import * as MaterialIcons from "@material-ui/icons";
-import { translate } from "./utils/translate";
+import { translate } from "../utils/translate";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {

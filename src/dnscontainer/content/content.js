@@ -31,6 +31,11 @@ const Content = React.forwardRef((props, ref) => {
       ref={ref}
       key={data.id}
       data={data}
+      onContextMenu={e => {
+        console.log("Right click");
+        e.preventDefault();
+        return false;
+      }}
       containerRef={containerRef}
       contentsRef={contentsRef}
       onChangeEnd={onChangeEnd}

@@ -3,7 +3,7 @@ import Image from "./image/image";
 import Text from "./text/text";
 
 const ContentBase = React.forwardRef((props, ref) => {
-  const { containerRef, data, onChange, onChangeEnd } = props;
+  const { containerRef, data, onChange, onChangeEnd, onContextMenu } = props;
 
   const _onChange = rect => {
     ref.current = rect;
@@ -16,6 +16,7 @@ const ContentBase = React.forwardRef((props, ref) => {
         key={data.id}
         containerRef={containerRef}
         data={data}
+        onContextMenu={onContextMenu}
         onChange={_onChange}
         onChangeEnd={onChangeEnd}
       />
@@ -25,6 +26,7 @@ const ContentBase = React.forwardRef((props, ref) => {
       <Text
         key={data.id}
         data={data}
+        onContextMenu={onContextMenu}
         onChange={_onChange}
         onChangeEnd={onChangeEnd}
       />

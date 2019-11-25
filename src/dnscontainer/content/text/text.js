@@ -12,9 +12,20 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Text = props => {
-  const { data, onChange, onChangeEnd } = props;
+  const { data, onChange, onChangeEnd, onContextMenu } = props;
   const classes = useStyles(data);
   const textDNSRef = React.useRef();
+
+  React.useEffect(() => {
+    const textDNSReference = textDNSRef.current.span;
+    const onRightClick = e => {
+      onContextMenu(e);
+    };
+
+    textDNSReference.addEventListener("contextmenu", onRightClick);
+    return () =>
+      textDNSReference.removeEventListener("contextmenu", onRightClick);
+  }, []);
 
   return (
     <div className={classes.text}>
