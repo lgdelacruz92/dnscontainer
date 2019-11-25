@@ -22,7 +22,9 @@ const Image = props => {
       <ReactImageDragAndScale
         ref={myRef}
         data={data}
-        onContextMenu={onContextMenu}
+        onContextMenu={e => {
+          onContextMenu({ e, data: myRef.current.data });
+        }}
         onStartUpdate={e => {
           setTime(Date.now());
         }}

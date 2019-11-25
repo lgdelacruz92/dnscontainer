@@ -19,13 +19,13 @@ const Text = props => {
   React.useEffect(() => {
     const textDNSReference = textDNSRef.current.span;
     const onRightClick = e => {
-      onContextMenu(e);
+      onContextMenu({ e, data: textDNSRef.current.textData });
     };
 
     textDNSReference.addEventListener("contextmenu", onRightClick);
     return () =>
       textDNSReference.removeEventListener("contextmenu", onRightClick);
-  }, []);
+  }, [onContextMenu]);
 
   return (
     <div className={classes.text}>
