@@ -9166,10 +9166,10 @@ react-dom@^16.11.0, react-dom@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.18.0"
 
-react-editable-and-draggable-text-2@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/react-editable-and-draggable-text-2/-/react-editable-and-draggable-text-2-1.2.5.tgz#8a2b3d98adbaf00757457d8a5046865b0f6a3ee6"
-  integrity sha512-JXNgF4tuVpqOaO4/vd57EEXTGs256f1oC/BAydLo5+IVxpSeSvDA5Qta/QMtSe38infvECN5zhFepnOJ7A/eQQ==
+react-editable-and-draggable-text-2@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/react-editable-and-draggable-text-2/-/react-editable-and-draggable-text-2-1.2.6.tgz#b0c791becdd74bed6158a4ec105abf05c71a7993"
+  integrity sha512-5b8aY2a3MTpD3iK0+v9GdIKVvYuS49MciXlvWwsp66hasAlZ8XpqYesZhmDS+clXRJKXF/u1hbZXNYBCVa/k5Q==
   dependencies:
     "@material-ui/core" "^4.6.1"
     clsx "^1.0.4"
@@ -9182,10 +9182,10 @@ react-error-overlay@^6.0.3:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
   integrity sha512-bOUvMWFQVk5oz8Ded9Xb7WVdEi3QGLC8tH7HmYP0Fdp4Bn3qw0tRFmr5TW6mvahzvmrK4a6bqWGfCevBflP+Xw==
 
-react-image-drag-and-scale@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/react-image-drag-and-scale/-/react-image-drag-and-scale-3.0.1.tgz#786e862fa799a901ca5a289ede4c36a4d8107f37"
-  integrity sha512-k7q2g6K6NKmj3GN7ZXlTB+2bW0Z7ROMY8foTNOxEFaZGVu6Ttr3yrJmaVXq207RBpiUgYVtHAlUWccfWqs2+pQ==
+react-image-drag-and-scale@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-image-drag-and-scale/-/react-image-drag-and-scale-3.0.2.tgz#4ff04e8f5aac82f5288a0ac53cc0e3ecdebb1b43"
+  integrity sha512-c8SVIIZWkJdp0J9LJ4bZEr0J7MgV35oLGsCG2r20KctlURtmFT1eZHzRXyOSOTVYKaGsAiFMNSL7Kk1R6bIlAg==
   dependencies:
     react "^16.8.6"
     react-dom "^16.8.6"

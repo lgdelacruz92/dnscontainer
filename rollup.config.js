@@ -14,6 +14,8 @@ export default [
       "clsx",
       "react-editable-and-draggable-text-2",
       "react-image-drag-and-scale",
+      "@fortawesome/react-fontawesome",
+      "@fortawesome/free-solid-svg-icons",
       "@material-ui/icons",
       "prop-types"
     ],

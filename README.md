@@ -26,30 +26,56 @@ yarn add dns-container
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./src/App.js) -->
 <!-- The below code snippet is automatically added from ./src/App.js -->
-
 ```js
 import React from "react";
 import "./App.css";
-import DNSContainer, { DNSText, DNSImage } from "./dnscontainer";
-import { imageData, imageData2, text } from "./dnscontainer/data";
+import DNSContainer, { DNSImage } from "./dnscontainer";
+import { imageData } from "./dnscontainer/data";
 
 function App() {
+  const [data, setImageData] = React.useState(imageData);
+  const [history, setHistory] = React.useState([]);
+  const [historyPos, setHistoryPos] = React.useState(-1);
+  React.useEffect(() => {
+    let cmdClickedTime = 0;
+    const onUndo = e => {
+      if (e.key === "Meta") {
+        cmdClickedTime = Date.now();
+      }
+
+      if (e.key === "z") {
+        if (Date.now() - cmdClickedTime < 1000) {
+          if (historyPos > 0) {
+            setImageData({ ...history[historyPos - 1].data });
+            setHistoryPos(historyPos - 1);
+          }
+        }
+      }
+    };
+    document.addEventListener("keydown", onUndo);
+    return () => document.removeEventListener("keydown", onUndo);
+    // eslint-display-next-line
+  }, [historyPos]);
   return (
     <div className="App">
       <DNSContainer width={500} height={700}>
         <DNSImage
-          data={imageData}
-          onChangeEnd={newImageData => {
-            console.log("new image data");
+          data={data}
+          onChangeEnd={(e, newImageData) => {
+            if (history.length > 10) {
+              history.splice(0, 1);
+            }
+            if (historyPos >= 0) {
+              history.splice(historyPos + 1);
+            }
+            history.push({ action: "data-change", data: { ...newImageData } });
+            setHistoryPos(historyPos + 1);
+            setHistory([...history]);
+          }}
+          onRemove={data => {
+            console.log("Remove", data);
           }}
         />
-        <DNSImage
-          data={imageData2}
-          onChangeEnd={newImageData => {
-            console.log("new image data 2");
-          }}
-        />
-        <DNSText data={text} onChangeEnd={newTextData => {}} />
       </DNSContainer>
     </div>
   );
@@ -57,7 +83,6 @@ function App() {
 
 export default App;
 ```
-
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 # Version Update
