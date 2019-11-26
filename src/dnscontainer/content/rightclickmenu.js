@@ -12,11 +12,13 @@ const useStyles = MaterialUI.makeStyles(theme => {
       borderRadius: 5,
       padding: 5,
       width: 130,
-      zIndex: 500
+      zIndex: 500,
+      boxShadow: "1px 1px 3px black"
     },
     option: {
       display: "flex",
       alignItems: "center",
+      fontSize: 12,
       "&:hover": {
         background: "rgb(245, 245, 245)"
       }
