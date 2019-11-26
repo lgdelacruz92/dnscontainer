@@ -66,6 +66,7 @@ const DNSContainer = props => {
               ? children[i].props.data
               : {}
           }
+          onRemove={() => children[i].props.onRemove(children[i].props.data)}
           leftLineRef={leftLineRef}
           rightLineRef={rightLineRef}
           topLineRef={topLineRef}

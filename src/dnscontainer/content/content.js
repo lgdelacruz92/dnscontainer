@@ -19,6 +19,7 @@ const Content = React.forwardRef((props, ref) => {
     data,
     containerRef,
     onChangeEnd,
+    onRemove,
     leftLineRef,
     rightLineRef,
     topLineRef,
@@ -120,6 +121,7 @@ const Content = React.forwardRef((props, ref) => {
             onChangeEnd(data);
           }
         }}
+        onRemove={onRemove}
         onMoveUp={() => {
           data.index += 1;
           onChangeEnd(data);
